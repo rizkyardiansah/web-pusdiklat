@@ -18,13 +18,14 @@
                 <form action="" method="POST">
                     <!-- <?php echo $this->session->flashdata('msg'); ?> -->
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Username</label>
-                        <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">Simply fill your username</div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email'); ?>">
+                        <?= form_error('email', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        <?= form_error('password', '<small class="text-danger">', '</small>') ?>
                     </div>
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary">Login</button>
