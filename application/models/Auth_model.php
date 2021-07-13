@@ -33,7 +33,7 @@ class Auth_model extends CI_Model
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'ci3emailsender@gmail.com',
-            'smtp_pass' => 'salah021',
+            'smtp_pass' => 'satudua3',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
