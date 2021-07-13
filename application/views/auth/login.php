@@ -1,43 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
-</head>
-
-<body>
-    INI NANTI DIGANTI SAMA LOGIN YANG BENERAN
-    <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="card col-md-4 offset-md-4 pt-3 pb-3">
-                <form action="" method="POST">
-                    <!-- <?php echo $this->session->flashdata('msg'); ?> -->
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email'); ?>">
-                        <?= form_error('email', '<small class="text-danger">', '</small>') ?>
+        <!-- Sign in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="<?= base_url('assets/'); ?>images/signin-image.jpg" alt="sign up image"></figure>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="password">
-                        <?= form_error('password', '<small class="text-danger">', '</small>') ?>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Login</h2>
+
+                        <?php if ($this->session->flashdata('msg')) : ?>
+                            <div class="alert alert-<?= $this->session->flashdata('msg')['type']; ?>" role="alert">
+                                <?= $this->session->flashdata('msg')['text']; ?>
+                            </div>
+
+                        <?php unset($_SESSION['msg']);
+                        endif; ?>
+
+                        <form method="POST" action="" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="email" id="email" placeholder="Email" value="<?= set_value('email'); ?>"/>
+                                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password" />
+                                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                            </div>
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Log in" />
+                            </div>
+                        </form>
+                        <div class="social-login">
+                            <a href="<?= base_url('auth/register'); ?>" class="signup-image-link">Buat akun baru</a>
+                        </div>
                     </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
+                </div>
             </div>
+        </section>
+
         </div>
-    </div>
-    </div>
-
-    <script src="<?= base_url('assets/'); ?>js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
