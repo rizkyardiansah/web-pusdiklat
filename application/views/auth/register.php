@@ -50,7 +50,7 @@
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="<?= base_url('assets/'); ?>images/signup-image2.jpg" alt="sing up image"></figure>
+                        <figure><img src="<?= base_url('assets/'); ?>img/signup-image2.jpg" alt="sing up image"></figure>
                         <a href="<?= base_url('auth/index'); ?>" class="signup-image-link">Sudah punya akun</a>
                     </div>
                 </div>

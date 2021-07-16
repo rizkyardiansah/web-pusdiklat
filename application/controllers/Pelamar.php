@@ -21,6 +21,6 @@ class Pelamar extends CI_Controller
     public function index()
     {
         global $dataPelamar;
-        var_dump($dataPelamar);
+        $this->load->view('pelamar/index');
     }
 }

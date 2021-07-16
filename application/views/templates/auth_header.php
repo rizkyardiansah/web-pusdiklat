@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>fonts/material-icon/css/material-design-iconic-font.min.css">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/style_auth.css">
 </head>
 
 <body style="background-color: #5992d9">

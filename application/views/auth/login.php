@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="<?= base_url('assets/'); ?>images/signin-image.jpg" alt="sign up image"></figure>
+                        <figure><img src="<?= base_url('assets/'); ?>img/signin-image.jpg" alt="sign up image"></figure>
                     </div>
 
                     <div class="signin-form">
