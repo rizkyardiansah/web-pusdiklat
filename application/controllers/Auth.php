@@ -119,7 +119,7 @@ class Auth extends CI_Controller
         $email = $this->input->get('email');
         $token = $this->input->get('token');
 
-        $kodeStatus = $this->model->verifikasiAkun($email, urldecode($token));
+        $kodeStatus = $this->model->verifikasiAkun(urldecode($email), urldecode($token));
 
         if ($kodeStatus == 'berhasil') {
             $this->session->set_flashdata('msg', ['type' => 'success', 'text' => 'Aktivasi Berhasil! Silahkan login']);

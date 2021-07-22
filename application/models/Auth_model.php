@@ -49,7 +49,7 @@ class Auth_model extends CI_Model
         if ($type == 'aktivasi') {
             //send email
             $this->email->subject('Aktivasi Akun');
-            $this->email->message('Klik tautan berikut untuk mengaktifkan akun anda: <a href="' . base_url('auth/verifikasi') . '?email=' . $email . '&token=' . urlencode($token) . '">Aktivasi Sekarang!</a>');
+            $this->email->message('Klik tautan berikut untuk mengaktifkan akun anda: <a href="' . base_url('auth/verifikasi') . '?email=' . urlencode($email) . '&token=' . urlencode($token) . '">Aktivasi Sekarang!</a>');
         } else if ($type == 'forgot_password') {
             //send email
             $this->email->subject('Reset Password');
