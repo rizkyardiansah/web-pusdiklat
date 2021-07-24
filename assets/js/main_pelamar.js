@@ -232,4 +232,26 @@
       });
     }
   });
+
+  //on click logout
+  $(".logout").on('click', function(event) {
+    event.preventDefault();
+    let link = $(this).attr('href')
+
+    Swal.fire({
+      title: 'Keluar',
+      text: "Apakah anda yakin?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, saya ingin keluar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        document.location.href = link;
+        
+      }
+    });
+  });
 })(jQuery);
