@@ -18,7 +18,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Data Table -->
 					<div class="row">
 						<div class="col-md-12">
@@ -69,9 +69,9 @@
 										<td><span class="badge bg-warning  text-dark">Menunggu Persetujuan</span></td>
 										</td>
 										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
+											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class="fa fa-edit" aria-hidden="true"></i>
 												Verifikasi Berkas
-											</button>
+											</a>
 										</td>
 									</tr>
 									<tr>

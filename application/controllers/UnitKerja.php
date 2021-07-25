@@ -37,4 +37,10 @@ class UnitKerja extends CI_Controller
 		$data['menu'] = 'menu_rejection';
 		$this->loadTemplate($data);
 	}
+
+	public function verifikasiBerkas()
+	{
+		$data['menu'] = 'verifikasi_berkas';
+		$this->loadTemplate($data);
+	}
 }
