@@ -51,9 +51,9 @@ class Auth extends CI_Controller
 
 				//memindahkan user ke page yang sudah ditentukan
 				if ($roleId == 1) { //Admin Pusat diarahkan ke Page Khusus admin pusat
-					redirect(base_url("pusat/index"));
+					redirect(base_url("adminpusat/index"));
 				} else if ($roleId == 2) { // Admin Unit Kerja diarahkan ke Page Khusus admin unit kerja
-					redirect(base_url("unitkerja/index"));
+					redirect(base_url("adminunitkerja/index"));
 				} else if ($roleId == 3) { //Pelamar diarahkan menuju ke Page khusus pelamar
 					redirect(base_url('pelamar/index'));
 				}

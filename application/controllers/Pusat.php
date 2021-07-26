@@ -7,11 +7,10 @@ class Pusat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		parent::__construct();
-		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 1) {
-			echo 'blocked';
-			die;
-		}
+		// if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 1) {
+		// 	echo 'blocked';
+		// 	die;
+		// }
 	}
 
 	// fungsi load template secara dinamis
