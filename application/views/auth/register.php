@@ -5,13 +5,13 @@
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
 
-                        <?php if ($this->session->flashdata('msg')) : ?>
+                        <!-- <?php if ($this->session->flashdata('msg')) : ?>
                             <div class="alert alert-<?= $this->session->flashdata('msg')['type']; ?>" role="alert">
                                 <?= $this->session->flashdata('msg')['text']; ?>
                             </div>
 
                         <?php unset($_SESSION['msg']);
-                        endif; ?>
+                        endif; ?> -->
 
                         <form method="POST" action="" class="register-form" id="register-form">
                             <div class="form-group">

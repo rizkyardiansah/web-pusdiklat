@@ -33,7 +33,7 @@ class Auth_model extends CI_Model
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'ci3emailsender@gmail.com',
-            'smtp_pass' => 'satudua3',
+            'smtp_pass' => 'EW5A5GgPrF8uef2',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -49,11 +49,11 @@ class Auth_model extends CI_Model
         if ($type == 'aktivasi') {
             //send email
             $this->email->subject('Aktivasi Akun');
-            $this->email->message('Klik tautan berikut untuk mengaktifkan akun anda: <a href="' . base_url('auth/verifikasi') . '?email=' . urlencode($email) . '&token=' . urlencode($token) . '">Aktivasi Sekarang!</a>');
+            $this->email->message('Klik tautan berikut untuk mengaktifkan akun anda: <a href="' . base_url('auth/verifikasi') . '?email=' . urlencode($email) . '&token=' . $token . '">Aktivasi Sekarang!</a>');
         } else if ($type == 'forgot_password') {
             //send email
             $this->email->subject('Reset Password');
-            $this->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword') . '?email=' . $email . '&token=' . urlencode($token) . '">Reset Password</a>');
+            $this->email->message('Click this link to reset your password: <a href="' . base_url('auth/resetpassword') . '?email=' . urlencode($email) . '&token=' . urlencode($token) . '">Reset Password</a>');
         }
 
         if ($this->email->send()) {

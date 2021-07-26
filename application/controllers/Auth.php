@@ -58,10 +58,10 @@ class Auth extends CI_Controller
                     redirect(base_url('pelamar/index'));
                 }
             } else if ($kodeStatus == 'wrongPass') {
-                $this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Login gagal! Password anda salah!']);
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Login', 'text' => 'Password anda salah!']);
                 redirect('auth/index');
             } else if ($kodeStatus == 'emailInv') {
-                $this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Login gagal! Email anda tidak terdaftar!']);
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Login', 'text' => 'Email anda tidak terdaftar!']);
                 redirect('auth/index');
             }
         } else {
@@ -86,7 +86,7 @@ class Auth extends CI_Controller
 
 
         if ($this->form_validation->run() == true) {
-            $token = base64_encode(random_bytes(32));
+            $token = rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
             $email = htmlspecialchars($this->input->post('email', true));
 
             $data = [
@@ -101,10 +101,10 @@ class Auth extends CI_Controller
             $emailTerkirim = $this->model->kirimEmail('aktivasi', $token, $email);
             if ($emailTerkirim == true) {
                 $this->model->insertActivationData($data);
-                $this->session->set_flashdata('msg', ['type' => 'success', 'text' => 'Registrasi berhasil! Silahkan aktivasi akun anda']);
+                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Registrasi', 'text' => 'Silahkan periksa email anda untuk melakukan aktivasi akun']);
                 redirect('auth/index');
             } else {
-                $this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Registrasi gagal! Email aktivasi akun tidak bisa terkirim']);
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Registrasi', 'text' => 'Email aktivasi akun tidak bisa terkirim']);
                 redirect('auth/index');
             }
         } else {
@@ -119,14 +119,16 @@ class Auth extends CI_Controller
         $email = $this->input->get('email');
         $token = $this->input->get('token');
 
-        $kodeStatus = $this->model->verifikasiAkun(urldecode($email), urldecode($token));
+        $kodeStatus = $this->model->verifikasiAkun(urldecode($email), $token);
 
         if ($kodeStatus == 'berhasil') {
-            $this->session->set_flashdata('msg', ['type' => 'success', 'text' => 'Aktivasi Berhasil! Silahkan login']);
+            $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Aktivasi', 'text' => 'Silahkan login']);
         } else if ($kodeStatus == 'tokenInv') {
-            $this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Aktivasi gagal! Token yang anda masukan tidak valid']);
+            // echo urldecode($email) . '\t' . urldecode($token);
+            // die;
+            $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Aktivasi', 'text' => 'Token yang anda masukan tidak valid']);
         } else if ($kodeStatus == 'emailInv') {
-            $this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Aktivasi gagal! Email anda tidak valid']);
+            $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Aktivasi', 'text' => 'Email anda tidak valid']);
         }
 
         redirect('auth/index');
@@ -135,6 +137,7 @@ class Auth extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
+        $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Logout', 'text' => 'Sampai bertemu lagi.']);
         redirect('auth/index');
     }
 }
