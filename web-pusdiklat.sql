@@ -250,6 +250,7 @@ ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `surat_permohonan`
 --
 ALTER TABLE `surat_permohonan`
@@ -257,6 +258,9 @@ ALTER TABLE `surat_permohonan`
 
 --
 -- AUTO_INCREMENT for table `unit_kerja`
+=======
+-- AUTO_INCREMENT untuk tabel `unit_kerja`
+>>>>>>> e44c7da4aee921af692bac68746d953f160ce100
 --
 ALTER TABLE `unit_kerja`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
