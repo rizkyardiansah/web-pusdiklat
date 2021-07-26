@@ -20,7 +20,7 @@ class Pusat extends CI_Controller
 	}
 
 
-	public function index()
+	public function daftarpelamar()
 	{
 		$data['menu'] = 'daftar_pelamar';
 		$this->loadTemplate($data);
@@ -35,6 +35,11 @@ class Pusat extends CI_Controller
 	public function rejection()
 	{
 		$data['menu'] = 'menu_rejection';
+		$this->loadTemplate($data);
+	}
+	public function rincianpelamar()
+	{
+		$data['menu'] = 'rincian_pelamar';
 		$this->loadTemplate($data);
 	}
 }

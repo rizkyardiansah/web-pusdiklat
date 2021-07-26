@@ -50,10 +50,11 @@
 										</td>
 										<td>12 Agustus 2021</td>
 										<td><span class="badge bg-warning  text-dark">Menunggu Persetujuan</span></td>
+										</td>
 										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
+											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('pusat/rincianpelamar') ?>"><i class="fa fa-edit" aria-hidden="true"></i>
 												Rincian Pelamar
-											</button>
+											</a>
 										</td>
 									</tr>
 									<tr>
@@ -72,7 +73,7 @@
 										<td><span class="badge bg-warning  text-dark">Menunggu Persetujuan</span></td>
 										</td>
 										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
+											<button class="btn btn-sm  btn-danger" type="button" ><i class="fa fa-edit" aria-hidden="true"></i>
                                             Rincian Pelamar
 											</button>
 										</td>

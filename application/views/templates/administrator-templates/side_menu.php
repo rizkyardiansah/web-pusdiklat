@@ -26,7 +26,7 @@
 					</a>
 
 					<div class="sb-sidenav-menu-heading">Daftar Menu Admin Pusat</div>
-					<a class="nav-link" href="<?= base_url('pusat/index'); ?>">
+					<a class="nav-link" href="<?= base_url('pusat/daftarpelamar'); ?>">
 						<div class="sb-nav-link-icon "><i class="fa fa-tasks" aria-hidden="true"></i></div>
 						Daftar Pelamar
 						<span class="badge bg-danger text-light mx-3">
