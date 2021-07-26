@@ -24,7 +24,7 @@ class Pusat extends CI_Controller
 	}
 
 
-	public function daftarpelamar()
+	public function index()
 	{
 		$data['menu'] = 'daftar_pelamar';
 		$this->loadTemplate($data);
