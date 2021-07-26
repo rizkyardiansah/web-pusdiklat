@@ -16,6 +16,16 @@
   </section><!-- End Hero -->
 
   <main id="main">
+<<<<<<< HEAD
+
+    <!-- sweetalert2 -->
+    <?php if ($this->session->flashdata('flash')) : ?>
+      <div id="flashdata" data-title="<?= $this->session->flashdata('flash')['title']; ?>" data-text="<?= $this->session->flashdata('flash')['text']; ?>" data-icon="<?= $this->session->flashdata('flash')['icon']; ?>"></div>
+    <?php unset($_SESSION['flash']);
+    endif; ?>
+    
+=======
+>>>>>>> e44c7da4aee921af692bac68746d953f160ce100
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">

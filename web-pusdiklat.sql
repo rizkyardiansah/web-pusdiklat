@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jul 2021 pada 06.29
--- Versi server: 10.4.20-MariaDB
--- Versi PHP: 7.4.21
+-- Generation Time: Jul 26, 2021 at 01:10 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `aktivasi`
+-- Table structure for table `aktivasi`
 --
 
 CREATE TABLE `aktivasi` (
@@ -40,7 +41,7 @@ CREATE TABLE `aktivasi` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -51,19 +52,19 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id`, `email`, `password`, `role_id`) VALUES
 (1, 'Rina_Wahyuni@pusdiklat.com', 'rina123', 1),
 (2, 'PUSDIKLAT@pusdiklat.com', 'pusdiklat', 2),
-(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3),
-(10, 'sleepyweppy@gmail.com', '$2y$10$Zlr0yH4J4r0MSUndvS2zp.609Rx19ZuhwVY98ec6Yaw.UihpotWpa', 3);
+(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3),
+(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelamar`
+-- Table structure for table `pelamar`
 --
 
 CREATE TABLE `pelamar` (
@@ -83,17 +84,32 @@ CREATE TABLE `pelamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pelamar`
+-- Dumping data for table `pelamar`
 --
 
 INSERT INTO `pelamar` (`id`, `nama`, `email`, `universitas`, `fakultas`, `prodi`, `nim`, `semester`, `no_telpon`, `no_surat_permohonan`, `nama_file_khs`, `nama_file_cv`, `nama_file_surat_permohonan`) VALUES
-(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', 'N123/2/19/888', 'Pelamar_KHS_1627231664.pdf', 'Pelamar_CV_1627233612.pdf', 'Pelamar_SuratPermohonan_1627273458.pdf'),
-(8, 'Madara Sasori', 'sleepyweppy@gmail.com', 'Universitas Negeri Konoha', 'Teknik Ninja', 'Anbu', '123465798', 6, '01010101010', NULL, 'Pelamar_KHS_1627236135.pdf', 'Pelamar_CV_1627236177.pdf', 'Pelamar_SuratPermohonan_1627236071.pdf');
+(1, 'Muhammad Rizky', 'sleepyweppy@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', 'N123/2/19/888', '8e154e317e9fef7247a3f5884501ec6b.pdf', '29aaa9784599d2f9625d306600127df6.pdf', '028786e02de1746c5ad4dce556497512.pdf');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `persetujuan`
+--
+
+CREATE TABLE `persetujuan` (
+  `id_persetujuan` int(11) NOT NULL,
+  `id_pelamar` int(11) NOT NULL,
+  `id_permohonan` int(11) NOT NULL,
+  `tanggal_persetujuan` date NOT NULL,
+  `status` varchar(25) NOT NULL,
+  `Keterangan` varchar(65) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -102,7 +118,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -113,7 +129,21 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `unit_kerja`
+-- Table structure for table `surat_permohonan`
+--
+
+CREATE TABLE `surat_permohonan` (
+  `id_permohonan` int(12) NOT NULL,
+  `id_unit_kerja` int(5) NOT NULL,
+  `no_surat_permohonan` varchar(10) NOT NULL,
+  `nama_file_surat_permohonan` varchar(65) NOT NULL,
+  `tanggal_permohonan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit_kerja`
 --
 
 CREATE TABLE `unit_kerja` (
@@ -125,7 +155,7 @@ CREATE TABLE `unit_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `unit_kerja`
+-- Dumping data for table `unit_kerja`
 --
 
 INSERT INTO `unit_kerja` (`id`, `nama`, `keterangan`, `url_gambar`, `url_halaman`) VALUES
@@ -150,65 +180,87 @@ INSERT INTO `unit_kerja` (`id`, `nama`, `keterangan`, `url_gambar`, `url_halaman
 --
 
 --
--- Indeks untuk tabel `aktivasi`
+-- Indexes for table `aktivasi`
 --
 ALTER TABLE `aktivasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pelamar`
+-- Indexes for table `pelamar`
 --
 ALTER TABLE `pelamar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `persetujuan`
+--
+ALTER TABLE `persetujuan`
+  ADD PRIMARY KEY (`id_persetujuan`);
+
+--
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `unit_kerja`
+-- Indexes for table `surat_permohonan`
+--
+ALTER TABLE `surat_permohonan`
+  ADD PRIMARY KEY (`id_permohonan`);
+
+--
+-- Indexes for table `unit_kerja`
 --
 ALTER TABLE `unit_kerja`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `aktivasi`
+-- AUTO_INCREMENT for table `aktivasi`
 --
 ALTER TABLE `aktivasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT untuk tabel `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT untuk tabel `pelamar`
---
-ALTER TABLE `pelamar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `pelamar`
+--
+ALTER TABLE `pelamar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+<<<<<<< HEAD
+-- AUTO_INCREMENT for table `surat_permohonan`
+--
+ALTER TABLE `surat_permohonan`
+  MODIFY `id_permohonan` int(12) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `unit_kerja`
+=======
 -- AUTO_INCREMENT untuk tabel `unit_kerja`
+>>>>>>> e44c7da4aee921af692bac68746d953f160ce100
 --
 ALTER TABLE `unit_kerja`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
