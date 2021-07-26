@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2021 at 09:15 PM
+-- Generation Time: Jul 26, 2021 at 01:10 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -37,15 +37,6 @@ CREATE TABLE `aktivasi` (
   `fakultas` varchar(70) NOT NULL,
   `token` varchar(44) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `aktivasi`
---
-
-INSERT INTO `aktivasi` (`id`, `nama`, `email`, `password`, `universitas`, `fakultas`, `token`) VALUES
-(6, 'Aris Setyawan', 'ariss@upnvj.ac.id', '$2y$10$6iBLJnJ.XpJD4VFEA7I48uG54RUpKBqpztMRGo3gKN1zgtbtRhEGG', 'UPN', 'Fakultas Ilmu Komputer', 'fZqsS4+9Rrsd4zjf3GE1cwhIyREgdVUhNbspoziD/Ls='),
-(7, 'Aris Setyawan', 'ariss@upnvj.ac.id', '$2y$10$jSMFrVT4dEKkplSV4rltSeINCDZGcQEWHmlh/9QxFaudSlUcbQfnS', 'UPN', 'Fakultas Ilmu Komputer', 'KVeQbNpLAPBgwWG15cS1DqeWwlo0WkROuTGrGfcfJdI='),
-(8, 'Adam Tri Wahyuni', 'aris.cemumut@gmail.com', '$2y$10$gLe7LO76OXPlFXpJ6K.66OPLKj3ek4aBsBIguugaDOkCUcw264KdK', 'UPN Vj', 'Ilkom', 'J///x2+kVAqQgJHg9YQz9YyV4EsbwhXBvf7szaI9VIg=');
 
 -- --------------------------------------------------------
 
