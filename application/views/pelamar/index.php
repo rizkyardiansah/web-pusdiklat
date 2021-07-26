@@ -16,6 +16,7 @@
   </section><!-- End Hero -->
 
   <main id="main">
+<<<<<<< HEAD
 
     <!-- sweetalert2 -->
     <?php if ($this->session->flashdata('flash')) : ?>
@@ -23,6 +24,8 @@
     <?php unset($_SESSION['flash']);
     endif; ?>
     
+=======
+>>>>>>> e44c7da4aee921af692bac68746d953f160ce100
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">

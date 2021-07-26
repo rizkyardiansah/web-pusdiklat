@@ -460,8 +460,12 @@ label.valid {
   -webkit-align-items: center;
   -o-align-items: center;
   -ms-align-items: center;
+<<<<<<< HEAD
 	 margin-top: 50px;
    }
+=======
+  margin-top: 80px; }
+>>>>>>> e44c7da4aee921af692bac68746d953f160ce100
 
 .social-label {
   display: inline-block;
