@@ -79,7 +79,7 @@ class Auth_model extends CI_Model
                 $dataLogin = [
                     "email" => $result['email'],
                     "password" => $result['password'],
-                    "role_id" => 3
+                    "role_id" => 1
                 ];
                 $this->db->insert('login', $dataLogin);
 
