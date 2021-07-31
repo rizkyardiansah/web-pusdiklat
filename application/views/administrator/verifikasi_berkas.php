@@ -81,9 +81,8 @@
 									<div class="form-group">
 										<label for="exampleFormControlSelect1">Status Penerimaan</label>
 										<select class="form-control" name="status" id="exampleFormControlSelect1">
-											<option>Menunggu Verifikasi</option>
-											<option>Disetujui</option>
-											<option>Tidak Disetujui</option>
+											<option value="Disetujui">Disetujui</option>
+											<option value="Ditolak">Ditolak</option>
 										</select>
 									</div>
 									<div class="form-group mt-3">
