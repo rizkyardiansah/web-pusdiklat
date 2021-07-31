@@ -13,10 +13,10 @@
 								<thead>
 									<tr>
 										<th scope="col">No</th>
+										<th scope="col">Tanggal Pengajuan</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
 										<th scope="col">Kelengkapan Berkas</th>
-										<th scope="col">Tanggal Pengajuan</th>
 										<th scope="col">Status</th>
 										<th scope="col" class="text-center">Aksi</th>
 									</tr>
@@ -24,6 +24,7 @@
 								<tbody>
 									<tr>
 										<th scope="row">1</th>
+										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
 										<td>
@@ -33,8 +34,7 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
-										<td><span class="badge bg-warning  text-dark">Menunggu Persetujuan</span></td>
+										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
 												Verifikasi Berkas
@@ -43,6 +43,7 @@
 									</tr>
 									<tr>
 										<th scope="row">2</th>
+										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
 										<td>
@@ -52,8 +53,7 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
-										<td><span class="badge bg-warning  text-dark">Menunggu Persetujuan</span></td>
+										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
 										</td>
 										<td colspan='2' class="text-center">
 											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class="fa fa-edit" aria-hidden="true"></i>
@@ -63,6 +63,7 @@
 									</tr>
 									<tr>
 										<th scope="row">3</th>
+										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
 										<td>
@@ -72,7 +73,6 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
 										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
 										</td>
 										<td colspan='2' class="text-center">

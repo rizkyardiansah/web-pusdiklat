@@ -137,13 +137,4 @@ class Auth extends CI_Controller
 		$this->session->sess_destroy();
 		redirect('auth/index');
 	}
-
-
-	public function registerPegawai()
-	{
-		$data['title'] = 'Login Pegawai';
-		$this->load->view('templates/auth_header', $data);
-		$this->load->view('auth/login');
-		$this->load->view('templates/auth_footer');
-	}
 }

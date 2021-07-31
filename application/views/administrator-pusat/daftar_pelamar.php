@@ -18,7 +18,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Data Table -->
 					<div class="row">
 						<div class="col-md-12">
@@ -28,7 +28,7 @@
 										<th scope="col">No</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
-                                        <th scope="col" class="text-center">Unit Kerja</th>
+										<th scope="col" class="text-center">Unit Kerja</th>
 										<th scope="col">Kelengkapan Berkas</th>
 										<th scope="col">Tanggal Pengajuan</th>
 										<th scope="col">Status</th>
@@ -40,7 +40,7 @@
 										<th scope="row">1</th>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Pendidikan dan Pelatihan</td>
+										<td>Pusat Pendidikan dan Pelatihan</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -60,7 +60,7 @@
 										<th scope="row">2</th>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Pembinaan Perpustakawan</td>
+										<td>Pusat Pembinaan Perpustakawan</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -73,7 +73,7 @@
 										</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-                                            Rincian Pelamar
+												Rincian Pelamar
 											</button>
 										</td>
 									</tr>
@@ -81,7 +81,7 @@
 										<th scope="row">3</th>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
+										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -94,7 +94,7 @@
 										</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-                                            Rincian Pelamar
+												Rincian Pelamar
 											</button>
 										</td>
 									</tr>
@@ -128,13 +128,8 @@
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a>
-							&middot;
-							<a href="#">Terms &amp; Conditions</a>
-						</div>
+					<div class="d-flex align-items-center justify-content-between small text-center">
+						<div>Sistem Informasi Permagangan Perpusnas</div>
 					</div>
 				</div>
 			</footer>

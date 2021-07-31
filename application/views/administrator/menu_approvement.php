@@ -30,10 +30,7 @@
 										<th scope="col">Status</th>
 										<th scope="col" class="text-center">Tanggal Pengajuan</th>
 										<th scope="col" class="text-center">Tanggal Persetujuan</th>
-										<th>
-											Keterangan
-										</th>
-
+										<th scope="col">Keterangan</th>
 									</tr>
 								</thead>
 								<tbody>
