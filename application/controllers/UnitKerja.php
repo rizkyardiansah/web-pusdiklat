@@ -7,10 +7,11 @@ class UnitKerja extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		// if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 2) {
-		// 	echo 'blocked';
-		// 	die;
-		// }
+		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 2) {
+			$this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Unauthenticated, harap login terlebih dahulu']);
+			redirect('auth/index');
+			die;
+		}
 	}
 
 	// fungsi load template secara dinamis
