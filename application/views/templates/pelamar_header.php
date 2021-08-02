@@ -33,14 +33,11 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-=======
     <!-- sweetalert2 -->
     <?php if ($this->session->flashdata('flash')) : ?>
         <div id="flashdata" data-title="<?= $this->session->flashdata('flash')['title']; ?>" data-text="<?= $this->session->flashdata('flash')['text']; ?>" data-icon="<?= $this->session->flashdata('flash')['icon']; ?>"></div>
     <?php unset($_SESSION['flash']);
     endif; ?>
->>>>>>> e44c7da4aee921af692bac68746d953f160ce100
 
     <!-- ======= Top Bar ======= -->
     <div id="topbar" class="d-flex align-items-center fixed-top">
@@ -63,10 +60,6 @@
                     <li class="active"><a href="<?= base_url('pelamar/index'); ?>">Beranda</a></li>
                     <li><a href="<?= base_url('pelamar/index') . "#why-us"; ?>">Panduan</a></li>
                     <li><a href="<?= base_url('pelamar/index') . "#specials"; ?>">Program</a></li>
-<<<<<<< HEAD
-                    <li><a href="#events">Notifikasi</a></li>
-                    <li class="book-a-table text-center"><a href="<?= base_url('pelamar/profile/'); ?>">Akun saya</a></li>
-=======
 
                     <li>
                         <div class="dropdown">
@@ -81,7 +74,6 @@
                                 <a class="dropdown-item logout" href="<?= base_url('auth/logout'); ?>">Keluar</a>
                             </div>
                         </div>
->>>>>>> e44c7da4aee921af692bac68746d953f160ce100
                 </ul>
             </nav><!-- .nav-menu -->
 
