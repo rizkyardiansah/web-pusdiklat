@@ -12,9 +12,9 @@ class Auth extends CI_Controller
         if ($this->uri->segment(2) != 'logout' && $this->session->userdata('logged_in') == true) {
             $roleId = $this->session->userdata('role_id');
             if ($roleId == 1) {
-                redirect('AdminPusat/index');
+                redirect('pusat/index');
             } else if ($roleId == 2) {
-                redirect('AdminUnitKerja/index');
+                redirect('unitkerja/index');
             } else if ($roleId == 3) {
                 redirect('pelamar/index');
             }
