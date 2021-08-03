@@ -1,13 +1,4 @@
 <main id="main">
-<<<<<<< HEAD
-    <!-- sweetalert2 -->
-    <?php if ($this->session->flashdata('flash')) : ?>
-        <div id="flashdata" data-title="<?= $this->session->flashdata('flash')['title']; ?>" data-text="<?= $this->session->flashdata('flash')['text']; ?>" data-icon="<?= $this->session->flashdata('flash')['icon']; ?>"></div>
-    <?php unset($_SESSION['flash']);
-    endif; ?>
-
-=======
->>>>>>> e44c7da4aee921af692bac68746d953f160ce100
     <section>
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
 
@@ -19,30 +10,6 @@
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-lg-9 ">
 
-<<<<<<< HEAD
-                    <!-- <?php if ($this->session->flashdata('flash_khs')) : ?>
-                        <div class="alert alert-<?= $this->session->flashdata('flash_khs')['type']; ?>" role="alert">
-                            <?= $this->session->flashdata('flash_khs')['text']; ?>
-                        </div>
-                    <?php unset($_SESSION['flash_khs']);
-                            endif; ?>
-
-                    <?php if ($this->session->flashdata('flash_cv')) : ?>
-                        <div class="alert alert-<?= $this->session->flashdata('flash_cv')['type']; ?>" role="alert">
-                            <?= $this->session->flashdata('flash_cv')['text']; ?>
-                        </div>
-                    <?php unset($_SESSION['flash_cv']);
-                    endif; ?>
-
-                    <?php if ($this->session->flashdata('flash_surat')) : ?>
-                        <div class="alert alert-<?= $this->session->flashdata('flash_surat')['type']; ?>" role="alert">
-                            <?= $this->session->flashdata('flash_surat')['text']; ?>
-                        </div>
-                    <?php unset($_SESSION['flash_surat']);
-                    endif; ?> -->
-
-=======
->>>>>>> e44c7da4aee921af692bac68746d953f160ce100
                     <?= form_open_multipart('pelamar/daftar/' . $unit_kerja['id']) ?>
                     <div class="row justify-content-around">
                         <div class="col-lg-6">
@@ -117,13 +84,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
-                        <label class="label" for="unit kerja">Unit Kerja</label>
-                        <input class="form-control" type="text" id="unit kerja" name="unit kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
-=======
                         <label class="label" for="unit_kerja">Unit Kerja</label>
-                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
->>>>>>> e44c7da4aee921af692bac68746d953f160ce100
+                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['id']; ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label class="label" for="no_surat">Nomor Surat Permohonan Magang</label>
