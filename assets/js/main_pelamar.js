@@ -308,7 +308,7 @@
 			$("#khsNormalDisplay").show();
 		}
 
-    //ubah cv
+		//ubah cv
 		const statusCv = $("#cvNormalDisplay p").text();
 		if (statusCv.length === 0) {
 			$("#cvUploadDisplay").show();
@@ -364,7 +364,7 @@
 		$("#khsNormalDisplay").show();
 	});
 
-  //button ubah berkas cv
+	//button ubah berkas cv
 	$("#ubah-cv").on("click", function (event) {
 		$("#cvUploadDisplay").show();
 		$("#cvNormalDisplay").hide();
@@ -402,19 +402,19 @@
 		});
 	});
 
-  $('#button-1').on('click', function(event) {
-    window.location.hash = '#tab-1';
-  });
-  $('#button-2').on('click', function(event) {
-    window.location.hash = '#tab-2';
-  });
-  $('#button-3').on('click', function(event) {
-    window.location.hash = '#tab-3';
-  });
-  $('#button-4').on('click', function(event) {
-    window.location.hash = '#tab-4';
-  });
-  $('#button-5').on('click', function(event) {
-    window.location.hash = '#tab-5';
-  });
+	$("#button-1").on("click", function (event) {
+		window.location.hash = "#tab-1";
+	});
+	$("#button-2").on("click", function (event) {
+		window.location.hash = "#tab-2";
+	});
+	$("#button-3").on("click", function (event) {
+		window.location.hash = "#tab-3";
+	});
+	$("#button-4").on("click", function (event) {
+		window.location.hash = "#tab-4";
+	});
+	$("#button-5").on("click", function (event) {
+		window.location.hash = "#tab-5";
+	});
 })(jQuery);

@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <label class="label" for="unit_kerja">Unit Kerja</label>
-                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['id']; ?>" readonly>
+                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label class="label" for="no_surat">Nomor Surat Permohonan Magang</label>
