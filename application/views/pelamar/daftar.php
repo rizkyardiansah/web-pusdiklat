@@ -3,7 +3,7 @@
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
 
             <div class="section-title">
-                <h2>Pendaftaran Magang</h2>
+                <h2>Pendaftaran Magang@perpusnas</h2>
                 <p><?= $unit_kerja['nama']; ?></p>
             </div>
 
