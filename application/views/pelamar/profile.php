@@ -1,5 +1,5 @@
 <main id="main">
-    <section id="specials" class="specials" style="margin-top: 6%">
+    <section id="specials" class="profile" style="margin-top: 6%">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Profil Pengguna</h2>
@@ -13,7 +13,7 @@
                                 <div class="col-lg-3"><img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" class="img-thumbnail" style="height: 5rem;"></div>
                                 <div class="col-lg-9">
                                     <h5><?= $user['nama']; ?></h5>
-                                    <p><?= $user['email']; ?></p>
+                                    <p style="font-size:13px;"><?= $user['email']; ?></p>
                                 </div>
                             </div>
                             <br>
@@ -30,13 +30,13 @@
                             <a class="nav-link" data-toggle="tab" id="button-3" href="#tab-3">Berkas</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" id="button-4" href="#tab-4">Akun</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" id="button-5" href="#tab-5">Keluar</a>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </div>
