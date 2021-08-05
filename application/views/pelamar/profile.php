@@ -117,7 +117,7 @@
                                 <div class="col-lg-10 details order-2 order-lg-1">
                                     <h3>Berkas</h3>
 
-                                    <h6>Surat permohonan magang</h6>
+                                    <!-- <h6>Surat permohonan magang</h6>
                                     <div id="suratUploadDisplay" class="container" style="border-style: dotted; height: fit-content;">
                                         <div class="input-group mb-3 mt-3">
                                             <?= form_open_multipart('pelamar/edit/' . 'suratPermohonan/' . $user['id']) ?>
@@ -137,7 +137,7 @@
                                         <a class="btn btn-primary btn-sm mb-3 mr-2" href="<?= base_url('pelamar/download/') . 'suratPermohonan/' . $user['id']; ?>">Unduh berkas</a>
                                         <button type="button" class="btn btn-success btn-sm mb-3 mr-2" id="ubah-surat">Ubah berkas</button>
                                         <a class="btn btn-danger btn-sm mb-3 mr-2 hapus-berkas" href="<?= base_url('pelamar/delete/')  . 'suratPermohonan/' . $user['id']; ?>">Hapus berkas</a>
-                                    </div>
+                                    </div> -->
 
                                     <br>
 
@@ -160,7 +160,7 @@
                                         <p class="mt-3"><?= $user['nama_file_khs']; ?></p>
                                         <a class="btn btn-primary btn-sm mb-3 mr-2" href="<?= base_url('pelamar/download/') . 'khs/' . $user['id']; ?>">Unduh berkas</a>
                                         <button type="button" class="btn btn-success btn-sm mb-3 mr-2" id="ubah-khs">Ubah berkas</button>
-                                        <a class="btn btn-danger btn-sm mb-3 mr-2 hapus-berkas" href="<?= base_url('pelamar/delete/')  . 'khs/' . $user['id']; ?>">Hapus berkas</a>
+                                        <!-- <a class="btn btn-danger btn-sm mb-3 mr-2 hapus-berkas" href="<?= base_url('pelamar/delete/')  . 'khs/' . $user['id']; ?>">Hapus berkas</a> -->
                                     </div>
 
                                     <br>
@@ -184,7 +184,7 @@
                                         <p class="mt-3"><?= $user['nama_file_cv']; ?></p>
                                         <a class="btn btn-primary btn-sm mb-3 mr-2" href="<?= base_url('pelamar/download/') . 'cv/' . $user['id']; ?>">Unduh berkas</a>
                                         <button type="button" class="btn btn-success btn-sm mb-3 mr-2" id="ubah-cv">Ubah berkas</button>
-                                        <a class="btn btn-danger btn-sm mb-3 mr-2 hapus-berkas" href="<?= base_url('pelamar/delete/')  . 'cv/' . $user['id']; ?>">Hapus berkas</a>
+                                        <!-- <a class="btn btn-danger btn-sm mb-3 mr-2 hapus-berkas" href="<?= base_url('pelamar/delete/')  . 'cv/' . $user['id']; ?>">Hapus berkas</a> -->
                                     </div>
 
                                 </div>
