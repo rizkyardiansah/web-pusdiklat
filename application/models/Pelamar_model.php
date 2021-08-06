@@ -47,6 +47,19 @@ class Pelamar_model extends CI_Model
         $this->db->insert('surat_balasan', ['id_surat_permohonan' => $idSuratPermohonan]);
     }
 
+    public function getListUnitDilamar($idPelamar)
+    {
+        $this->db->select('id_unit_kerja');
+        $this->db->where('id_pelamar', $idPelamar);
+        $result = $this->db->get('surat_permohonan')->result_array();
+
+        $listUnitTerdaftar = [];
+        foreach ($result as $r) {
+            $listUnitTerdaftar[] = $r['id_unit_kerja'];
+        }
+        return $listUnitTerdaftar;
+    }
+
     public function deleteFileNameById($jenis, $id)
     {
         if ($jenis == 'suratPermohonan') {

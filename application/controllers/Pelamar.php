@@ -20,6 +20,8 @@ class Pelamar extends CI_Controller
     {
         $data['title'] = 'Beranda';
         $data['user'] = $GLOBALS['dataPelamar'];
+        $data['dataLengkap'] = !in_array(null, $data['user']);
+        $data['unitTerdaftar'] = $this->model->getListUnitDilamar($data['user']['id']);
         $data['unit_kerja'] = $this->model->getAllUnitKerja();
         $this->load->view('templates/pelamar_header', $data);
         $this->load->view('pelamar/index', $data);
@@ -32,13 +34,13 @@ class Pelamar extends CI_Controller
         $data['user'] = $GLOBALS['dataPelamar'];
         $data['unit_kerja'] = $this->model->getUnitKerjaById($id);
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
-        $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
-        $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
+        // $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
+        // $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
+        // $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
         $this->form_validation->set_rules('no_surat', 'Nomor Surat Permohonan Magang', 'required|trim|max_length[70]');
         $this->form_validation->set_rules('pernyataan', 'Pernyataan', 'required');
 
