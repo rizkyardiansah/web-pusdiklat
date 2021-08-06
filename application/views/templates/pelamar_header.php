@@ -70,7 +70,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown" style="background-color: #000">
-                                <a class="dropdown-item" href="<?= base_url('pelamar/profile/'); ?>">Profil</a>
+                                <a class="dropdown-item" href="<?= base_url('pelamar/profile'); ?>">Profil</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item logout" href="<?= base_url('auth/logout'); ?>">Keluar</a>
                             </div>
