@@ -37,13 +37,13 @@
 						<div class="sb-nav-link-icon">
 							<i class="fa fa-check" aria-hidden="true"></i>
 						</div>
-						Data yang telah disetujui
+						Data yang disetujui
 					</a>
 					<a class="nav-link" href="<?= base_url('pusat/rejection'); ?>">
 						<div class="sb-nav-link-icon">
 							<i class="fas fa-ban"></i>
 						</div>
-						Data yang tidak disetujui
+						Data yang ditolak
 					</a>
 
 				</div>

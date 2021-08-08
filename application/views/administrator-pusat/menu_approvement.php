@@ -8,19 +8,7 @@
 					</ol>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
-							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">14 Total data pelamar</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-success text-white mb-4">
-								<div class="card-body">15 Data telah disetujui</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-success text-white mb-4">
+							<div class=" text-white mb-4">
 								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 									<option selected>Open this select menu</option>
 									<option value="1">Biro Perencanaan dan Keuangan</option>
@@ -48,12 +36,12 @@
 								<thead>
 									<tr>
 										<th scope="col">No</th>
+										<th scope="col" >Tanggal Pengajuan</th>
+										<th scope="col" >Tanggal Persetujuan</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
 										<th scope="col" class="text-center">Unit Kerja</th>
 										<th scope="col">Kelengkapan Berkas</th>
-										<th scope="col" >Tanggal Pengajuan</th>
-										<th scope="col" >Tanggal Persetujuan</th>
 										<th scope="col">Keterangan</th>
 										<th scope="col" class="text-center">Aksi</th>
 									</tr>
@@ -61,6 +49,8 @@
 								<tbody>
 									<tr>
 										<th scope="row">1</th>
+										<td>12 Agustus 2021</td>
+										<td>13 Agustus 2012</td>
 										<td>Mark</td>
 										<td>Otto</td>
 										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
@@ -71,8 +61,6 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
 										<td> Memenuhi Syarat</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
@@ -82,6 +70,8 @@
 									</tr>
 									<tr>
 										<th scope="row">2</th>
+										<td>12 Agustus 2021</td>
+										<td>13 Agustus 2012</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
 										<td>Pusat Data dan Informasi</td>
@@ -92,8 +82,6 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
 										<td> Memenuhi Syarat</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
@@ -103,6 +91,8 @@
 									</tr>
 									<tr>
 										<th scope="row">3</th>
+										<td>12 Agustus 2021</td>
+										<td>13 Agustus 2012</td>
 										<td>Larry the Bird</td>
 										<td>@twitter</td>
 										<td>Biro SDM dan Umum</td>
@@ -113,8 +103,6 @@
 											<br>
 											Nama surat magang.pdf
 										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
 										<td> Memenuhi Syarat</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>

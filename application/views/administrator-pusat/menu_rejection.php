@@ -2,25 +2,13 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Menu Persetujuan</h1>
+					<h1 class="mt-4">Menu Penolakan</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">Data yang tidak disetujui</li>
+						<li class="breadcrumb-item active">Data yang telah ditolak</li>
 					</ol>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
-							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">14 Total data pelamar</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">15 Data telah ditolak</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-success text-white mb-4">
+							<div class="text-white mb-4">
 								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 									<option selected>Open this select menu</option>
 									<option value="1">Biro Perencanaan dan Keuangan</option>
@@ -48,6 +36,7 @@
 								<thead>
 									<tr>
 										<th scope="col">No</th>
+										<th scope="col" >Tanggal Pengajuan</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
 										<th scope="col" class="text-center">Unit Kerja</th>
@@ -59,6 +48,7 @@
 								<tbody>
 									<tr>
 										<th scope="row">1</th>
+										<td>12 Agustus 2021</td>
 										<td>Mark</td>
 										<td>Otto</td>
 										<td>Pusat Data dan Informasi</td>
@@ -78,6 +68,7 @@
 									</tr>
 									<tr>
 										<th scope="row">2</th>
+										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
 										<td>Pusat Pengambangan Perpustakaan Umum dan Khusus</td>
@@ -97,6 +88,7 @@
 									</tr>
 									<tr>
 										<th scope="row">3</th>
+										<td>12 Agustus 2021</td>
 										<td>Larry the Bird</td>
 										<td>@twitter</td>
 										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>

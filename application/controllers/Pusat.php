@@ -46,4 +46,9 @@ class Pusat extends CI_Controller
 		$data['menu'] = 'rincian_pelamar';
 		$this->loadTemplate($data);
 	}
+	public function formsurat()
+	{
+		$data['menu'] = 'form_surat';
+		$this->loadTemplate($data);
+	}
 }
