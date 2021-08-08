@@ -55,8 +55,20 @@
                     <li class="active"><a href="<?= base_url('pelamar/index'); ?>">Beranda</a></li>
                     <li><a href="<?= base_url('pelamar/index') . "#why-us"; ?>">Panduan</a></li>
                     <li><a href="<?= base_url('pelamar/index') . "#specials"; ?>">Program</a></li>
-                    <li><a href="#events">Notifikasi</a></li>
-                    <li class="book-a-table text-center"><a href="<?= base_url('pelamar/profile/'); ?>">Akun saya</a></li>
+
+                    <li>
+                        <div class="dropdown">
+                            <a id="profileDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-1"><?= $user['nama']; ?></span>
+                                <img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" style="height: 1.7rem;" class="img-thumbnail rounded-circle">
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown" style="background-color: #000">
+                                <a class="dropdown-item" href="<?= base_url('pelamar/profile/'); ?>">Profil</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item logout" href="<?= base_url('auth/logout'); ?>">Keluar</a>
+                            </div>
+                        </div>
                 </ul>
             </nav><!-- .nav-menu -->
 

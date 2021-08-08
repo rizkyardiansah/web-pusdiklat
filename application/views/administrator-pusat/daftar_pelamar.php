@@ -17,7 +17,7 @@
 										<th scope="col">Tanggal Pengajuan</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
-                                        <th scope="col" class="text-center">Unit Kerja</th>
+										<th scope="col" class="text-center">Unit Kerja</th>
 										<th scope="col">Kelengkapan Berkas</th>
 										<th scope="col">Status</th>
 										<th scope="col" class="text-center">Aksi</th>
@@ -29,7 +29,7 @@
 										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Pendidikan dan Pelatihan</td>
+										<td>Pusat Pendidikan dan Pelatihan</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -59,7 +59,7 @@
 										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Pembinaan Perpustakawan</td>
+										<td>Pusat Pembinaan Perpustakawan</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -89,7 +89,7 @@
 										<td>12 Agustus 2021</td>
 										<td>Jacob</td>
 										<td>Thornton</td>
-                                        <td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
+										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
 										<td>
 											Berkas CV.pdf
 											<br>
@@ -144,13 +144,8 @@
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a>
-							&middot;
-							<a href="#">Terms &amp; Conditions</a>
-						</div>
+					<div class="d-flex align-items-center justify-content-between small text-center">
+						<div>Sistem Informasi Permagangan Perpusnas</div>
 					</div>
 				</div>
 			</footer>

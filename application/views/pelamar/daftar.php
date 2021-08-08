@@ -1,10 +1,4 @@
 <main id="main">
-    <!-- sweetalert2 -->
-    <?php if ($this->session->flashdata('flash')) : ?>
-        <div id="flashdata" data-title="<?= $this->session->flashdata('flash')['title']; ?>" data-text="<?= $this->session->flashdata('flash')['text']; ?>" data-icon="<?= $this->session->flashdata('flash')['icon']; ?>"></div>
-    <?php unset($_SESSION['flash']);
-    endif; ?>
-
     <section>
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
 

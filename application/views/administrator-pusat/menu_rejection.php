@@ -62,9 +62,9 @@
 										<td> Berkas Tidak Memenuhi Syarat</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-											Cetak Surat
+												Cetak Surat
 											</button>
-											</td>	
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">2</th>
@@ -82,9 +82,9 @@
 										<td> Berkas Tidak Memenuhi Syarat</td>
 										<td colspan='2' class="text-center">
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-											Cetak Surat
+												Cetak Surat
 											</button>
-											</td>	
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">3</th>
@@ -104,7 +104,7 @@
 											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
 												Cetak Surat
 											</button>
-											</td>	
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -136,17 +136,11 @@
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a>
-							&middot;
-							<a href="#">Terms &amp; Conditions</a>
-						</div>
+					<div class="d-flex align-items-center justify-content-between small text-center">
+						<div>Sistem Informasi Permagangan Perpusnas</div>
 					</div>
 				</div>
 			</footer>
-
 		</div>
 
 		</div>
