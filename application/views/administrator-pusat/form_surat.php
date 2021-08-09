@@ -21,24 +21,24 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="inputAddress">Program Studi</label>
-									<input type="text" name="prodi" class="form-control" id="inputAddress" placeholder="Program Studi" readonly>
+									<label for="prodi">Program Studi</label>
+									<input type="text" name="prodi" class="form-control" id="prodi" placeholder="Program Studi" readonly>
 								</div>
 								<div class="form-group">
-									<label for="inputAddress2">Fakultas</label>
-									<input type="text" name="fakultas" class="form-control" id="inputAddress2" placeholder="Fakultas" readonly>
+									<label for="fakultas">Fakultas</label>
+									<input type="text" name="fakultas" class="form-control" id="fakultas" placeholder="Fakultas" readonly>
 								</div>
                                 <div class="form-group">
-									<label for="instansi">Instansi</label>
-									<input type="text" name="fakultas" class="form-control" id="instansi" placeholder="Instansi" readonly>
+									<label for="universitas">Universitas</label>
+									<input type="text" name="universitas" class="form-control" id="Univesitas" placeholder="Universitas" readonly>
 								</div>
 								<div class="form-group ">
-									<label for="inputCity">Nomor Telepon / WhatsApp</label>
-									<input type="text" class="form-control" placeholder="Nomor Telepon" id="inputCity" readonly>
+									<label for="no_telepon">Nomor Telepon / WhatsApp</label>
+									<input type="text" name="no_telepon" class="form-control" placeholder="Nomor Telepon" id="no_telepon" readonly>
 								</div>
 								<div class="form-group">
-									<label for="inputState">Unit Kerja</label>
-									<input type="text" class="form-control" placeholder="Unit Kerja" id="inputCity" readonly>
+									<label for="id_unit">Unit Kerja</label>
+									<input type="text" name="id_unit" class="form-control" placeholder="Unit Kerja" id="id_unit" readonly>
 								</div>
                             </div>
 						</div>
