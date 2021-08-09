@@ -7,8 +7,7 @@ class UnitKerja extends CI_Controller
 	{
 		parent::__construct();
 		// load model persetujuan
-		$this->load->model(array('Persetujuan_model'));
-		$this->load->helper('url');
+		$this->load->model('Persetujuan_model');
 		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 2) {
 			$this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Unauthenticated, harap login terlebih dahulu']);
 			redirect('auth/index');
@@ -21,8 +20,8 @@ class UnitKerja extends CI_Controller
 	{
 		$this->load->view('templates/administrator-templates/header');
 		$this->load->view('templates/administrator-templates/nav_menu');
-		$this->load->view('templates/administrator-templates/side_menu');
-		$this->load->view('administrator/' . $menu['menu']);
+		$this->load->view('templates/administrator-templates/side_menu', $menu);
+		$this->load->view('administrator/' . $menu['menu'], $menu);
 		$this->load->view('templates/administrator-templates/footer');
 	}
 
@@ -30,25 +29,35 @@ class UnitKerja extends CI_Controller
 	public function index()
 	{
 		$data['menu'] = 'index';
-		$this->loadTemplate($data);
+		$arrayData = array(
+			'status' => 'Menunggu Verifikasi'
+		);
+		// Get Count Notifikasi Data yang perlu di verifikasi
+		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang masih menunggu verifikasi
-		$dataPending = $this->Persetujuan_model->getDataPendingLamaran();
+		$data['verifikasi'] = $this->Persetujuan_model->getDataPendingLamaran($arrayData);
+		$this->loadTemplate($data);
 	}
 
 	public function approval()
 	{
 		$data['menu'] = 'menu_approvement';
-		$this->loadTemplate($data);
+		// Get Count Notifikasi Data yang perlu di verifikasi
+		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang telah disetujui
-		$dataAccept = $this->Persetujuan_model->getDataAcceptLamaran();
+		$data['approval'] = $this->Persetujuan_model->getDataAcceptLamaran();
+		$this->loadTemplate($data);
 	}
 
 	public function rejection()
 	{
 		$data['menu'] = 'menu_rejection';
-		$this->loadTemplate($data);
+
+		// Get Count Notifikasi Data yang perlu di verifikasi
+		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang telah ditolak
 		$dataRejection = $this->Persetujuan_model->getDataRejectLamaran();
+		$this->loadTemplate($data);
 	}
 
 	public function verifikasiBerkas()
