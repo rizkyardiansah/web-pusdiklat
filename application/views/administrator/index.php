@@ -24,11 +24,34 @@
 									</tr>
 								</thead>
 								<tbody>
-									<!-- <?php foreach ($verifikasi as $data_verifikasi) : ?>
+									<?php
+									$no = 1;
+									foreach ($verifikasi as $data_verifikasi) : ?>
 										<tr>
-											<td></td>
+											<td><?= $no++; ?></td>
+											<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
+											<td><?= $data_verifikasi['nama_pelamar']; ?></td>
+											<td><?= $data_verifikasi['nama_unit']; ?></td>
+											<td>
+												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_khs']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_cv']; ?>
+											</td>
+											<td>
+												<span class="badge bg-warning text-dark mx-3">
+													<?= $data_verifikasi['status']; ?>
+												</span>
+
+											</td>
+											<td colspan='2' class="text-center">
+												<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class=" fa fa-edit" aria-hidden="true"></i>
+													Rincian Pelamar
+												</a>
+											</td>
 										</tr>
-									<?php endforeach; ?> -->
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>

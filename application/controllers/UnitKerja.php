@@ -35,36 +35,43 @@ class UnitKerja extends CI_Controller
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang masih menunggu verifikasi
-		$data['verifikasi'] = $this->Persetujuan_model->getDataPendingLamaran($arrayData);
+		$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);
 	}
 
 	public function approval()
 	{
 		$data['menu'] = 'menu_approvement';
+		$arrayData = array(
+			'status' => 'Disetujui'
+		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang telah disetujui
-		$data['approval'] = $this->Persetujuan_model->getDataAcceptLamaran();
+		$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);
 	}
 
 	public function rejection()
 	{
 		$data['menu'] = 'menu_rejection';
-
+		$arrayData = array(
+			'status' => 'Ditolak'
+		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data yang telah ditolak
-		$dataRejection = $this->Persetujuan_model->getDataRejectLamaran();
+		$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);
 	}
 
 	public function verifikasiBerkas()
 	{
 		$data['menu'] = 'verifikasi_berkas';
-		$this->loadTemplate($data);
+		// Get Count Notifikasi Data yang perlu di verifikasi
+		$data['count'] = $this->Persetujuan_model->getCountDataPending();
 		// aksi untuk liat data untuk diverifikasi
 		// $dataPending = $this->Persetujuan_model->updateVerifikasi($id, $data);
+		$this->loadTemplate($data);
 	}
 }

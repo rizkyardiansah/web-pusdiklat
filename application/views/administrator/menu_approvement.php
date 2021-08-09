@@ -29,9 +29,15 @@
 										<tr>
 											<td><?= $no++; ?></td>
 											<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
-											<td><?= $dataApprovement['id_pelamar']; ?></td>
-											<td><?= $dataApprovement['id_unit']; ?></td>
-											<td><?= $dataApprovement['nama_file_surat_permohonan']; ?></td>
+											<td><?= $dataApprovement['nama_pelamar']; ?></td>
+											<td><?= $dataApprovement['nama_unit']; ?></td>
+											<td>
+												<?= $dataApprovement['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_khs']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_cv']; ?>
+											</td>
 											<td>
 												<span class="badge bg-success text-black">
 													<?= $dataApprovement['status']; ?>
@@ -39,7 +45,7 @@
 											</td>
 
 											<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
-											<td><?= $dataApprovement['keterangan']; ?></td>
+											<td><?= $dataApprovement['ket']; ?></td>
 										</tr>
 									<?php endforeach; ?>
 								</tbody>
