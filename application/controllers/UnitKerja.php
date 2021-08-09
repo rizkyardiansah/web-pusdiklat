@@ -30,10 +30,11 @@ class UnitKerja extends CI_Controller
 	{
 		$data['menu'] = 'index';
 		$arrayData = array(
+			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Menunggu Verifikasi'
 		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
-		$data['count'] = $this->Persetujuan_model->getCountDataPending();
+		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang masih menunggu verifikasi
 		$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);
@@ -43,10 +44,11 @@ class UnitKerja extends CI_Controller
 	{
 		$data['menu'] = 'menu_approvement';
 		$arrayData = array(
+			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Disetujui'
 		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
-		$data['count'] = $this->Persetujuan_model->getCountDataPending();
+		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);
@@ -56,10 +58,11 @@ class UnitKerja extends CI_Controller
 	{
 		$data['menu'] = 'menu_rejection';
 		$arrayData = array(
+			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Ditolak'
 		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
-		$data['count'] = $this->Persetujuan_model->getCountDataPending();
+		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		$this->loadTemplate($data);

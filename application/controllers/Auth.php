@@ -40,11 +40,12 @@ class Auth extends CI_Controller
 			if ($kodeStatus == 'berhasil') {
 				$data = $this->model->getDataLoginByEmail($email);
 				$roleId = $data['role_id'];
-
+				$idUnit = $data['id_unit_kerja'];
 				//membuat session
 				$sesdata = array(
 					'email' => $email,
 					'role_id' => $roleId,
+					'id_unit_kerja' => $idUnit,
 					'logged_in' => TRUE
 				);
 				$this->session->set_userdata($sesdata);
