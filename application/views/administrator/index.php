@@ -2,7 +2,9 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Verifikasi Data</h1>
+					<h1 class="mt-4">
+						Verifikasi Data
+					</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">Tabel Verfikasi Data</li>
 					</ol>
@@ -22,65 +24,34 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
-										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-												Verifikasi Berkas
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
-										</td>
-										<td colspan='2' class="text-center">
-											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class="fa fa-edit" aria-hidden="true"></i>
-												Verifikasi Berkas
-											</a>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-warning  text-dark">Menunggu Verifikasi</span></td>
-										</td>
-										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-danger" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-												Verifikasi Berkas
-											</button>
-										</td>
-									</tr>
+									<?php
+									$no = 1;
+									foreach ($verifikasi as $data_verifikasi) : ?>
+										<tr>
+											<td><?= $no++; ?></td>
+											<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
+											<td><?= $data_verifikasi['nama_pelamar']; ?></td>
+											<td><?= $data_verifikasi['nama_unit']; ?></td>
+											<td>
+												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_khs']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_cv']; ?>
+											</td>
+											<td>
+												<span class="badge bg-warning text-dark mx-3">
+													<?= $data_verifikasi['status']; ?>
+												</span>
+
+											</td>
+											<td colspan='2' class="text-center">
+												<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class=" fa fa-edit" aria-hidden="true"></i>
+													Rincian Pelamar
+												</a>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>

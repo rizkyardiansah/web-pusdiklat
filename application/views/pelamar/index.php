@@ -110,7 +110,7 @@
                       <h3><?= $unit['nama']; ?></h3>
                       <p class="font-italic"><?= $unit['keterangan']; ?></p>
                     </div>
-                    <div class="col-lg-4 text-lg-left order-1 order-lg-2">
+                     <div class="col-lg-4 text-lg-left order-1 order-lg-2">
                       <!-- <h5>Kuota yang tersedia</h5>
                       <p>10 orang.</p> -->
                       <a class="btn rounded-pill btn-primary" style="width: 60%;  color: #000; font-weight: bold;" href="<?= base_url('pelamar/daftar/') . $unit['id']; ?>">Daftar</a>

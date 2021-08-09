@@ -7,28 +7,16 @@
 						<li class="breadcrumb-item active">Data yang tidak disetujui</li>
 					</ol>
 					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">14 Total data pelamar</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">15 Data telah ditolak</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-12">
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th scope="col">No</th>
+										<th scope="col" class="text-center">Tanggal Pengajuan</th>
 										<th scope="col">Nama Lengkap</th>
 										<th scope="col">Instansi</th>
 										<th scope="col">Kelengkapan Berkas</th>
 										<th scope="col">Status</th>
-										<th scope="col" class="text-center">Tanggal Pengajuan</th>
 										<th scope="col" class="text-center">Tanggal Persetujuan</th>
 										<th>
 											Keterangan
@@ -37,44 +25,32 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-danger text-black">Ditolak</span></td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Berkas Tidak Memenuhi Syarat</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@mdo</td>
-										<td><span class="badge bg-danger text-black">Ditolak</span></td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Berkas Tidak Memenuhi Syarat</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Larry the Bird</td>
-										<td>@twitter</td>
-										<td>@mdo</td>
-										<td>
-											<span class="badge bg-danger text-black">Ditolak</span>
-										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Berkas Tidak Memenuhi Syarat</td>
-									</tr>
+									<?php
+									$no = 1;
+									foreach ($reject as $dataApprovement) :
+									?>
+										<tr>
+											<td><?= $no++; ?></td>
+											<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
+											<td><?= $dataApprovement['nama_pelamar']; ?></td>
+											<td><?= $dataApprovement['nama_unit']; ?></td>
+											<td>
+												<?= $dataApprovement['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_khs']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_cv']; ?>
+											</td>
+											<td>
+												<span class="badge bg-danger text-black">
+													<?= $dataApprovement['status']; ?>
+												</span>
+											</td>
+
+											<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
+											<td><?= $dataApprovement['ket']; ?></td>
+										</tr>
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>
