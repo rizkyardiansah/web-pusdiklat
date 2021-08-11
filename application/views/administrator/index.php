@@ -11,49 +11,56 @@
 					<!-- Data Table -->
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th scope="col">No</th>
-										<th scope="col">Tanggal Pengajuan</th>
-										<th scope="col">Nama Lengkap</th>
-										<th scope="col">Instansi</th>
-										<th scope="col">Kelengkapan Berkas</th>
-										<th scope="col">Status</th>
-										<th scope="col" class="text-center">Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$no = 1;
-									foreach ($verifikasi as $data_verifikasi) : ?>
+							<?php
+							if ($count == 0) { ?>
+								<div class="alert alert-light text-center" role="alert">
+									Data kosong mas mba, ngga bisa diapa2in
+								</div>
+							<?php } else { ?>
+								<table class="table table-hover">
+									<thead>
 										<tr>
-											<td><?= $no++; ?></td>
-											<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
-											<td><?= $data_verifikasi['nama_pelamar']; ?></td>
-											<td><?= $data_verifikasi['nama_unit']; ?></td>
-											<td>
-												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
-												<br>
-												<?= $data_verifikasi['nama_file_khs']; ?>
-												<br>
-												<?= $data_verifikasi['nama_file_cv']; ?>
-											</td>
-											<td>
-												<span class="badge bg-warning text-dark mx-3">
-													<?= $data_verifikasi['status']; ?>
-												</span>
-
-											</td>
-											<td colspan='2' class="text-center">
-												<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('unitkerja/verifikasiberkas') ?>"><i class=" fa fa-edit" aria-hidden="true"></i>
-													Rincian Pelamar
-												</a>
-											</td>
+											<th scope="col">No</th>
+											<th scope="col">Tanggal Pengajuan</th>
+											<th scope="col">Nama Lengkap</th>
+											<th scope="col">Instansi</th>
+											<th scope="col">Kelengkapan Berkas</th>
+											<th scope="col">Status</th>
+											<th scope="col" class="text-center">Aksi</th>
 										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
+									</thead>
+									<tbody id="dataVerifikasi">
+										<?php
+										$no = 1;
+										foreach ($verifikasi as $data_verifikasi) : ?>
+											<tr>
+												<td><?= $no++; ?></td>
+												<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
+												<td><?= $data_verifikasi['nama_pelamar']; ?></td>
+												<td><?= $data_verifikasi['nama_unit']; ?></td>
+												<td>
+													<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+													<br>
+													<?= $data_verifikasi['nama_file_khs']; ?>
+													<br>
+													<?= $data_verifikasi['nama_file_cv']; ?>
+												</td>
+												<td>
+													<span class="badge bg-warning text-dark mx-3">
+														<?= $data_verifikasi['status']; ?>
+													</span>
+
+												</td>
+												<td colspan='2' class="text-center">
+													<a class="btn btn-sm  btn-danger btn-verifikasi" type="button" href="<?= base_url('unitkerja/verifikasiberkas/' . $data_verifikasi['id_permohonan']); ?>"><i class=" fa fa-edit" aria-hidden="true"></i>
+														Rincian Pelamar
+													</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							<?php } ?>
 						</div>
 					</div>
 					<!-- pagination section -->
@@ -80,11 +87,3 @@
 					</div>
 				</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small text-center">
-						<div>Sistem Informasi Permagangan Perpusnas</div>
-					</div>
-				</div>
-			</footer>
-		</div>

@@ -8,48 +8,55 @@
 					</ol>
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th scope="col">No</th>
-										<th scope="col" class="text-center">Tanggal Pengajuan</th>
-										<th scope="col">Nama Lengkap</th>
-										<th scope="col">Instansi</th>
-										<th scope="col">Kelengkapan Berkas</th>
-										<th scope="col">Status</th>
-										<th scope="col" class="text-center">Tanggal Persetujuan</th>
-										<th scope="col">Keterangan</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$no = 1;
-									foreach ($approval as $dataApprovement) :
-									?>
+							<?php
+							if ($countApprovement == 0) { ?>
+								<div class="alert alert-light text-center" role="alert">
+									Data kosong, belum ada yang disetujui
+								</div>
+							<?php } else { ?>
+								<table class="table table-hover">
+									<thead>
 										<tr>
-											<td><?= $no++; ?></td>
-											<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
-											<td><?= $dataApprovement['nama_pelamar']; ?></td>
-											<td><?= $dataApprovement['nama_unit']; ?></td>
-											<td>
-												<?= $dataApprovement['nama_file_surat_permohonan']; ?>
-												<br>
-												<?= $dataApprovement['nama_file_khs']; ?>
-												<br>
-												<?= $dataApprovement['nama_file_cv']; ?>
-											</td>
-											<td>
-												<span class="badge bg-success text-black">
-													<?= $dataApprovement['status']; ?>
-												</span>
-											</td>
-
-											<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
-											<td><?= $dataApprovement['ket']; ?></td>
+											<th scope="col">No</th>
+											<th scope="col" class="text-center">Tanggal Pengajuan</th>
+											<th scope="col">Nama Lengkap</th>
+											<th scope="col">Instansi</th>
+											<th scope="col">Kelengkapan Berkas</th>
+											<th scope="col">Status</th>
+											<th scope="col" class="text-center">Tanggal Persetujuan</th>
+											<th scope="col">Keterangan</th>
 										</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										foreach ($approval as $dataApprovement) :
+										?>
+											<tr>
+												<td><?= $no++; ?></td>
+												<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
+												<td><?= $dataApprovement['nama_pelamar']; ?></td>
+												<td><?= $dataApprovement['nama_unit']; ?></td>
+												<td>
+													<?= $dataApprovement['nama_file_surat_permohonan']; ?>
+													<br>
+													<?= $dataApprovement['nama_file_khs']; ?>
+													<br>
+													<?= $dataApprovement['nama_file_cv']; ?>
+												</td>
+												<td>
+													<span class="badge bg-success text-black">
+														<?= $dataApprovement['status']; ?>
+													</span>
+												</td>
+
+												<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
+												<td><?= $dataApprovement['ket']; ?></td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							<?php } ?>
 						</div>
 					</div>
 					<!-- pagination section -->
@@ -76,13 +83,3 @@
 					</div>
 				</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small text-center">
-						<div>Sistem Informasi Permagangan Perpusnas</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-
-		</div>
