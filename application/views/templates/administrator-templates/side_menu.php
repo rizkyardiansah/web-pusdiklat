@@ -9,20 +9,20 @@
 					?>
 						<!-- menu admin pusat section -->
 						<div class="sb-sidenav-menu-heading">Daftar Menu Admin Pusat</div>
-						<a class="nav-link" href="<?= base_url('pusat/index'); ?>">
+						<a class="nav-link" href="index">
 							<div class="sb-nav-link-icon "><i class="fa fa-tasks" aria-hidden="true"></i></div>
 							Daftar Pelamar
 							<span class="badge bg-danger text-light mx-3">
 								12
 							</span>
 						</a>
-						<a class="nav-link" href="<?= base_url('pusat/approval'); ?>">
+						<a class="nav-link" href="approval">
 							<div class="sb-nav-link-icon">
 								<i class="fa fa-check" aria-hidden="true"></i>
 							</div>
 							Data yang telah disetujui
 						</a>
-						<a class="nav-link" href="<?= base_url('pusat/rejection'); ?>">
+						<a class="nav-link" id="rejection">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-ban"></i>
 							</div>
@@ -33,7 +33,7 @@
 					?>
 						<!-- menu admin unit section -->
 						<div class="sb-sidenav-menu-heading">Daftar Menu Admin Unit</div>
-						<a class="nav-link" href="<?= base_url('unitkerja/index'); ?>">
+						<a class="nav-link menu-link" href="index">
 							<div class="sb-nav-link-icon "><i class="fa fa-tasks" aria-hidden="true"></i></div>
 							Verifikasi
 							<?php if ($count > 0) : ?>
@@ -42,17 +42,17 @@
 								</span>
 							<?php endif; ?>
 						</a>
-						<a class="nav-link" href="<?= base_url('unitkerja/approval'); ?>">
+						<a class="nav-link menu-link" href="approval">
 							<div class="sb-nav-link-icon">
 								<i class="fa fa-check" aria-hidden="true"></i>
 							</div>
-							Data yang telah disetujui
+							Data yang disetujui
 						</a>
-						<a class="nav-link" href="<?= base_url('unitkerja/rejection'); ?>">
+						<a class="nav-link menu-link" href="rejection">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-ban"></i>
 							</div>
-							Data yang tidak disetujui
+							Data yang ditolak
 						</a>
 					<?php
 					}

@@ -18,7 +18,8 @@ class UnitKerja extends CI_Controller
 	// fungsi load template secara dinamis
 	public function loadTemplate($menu)
 	{
-		$this->load->view('templates/administrator-templates/header');
+		$menu['title'] = 'Admin Unit Kerja';
+		$this->load->view('templates/administrator-templates/header', $menu);
 		$this->load->view('templates/administrator-templates/nav_menu');
 		$this->load->view('templates/administrator-templates/side_menu', $menu);
 		$this->load->view('administrator/' . $menu['menu'], $menu);
@@ -71,8 +72,12 @@ class UnitKerja extends CI_Controller
 	public function verifikasiBerkas()
 	{
 		$data['menu'] = 'verifikasi_berkas';
+		$arrayData = array(
+			'id_unit' => $this->session->userdata('id_unit_kerja'),
+			'status' => 'Menunggu Verifikasi'
+		);
 		// Get Count Notifikasi Data yang perlu di verifikasi
-		$data['count'] = $this->Persetujuan_model->getCountDataPending();
+		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data untuk diverifikasi
 		// $dataPending = $this->Persetujuan_model->updateVerifikasi($id, $data);
 		$this->loadTemplate($data);
