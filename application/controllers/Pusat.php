@@ -17,7 +17,8 @@ class Pusat extends CI_Controller
 	// fungsi load template secara dinamis
 	public function loadTemplate($menu)
 	{
-		$this->load->view('templates/administrator-templates/header');
+		$menu['title'] = 'Admin Pusat';
+		$this->load->view('templates/administrator-templates/header', $menu);
 		$this->load->view('templates/administrator-templates/nav_menu');
 		$this->load->view('templates/administrator-templates/side_menu');
 		$this->load->view('administrator-pusat/' . $menu['menu']);

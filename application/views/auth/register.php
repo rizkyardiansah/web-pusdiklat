@@ -9,7 +9,6 @@
                             <div class="alert alert-<?= $this->session->flashdata('msg')['type']; ?>" role="alert">
                                 <?= $this->session->flashdata('msg')['text']; ?>
                             </div>
-
                         <?php unset($_SESSION['msg']);
                         endif; ?> -->
 

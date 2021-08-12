@@ -61,7 +61,7 @@
                       <h3><?= $unit['nama']; ?></h3>
                       <p class="font-italic"><?= $unit['keterangan']; ?></p>
                     </div>
-                    <div class="col-lg-4 text-lg-left order-1 order-lg-2">
+                     <div class="col-lg-4 text-lg-left order-1 order-lg-2">
                       <!-- <h5>Kuota yang tersedia</h5>
                       <p>10 orang.</p> -->
 
@@ -85,7 +85,6 @@
 
       </div>
     </section><!-- End Specials Section -->
-
     <section class="accordion-section clearfix mt-3" aria-label="Question Accordions">
       <div class="container">
         <div class="section-title-sec">
