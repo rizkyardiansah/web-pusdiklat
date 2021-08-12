@@ -30,8 +30,34 @@ class Pelamar_model extends CI_Model
         $this->db->update('pelamar', $data);
     }
 
-    public function addPermintaanMagang($email, $idUnitKerja, $data)
+    public function inputSuratPermohonan($idUnitKerja, $idPelamar, $nama_file_surat_permohonan)
     {
+        $data = [
+            "id_unit_kerja" => $idUnitKerja,
+            "id_pelamar" => $idPelamar,
+            "no_surat_permohonan" => htmlspecialchars($this->input->post('no_surat', true)),
+            "nama_file_surat_permohonan" => $nama_file_surat_permohonan,
+            "tanggal_permohonan" => date('Y-m-d H:i:s'),
+            "status" => "Menunggu verifikasi"
+        ];
+        $this->db->insert('surat_permohonan', $data);
+
+        $idSuratPermohonan = $this->db->get_where('surat_permohonan', ['id_pelamar' => $idPelamar, 'id_unit_kerja' => $idUnitKerja])->row_array()['id_permohonan'];
+
+        $this->db->insert('surat_balasan', ['id_surat_permohonan' => $idSuratPermohonan]);
+    }
+
+    public function getListUnitDilamar($idPelamar)
+    {
+        $this->db->select('id_unit_kerja');
+        $this->db->where('id_pelamar', $idPelamar);
+        $result = $this->db->get('surat_permohonan')->result_array();
+
+        $listUnitTerdaftar = [];
+        foreach ($result as $r) {
+            $listUnitTerdaftar[] = $r['id_unit_kerja'];
+        }
+        return $listUnitTerdaftar;
     }
 
     public function deleteFileNameById($jenis, $id)

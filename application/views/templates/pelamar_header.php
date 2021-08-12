@@ -22,7 +22,8 @@
     <link href="<?= base_url(); ?>assets/vendor/aos/aos.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="<?= base_url(); ?>assets/css/style_pelamar.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>/assets/css/style_pelamar.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: Restaurantly - v1.2.1
@@ -40,14 +41,14 @@
     endif; ?>
 
     <!-- ======= Top Bar ======= -->
-    <div id="topbar" class="d-flex align-items-center fixed-top">
+    <!-- <div id="topbar" class="d-flex align-items-center fixed-top">
         <div class="container d-flex">
             <div class="contact-info mr-auto">
                 <i class="icofont-phone"></i> +62 881 000 222
                 <span class="d-none d-lg-inline-block"><i class="icofont-clock-time icofont-rotate-180"></i> Senin-Jumat: 09:00 - 17:00 WIB</span>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
@@ -59,7 +60,7 @@
                 <ul>
                     <li class="active"><a href="<?= base_url('pelamar/index'); ?>">Beranda</a></li>
                     <li><a href="<?= base_url('pelamar/index') . "#why-us"; ?>">Panduan</a></li>
-                    <li><a href="<?= base_url('pelamar/index') . "#specials"; ?>">Program</a></li>
+                    <li><a href="<?= base_url('pelamar/index') . "#specials"; ?>">Daftar Unit</a></li>
 
                     <li>
                         <div class="dropdown">
@@ -69,7 +70,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown" style="background-color: #000">
-                                <a class="dropdown-item" href="<?= base_url('pelamar/profile/'); ?>">Profil</a>
+                                <a class="dropdown-item" href="<?= base_url('pelamar/profile'); ?>">Profil</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item logout" href="<?= base_url('auth/logout'); ?>">Keluar</a>
                             </div>

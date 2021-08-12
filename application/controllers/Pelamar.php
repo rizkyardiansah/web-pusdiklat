@@ -20,6 +20,8 @@ class Pelamar extends CI_Controller
     {
         $data['title'] = 'Beranda';
         $data['user'] = $GLOBALS['dataPelamar'];
+        $data['dataLengkap'] = !in_array(null, $data['user']);
+        $data['unitTerdaftar'] = $this->model->getListUnitDilamar($data['user']['id']);
         $data['unit_kerja'] = $this->model->getAllUnitKerja();
         $this->load->view('templates/pelamar_header', $data);
         $this->load->view('pelamar/index', $data);
@@ -32,47 +34,47 @@ class Pelamar extends CI_Controller
         $data['user'] = $GLOBALS['dataPelamar'];
         $data['unit_kerja'] = $this->model->getUnitKerjaById($id);
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
-        $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
-        $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
-        $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
+        // $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
+        // $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
+        // $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
+        // $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
         $this->form_validation->set_rules('no_surat', 'Nomor Surat Permohonan Magang', 'required|trim|max_length[70]');
         $this->form_validation->set_rules('pernyataan', 'Pernyataan', 'required');
 
         //apakah user mengupload khs
-        if (empty($_FILES['khs']['name'])) {
-            //user akan diberikan pesan eror dan dikembalikan ke page daftar
-            $this->form_validation->set_rules('khs', 'KHS', 'required', [
-                'required' => 'Upload berkas KHS disini.'
-            ]);
-        } else if ($_FILES['khs']['type'] != 'application/pdf') {
-            $this->form_validation->set_rules('khs', 'KHS', 'required', [
-                'required' => 'Berkas KHS harus bertipe PDF.'
-            ]);
-        } else if ($_FILES['khs']['size'] > 2048000) {
-            $this->form_validation->set_rules('khs', 'KHS', 'required', [
-                'required' => 'Ukuran berkas KHS harus kurang dari 2 MB.'
-            ]);
-        }
+        // if (empty($_FILES['khs']['name'])) {
+        //     //user akan diberikan pesan eror dan dikembalikan ke page daftar
+        //     $this->form_validation->set_rules('khs', 'KHS', 'required', [
+        //         'required' => 'Upload berkas KHS disini.'
+        //     ]);
+        // } else if ($_FILES['khs']['type'] != 'application/pdf') {
+        //     $this->form_validation->set_rules('khs', 'KHS', 'required', [
+        //         'required' => 'Berkas KHS harus bertipe PDF.'
+        //     ]);
+        // } else if ($_FILES['khs']['size'] > 2048000) {
+        //     $this->form_validation->set_rules('khs', 'KHS', 'required', [
+        //         'required' => 'Ukuran berkas KHS harus kurang dari 2 MB.'
+        //     ]);
+        // }
 
-        //apakah user mengupload cv
-        if (empty($_FILES['cv']['name'])) {
-            //user akan diberikan pesan eror dan dikembalikan ke page daftar
-            $this->form_validation->set_rules('cv', 'CV', 'required', [
-                'required' => 'Upload berkas CV disini.'
-            ]);
-        } else if ($_FILES['cv']['type'] != 'application/pdf') {
-            $this->form_validation->set_rules('cv', 'CV', 'required', [
-                'required' => 'Berkas CV harus bertipe PDF.'
-            ]);
-        } else if ($_FILES['cv']['size'] > 2048000) {
-            $this->form_validation->set_rules('cv', 'CV', 'required', [
-                'required' => 'Ukuran berkas CV harus kurang dari 2 MB.'
-            ]);
-        }
+        // //apakah user mengupload cv
+        // if (empty($_FILES['cv']['name'])) {
+        //     //user akan diberikan pesan eror dan dikembalikan ke page daftar
+        //     $this->form_validation->set_rules('cv', 'CV', 'required', [
+        //         'required' => 'Upload berkas CV disini.'
+        //     ]);
+        // } else if ($_FILES['cv']['type'] != 'application/pdf') {
+        //     $this->form_validation->set_rules('cv', 'CV', 'required', [
+        //         'required' => 'Berkas CV harus bertipe PDF.'
+        //     ]);
+        // } else if ($_FILES['cv']['size'] > 2048000) {
+        //     $this->form_validation->set_rules('cv', 'CV', 'required', [
+        //         'required' => 'Ukuran berkas CV harus kurang dari 2 MB.'
+        //     ]);
+        // }
 
         //apakah user mengupload surat permohonan magang
         if (empty($_FILES['surat_permohonan']['name'])) {
@@ -95,62 +97,63 @@ class Pelamar extends CI_Controller
             //me-load library upload
             $this->load->library('upload');
 
+            // //menyiapkan data user yang akan dimasukan kedalam database
+            // $inputanUser = [
+            //     "nama" => htmlspecialchars($this->input->post('nama', true)),
+            //     "universitas" => htmlspecialchars($this->input->post('universitas', true)),
+            //     "nim" => htmlspecialchars($this->input->post('nim', true)),
+            //     "semester" => htmlspecialchars($this->input->post('semester', true)),
+            //     "fakultas" => htmlspecialchars($this->input->post('fakultas', true)),
+            //     "prodi" => htmlspecialchars($this->input->post('prodi', true)),
+            //     "no_telpon" => htmlspecialchars($this->input->post('no_telp', true)),
+            //     "no_surat_permohonan" => htmlspecialchars($this->input->post('no_surat', true))
+            // ];
+
+            //upload file khs 
+            // $config['upload_path'] = './folder_KHS/';
+            // $config['file_name'] = 'Pelamar_KHS_' . time();
+            // $this->upload->initialize($config);
+            // $this->upload->do_upload('khs');
+            // //mengambil nama file untuk disimpan ke database
+            // $inputanUser['nama_file_khs'] = $this->upload->data('file_name');
+            // //menghapus file khs lama jika ada
+            // if ($GLOBALS['dataPelamar']['nama_file_khs'] != null) {
+            //     unlink(FCPATH . 'folder_KHS/' . $GLOBALS['dataPelamar']['nama_file_khs']);
+            // }
+
+            //upload file cv 
+            // $config['upload_path'] = './folder_CV/';
+            // $config['file_name'] = 'Pelamar_CV_' . time();
+            // $this->upload->initialize($config);
+            // $this->upload->do_upload('cv');
+            // //mengambil nama file untuk disimpan ke database
+            // $inputanUser['nama_file_cv'] = $this->upload->data('file_name');
+            // //menghapus file khs lama jika ada
+            // if ($GLOBALS['dataPelamar']['nama_file_cv'] != null) {
+            //     unlink(FCPATH . 'folder_CV/' . $GLOBALS['dataPelamar']['nama_file_cv']);
+            // }
+
+            //upload surat magang
             //konfigurasi library upload
             $config['allowed_types'] = 'pdf';
             $config['max_size'] = 2048;
-
-            //menyiapkan data user yang akan dimasukan kedalam database
-            $inputanUser = [
-                "nama" => htmlspecialchars($this->input->post('nama', true)),
-                "universitas" => htmlspecialchars($this->input->post('universitas', true)),
-                "nim" => htmlspecialchars($this->input->post('nim', true)),
-                "semester" => htmlspecialchars($this->input->post('semester', true)),
-                "fakultas" => htmlspecialchars($this->input->post('fakultas', true)),
-                "prodi" => htmlspecialchars($this->input->post('prodi', true)),
-                "no_telpon" => htmlspecialchars($this->input->post('no_telp', true)),
-                "no_surat_permohonan" => htmlspecialchars($this->input->post('no_surat', true))
-            ];
-
-            //upload file khs 
-            $config['upload_path'] = './folder_KHS/';
-            $config['file_name'] = 'Pelamar_KHS_' . time();
-            $this->upload->initialize($config);
-            $this->upload->do_upload('khs');
-            //mengambil nama file untuk disimpan ke database
-            $inputanUser['nama_file_khs'] = $this->upload->data('file_name');
-            //menghapus file khs lama jika ada
-            if ($GLOBALS['dataPelamar']['nama_file_khs'] != null) {
-                unlink(FCPATH . 'folder_KHS/' . $GLOBALS['dataPelamar']['nama_file_khs']);
-            }
-
-            //upload file cv 
-            $config['upload_path'] = './folder_CV/';
-            $config['file_name'] = 'Pelamar_CV_' . time();
-            $this->upload->initialize($config);
-            $this->upload->do_upload('cv');
-            //mengambil nama file untuk disimpan ke database
-            $inputanUser['nama_file_cv'] = $this->upload->data('file_name');
-            //menghapus file khs lama jika ada
-            if ($GLOBALS['dataPelamar']['nama_file_cv'] != null) {
-                unlink(FCPATH . 'folder_CV/' . $GLOBALS['dataPelamar']['nama_file_cv']);
-            }
-
-            //upload surat magang
             $config['upload_path'] = './folder_Surat_Permohonan/';
             $config['file_name'] = 'Pelamar_SuratPermohonan_' . time();
             $this->upload->initialize($config);
             $this->upload->do_upload('surat_permohonan');
             //mengambil nama file untuk disimpan ke database
-            $inputanUser['nama_file_surat_permohonan'] = $this->upload->data('file_name');
+            $nama_file_surat_permohonan = $this->upload->data('file_name');
             //menghapus file khs lama
-            if ($GLOBALS['dataPelamar']['nama_file_surat_permohonan'] != null) {
-                unlink(FCPATH . 'folder_Surat_Permohonan/' . $GLOBALS['dataPelamar']['nama_file_surat_permohonan']);
-            }
+            // if ($GLOBALS['dataPelamar']['nama_file_surat_permohonan'] != null) {
+            //     unlink(FCPATH . 'folder_Surat_Permohonan/' . $GLOBALS['dataPelamar']['nama_file_surat_permohonan']);
+            // }
+
+            $this->model->inputSuratPermohonan($id, $GLOBALS['dataPelamar']['id'], $nama_file_surat_permohonan);
 
             //input data pelamar ke table pelamar
-            $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $inputanUser);
+            //$this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $inputanUser);
             //input data pelamar ke tabel permintaan magang BELOM DIBUAT
-            $this->model->addPermintaanMagang($GLOBALS['dataPelamar']['email'], $id, $inputanUser);
+            // $this->model->addPermintaanMagang($GLOBALS['dataPelamar']['email'], $id, $inputanUser);
 
             $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Pendaftaran Magang', 'text' => 'Permintaan magang anda akan kami proses.']);
 
