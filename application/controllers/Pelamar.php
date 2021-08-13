@@ -228,6 +228,63 @@ class Pelamar extends CI_Controller
         }
     }
 
+    public function kegiatan() {
+        $data['title'] = "Profil Pengguna";
+        $data['user'] = $GLOBALS['dataPelamar'];
+
+        if ($this->input->post("submitInfoPribadi") == "submitInfoPribadi") {
+
+            $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
+            $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
+
+            if ($this->form_validation->run() == TRUE) {
+                $arrInfoPribadi = [
+                    'nama' => htmlspecialchars($this->input->post('nama'), true),
+                    'no_telpon' => htmlspecialchars($this->input->post('no_telp'), true)
+                ];
+                $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $arrInfoPribadi);
+                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Informasi pribadi berhasil diperbarui.']);
+                redirect('pelamar/kegiatan');
+            } else {
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => 'Pastikan anda memasukan data yang sesuai dengan ketentuan.']);
+                $this->load->view('templates/pelamar_header', $data);
+                $this->load->view('pelamar/kegiatan', $data);
+                $this->load->view('templates/pelamar_footer');
+            }
+        } else if ($this->input->post("submitInfoAkad") == "submitInfoAkad") {
+
+            $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
+            $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
+            $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
+            $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
+            $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
+
+            if ($this->form_validation->run() == TRUE) {
+                $arrInfoAkad = [
+                    "universitas" => htmlspecialchars($this->input->post('universitas', true)),
+                    "nim" => htmlspecialchars($this->input->post('nim', true)),
+                    "semester" => htmlspecialchars($this->input->post('semester', true)),
+                    "fakultas" => htmlspecialchars($this->input->post('fakultas', true)),
+                    "prodi" => htmlspecialchars($this->input->post('prodi', true)),
+                ];
+                $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $arrInfoAkad);
+                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Informasi akademik berhasil diperbarui.']);
+                redirect('pelamar/profile#tab-2');
+            } else {
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => 'Pastikan anda memasukan data yang sesuai dengan ketentuan.']);
+                // redirect('pelamar/profile#tab-2');
+                $this->load->view('templates/pelamar_header', $data);
+                $this->load->view('pelamar/kegiatan', $data);
+                $this->load->view('templates/pelamar_footer');
+            }
+        } else {
+            $this->load->view('templates/pelamar_header', $data);
+            $this->load->view('pelamar/kegiatan', $data);
+            $this->load->view('templates/pelamar_footer');
+        }
+
+    }
+
     public function download($jenis, $id)
     {
         $this->load->helper('download');
