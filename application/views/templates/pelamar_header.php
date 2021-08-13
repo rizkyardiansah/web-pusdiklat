@@ -22,7 +22,7 @@
     <link href="<?= base_url(); ?>assets/vendor/aos/aos.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="<?= base_url(); ?>/assets/css/style_pelamar.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/style_pelamar.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- =======================================================
@@ -69,10 +69,12 @@
                                 <img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" style="height: 1.7rem;" class="img-thumbnail rounded-circle">
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="profileDropdown" style="background-color: #000">
-                                <a class="dropdown-item" href="<?= base_url('pelamar/profile'); ?>">Profil</a>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <a style="color: black;" class="dropdown-item akun-dropdown" href="<?= base_url('pelamar/profile'); ?>">Profil</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item logout" href="<?= base_url('auth/logout'); ?>">Keluar</a>
+                                <a style="color: black;" class="dropdown-item akun-dropdown" href="<?= base_url('pelamar/kegiatan'); ?>">Kegiatanku</a>
+                                <div class="dropdown-divider"></div>
+                                <a style="color: black;" class="dropdown-item logout akun-dropdown" href="<?= base_url('auth/logout'); ?>">Keluar</a>
                             </div>
                         </div>
                 </ul>
