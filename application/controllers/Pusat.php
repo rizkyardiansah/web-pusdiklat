@@ -19,8 +19,8 @@ class Pusat extends CI_Controller
 	{
 		$this->load->view('templates/administrator-templates/header');
 		$this->load->view('templates/administrator-templates/nav_menu');
-		$this->load->view('templates/administrator-templates/side_menu');
-		$this->load->view('administrator-pusat/' . $menu['menu']);
+		$this->load->view('templates/administrator-templates/side_menu', $menu);
+		$this->load->view('administrator-pusat/' . $menu['menu'], $menu);
 		$this->load->view('templates/administrator-templates/footer');
 	}
 
@@ -42,14 +42,10 @@ class Pusat extends CI_Controller
 		$data['menu'] = 'menu_rejection';
 		$this->loadTemplate($data);
 	}
-	public function rincianpelamar()
-	{
-		$data['menu'] = 'rincian_pelamar';
-		$this->loadTemplate($data);
-	}
+
 	public function formsurat()
 	{
-		$data['menu'] = 'form_surat';
+		$data['menu'] = 'form_surat';	
 		$this->loadTemplate($data);
 	}
 }

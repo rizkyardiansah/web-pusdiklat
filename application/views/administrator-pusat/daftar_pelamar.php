@@ -24,96 +24,43 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>Pusat Pendidikan dan Pelatihan</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-success  text-white">Disetujui</span></td>
-										</td>
-										<td colspan='2' class="text-center">
-											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('pusat/formsurat') ?>"><i aria-hidden="true"></i>
-												Form Surat
-											</a>
-											<div class="dropdown show dropleft">
-												<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
+									<?php
+									$no = 1;
+									foreach ($verifikasi as $data_verifikasi) : ?>
+										<tr>
+											<td><?= $no++; ?></td>
+											<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
+											<td><?= $data_verifikasi['nama_pelamar']; ?></td>
+											<td><?= $data_verifikasi['universitas']; ?></td>
+											<td><?= $data_verifikasi['nama_unit']; ?></td>
+											<td>
+												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_khs']; ?>
+												<br>
+												<?= $data_verifikasi['nama_file_cv']; ?>
+											</td>
+											<td>
+												<span class="badge bg-success text-dark mx-3">
+													<?= $data_verifikasi['status']; ?>
+												</span>
+											</td>
+											<td colspan='2' class="text-center">
+												<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('pusat/formsurat') ?>"><i aria-hidden="true"></i>
+													Form Surat
 												</a>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
-												<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
-											</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>Pusat Pembinaan Perpustakawan</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-success  text-white">Disetujui</span></td>
-										</td>
-										<td colspan='2' class="text-center">
-											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('pusat/formsurat') ?>"><i aria-hidden="true"></i>
-												Form Surat
-											</a>
-											<div class="dropdown show dropleft">
-												<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
-												</a>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
-												<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
-											</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>12 Agustus 2021</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td><span class="badge bg-danger  text-white">Ditolak</span></td>
-										</td>
-										<td colspan='2' class="text-center">
-											<a class="btn btn-sm  btn-danger" type="button" href="<?= base_url('pusat/formsurat') ?>"><i aria-hidden="true"></i>
-												Form Surat
-											</a>
-											<div class="dropdown show dropleft">
-												<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
-												</a>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
-												<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
-											</div>
-											</div>
-										</td>
-									</tr>
+												<div class="dropdown show dropleft">
+													<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
+													</a>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+													<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
+													<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
+												</div>
+												</div>
+											</td>
+										</tr>
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>

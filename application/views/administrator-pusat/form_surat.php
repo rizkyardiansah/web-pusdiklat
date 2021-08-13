@@ -16,28 +16,28 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="form-group">
-										<label for="nama">Nama Pelamar</label>
+										<label for="input">Nama Pelamar</label>
 										<input type="text" class="form-control" id="nama" placeholder="Nama Lengkap" readonly>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="prodi">Program Studi</label>
+									<label for="input">Program Studi</label>
 									<input type="text" name="prodi" class="form-control" id="prodi" placeholder="Program Studi" readonly>
 								</div>
 								<div class="form-group">
-									<label for="fakultas">Fakultas</label>
+									<label for="input">Fakultas</label>
 									<input type="text" name="fakultas" class="form-control" id="fakultas" placeholder="Fakultas" readonly>
 								</div>
                                 <div class="form-group">
-									<label for="universitas">Universitas</label>
+									<label for="input">Universitas</label>
 									<input type="text" name="universitas" class="form-control" id="Univesitas" placeholder="Universitas" readonly>
 								</div>
 								<div class="form-group ">
-									<label for="no_telepon">Nomor Telepon / WhatsApp</label>
+									<label for="input">Nomor Telepon / WhatsApp</label>
 									<input type="text" name="no_telepon" class="form-control" placeholder="Nomor Telepon" id="no_telepon" readonly>
 								</div>
 								<div class="form-group">
-									<label for="id_unit">Unit Kerja</label>
+									<label for="input">Unit Kerja</label>
 									<input type="text" name="id_unit" class="form-control" placeholder="Unit Kerja" id="id_unit" readonly>
 								</div>
                             </div>
@@ -52,11 +52,11 @@
                                     <div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
-											<label for="no_surat_permohonan">Nomor Surat Permohonan</label>
+											<label for="input">Nomor Surat Permohonan</label>
 											<input type="text" class="form-control" id="no_surat_permohonan" placeholder="No Surat Permohonan">
 										</div>
 										<div class="col-md-6">
-											<label for="hal_surat">Hal</label>
+											<label for="input">Hal</label>
 											<input type="text" class="form-control" id="hal_surat" placeholder="Tanggal Permohonan">
 										</div>
 									</div>
@@ -64,29 +64,35 @@
                                 <div class="form-group">
 									<div class="row">
                                         <div class="col-md-6">
-											<label for="no_surat_balasan">Nomor Surat Balasan</label>
+											<label for="input">Nomor Surat Balasan</label>
 											<input type="text" class="form-control" id="no_surat_balasan" placeholder="No Surat Permohonan">
 										</div>
 										<div class="col-md-6">
-											<label for="jumlah_lampiran">Jumlah Lampiran</label>
+											<label for="input">Jumlah Lampiran</label>
 											<input type="text" class="form-control" id="jumlah_lampiran" placeholder="Tanggal Permohonan">
 										</div>
 									</div>
 								</div>
                                 <div class="form-group">
                                     <div class="form-group">
-											<label for="kepada">Kepada</label>
+											<label for="input">Kepada</label>
 											<input type="text" class="form-control" id="kepada" placeholder="Kepada Yth">	
+									</div>
+								</div>
+								<div class="form-group ">
+									<div class="form-group">
+										<label for="input" class="mx-2">Alasan Diterima/Ditolak</label>
+										<textarea class="form-control" aria-label="With textarea"  name="alasan" >asdasdasdasdasdasdas </textarea>
 									</div>
 								</div>
                                 <div class="form-group">
 									<div class="row">
                                         <div class="col-md-6">
-											<label for="tanggal_surat_permohonan">Tanggal Surat Permohonan</label>
+											<label for="input">Tanggal Surat Permohonan</label>
 											<input type="date" class="form-control" id="tanggal_surat_permohonan" placeholder="Tanggal Surat Permohonan">
 										</div>
 										<div class="col-md-6">
-											<label for="jangka_waktu">Jangka Waktu Magang</label>
+											<label for="input">Jangka Waktu Magang</label>
 											<input type="text" class="form-control" id="jangka_waktu" placeholder="per bulan">
 										</div>
 									</div>
@@ -94,7 +100,7 @@
 									<div class="row">
 						                <div class="form-group">
 							                <div class=" text-black mb-4">
-                                                <label for="tembusan">Tembusan</label>
+                                                <label for="input">Tembusan</label>
                                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="tembusan1" id="tembusan1">
                                                     <option selected>Kepala Perpustakan Nasional RI</option>
                                                     <option value="1">Sekretaris Utama Perpustakaan Nasional RI</option>
