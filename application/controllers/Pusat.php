@@ -7,6 +7,7 @@ class Pusat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->model('Balasan_model');
 		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 1) {
 			$this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Unauthenticated, harap login terlebih dahulu']);
 			redirect('auth/index');
@@ -29,6 +30,11 @@ class Pusat extends CI_Controller
 	public function index()
 	{
 		$data['menu'] = 'daftar_pelamar';
+		$arrayData = array(
+			'status' => 'Ditolak',
+			'status2' =>  'Disetujui'
+		);
+		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
 		$this->loadTemplate($data);
 	}
 
