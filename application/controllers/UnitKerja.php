@@ -35,7 +35,7 @@ class UnitKerja extends CI_Controller
 			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Menunggu Verifikasi'
 		);
-		// Get Count Notifikasi Data yang perlu di verifikasi
+	// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang masih menunggu verifikasi
 		$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
