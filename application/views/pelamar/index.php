@@ -45,7 +45,7 @@
 
               <?php foreach ($unit_kerja as $unit) : ?>
                 <li class="nav-item">
-                  <a class="nav-link <?= ($unit['id'] == 1) ? "active" : ""; ?> show" data-toggle="tab" href="#tab-<?= $unit['id']; ?>"><?= $unit['nama']; ?></a>
+                  <a class="nav-link <?= ($unit['id'] == 1) ? "active" : ""; ?> show" data-toggle="tab" href="#tab-<?= $unit['id']; ?>"><?= $unit['nama_unit']; ?></a>
                 </li>
               <?php endforeach; ?>
 
@@ -58,7 +58,7 @@
                 <div class="tab-pane <?= ($unit['id'] == 1) ? "active" : ""; ?> show" id="tab-<?= $unit['id']; ?>">
                   <div class="row">
                     <div class="col-lg-8 details order-2 order-lg-1">
-                      <h3><?= $unit['nama']; ?></h3>
+                      <h3><?= $unit['nama_unit']; ?></h3>
                       <p class="font-italic"><?= $unit['keterangan']; ?></p>
                     </div>
                     <div class="col-lg-4 text-lg-left order-1 order-lg-2">
@@ -66,14 +66,13 @@
                       <p>10 orang.</p> -->
 
                       <?php if ($dataLengkap == FALSE) : ?>
-                        <h5 class="text-danger">Data anda belum lengkap.</h5>
-
+                        <div style="font-size: 0.73em;" class="alert alert-danger alert-dismissible fade show">
+                          <strong>Peringatan </strong>Data anda belum lengkap.
+                        </div>
                         <a class="btn rounded-pill btn-secondary btn-umum disabled" role="button" href="#">Daftar</a>
                       <?php elseif (in_array($unit['id'], $unitTerdaftar)) : ?>
-                        <!-- <h5 class="text-success">Anda telah melamar pada unit kerja ini.</h5> -->
                         <div style="font-size: 0.73em;" class="alert alert-danger alert-dismissible fade show">
                           <strong>Peringatan </strong>Anda sudah melamar pada unit kerja ini.
-                          <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
                         </div>
                         <a class="btn rounded-pill btn-secondary btn-umum disabled" role="button" href="#">Daftar</a>
                       <?php else : ?>

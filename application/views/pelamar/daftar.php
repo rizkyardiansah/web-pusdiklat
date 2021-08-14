@@ -1,10 +1,10 @@
 <main id="main">
-    <section style=" background-color: #4292dc;">
+    <section class="profile">
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
 
             <div class="section-title">
-                <h2>Pendaftaran Magang@perpusnas</h2>
-                <p><?= $unit_kerja['nama']; ?></p>
+                <h2 style="color: #000;">Pendaftaran Magang@perpusnas</h2>
+                <p style="color: #000;"><?= $unit_kerja['nama_unit']; ?></p>
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -15,7 +15,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="label" for="nama">Nama Lengkap</label>
-                                <input class="form-control" type="text" id="nama" name="nama" value="<?= $user['nama']; ?>" disabled>
+                                <input class="form-control" type="text" id="nama" name="nama" value="<?= $user['nama_pelamar']; ?>" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label class="label" for="unit_kerja">Unit Kerja</label>
-                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
+                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['nama_unit']; ?>" readonly>
                         <input type="hidden" id="id_unit" name="id_unit" value="<?= $unit_kerja['id']; ?>">
                     </div>
                     <div class="form-group">

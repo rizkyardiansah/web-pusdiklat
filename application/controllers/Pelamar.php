@@ -58,7 +58,6 @@ class Pelamar extends CI_Controller
             //me-load library upload
             $this->load->library('upload');
 
-
             //upload surat magang
             //konfigurasi library upload
             $config['allowed_types'] = 'pdf';
@@ -75,7 +74,7 @@ class Pelamar extends CI_Controller
             $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Pendaftaran Magang', 'text' => 'Permintaan magang anda akan kami proses.']);
 
             //load ulang tampilan page pendaftaran
-            redirect('pelamar/index#specials');
+            redirect('pelamar/kegiatan');
         } else {
 
             if ($this->input->post('submitDaftar') == 'submit') {
@@ -100,7 +99,7 @@ class Pelamar extends CI_Controller
 
             if ($this->form_validation->run() == TRUE) {
                 $arrInfoPribadi = [
-                    'nama' => htmlspecialchars($this->input->post('nama'), true),
+                    'nama_pelamar' => htmlspecialchars($this->input->post('nama'), true),
                     'no_telpon' => htmlspecialchars($this->input->post('no_telp'), true)
                 ];
                 $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $arrInfoPribadi);
@@ -145,61 +144,17 @@ class Pelamar extends CI_Controller
         }
     }
 
-    public function kegiatan() {
-        $data['title'] = "Profil Pengguna";
+    public function kegiatan()
+    {
+        $data['title'] = "Kegiatan Pengguna";
         $data['user'] = $GLOBALS['dataPelamar'];
+        $data['status_pendaftaran'] = $this->model->getStatusPendaftaran($data['user']['id']);
+        // var_dump($data['status_pendaftaran']);
+        // die;
 
-        if ($this->input->post("submitInfoPribadi") == "submitInfoPribadi") {
-
-            $this->form_validation->set_rules('nama', 'Nama', 'required|trim|max_length[70]');
-            $this->form_validation->set_rules('no_telp', 'Nomor Telpon', 'required|trim|numeric|max_length[15]');
-
-            if ($this->form_validation->run() == TRUE) {
-                $arrInfoPribadi = [
-                    'nama' => htmlspecialchars($this->input->post('nama'), true),
-                    'no_telpon' => htmlspecialchars($this->input->post('no_telp'), true)
-                ];
-                $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $arrInfoPribadi);
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Informasi pribadi berhasil diperbarui.']);
-                redirect('pelamar/kegiatan');
-            } else {
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => 'Pastikan anda memasukan data yang sesuai dengan ketentuan.']);
-                $this->load->view('templates/pelamar_header', $data);
-                $this->load->view('pelamar/kegiatan', $data);
-                $this->load->view('templates/pelamar_footer');
-            }
-        } else if ($this->input->post("submitInfoAkad") == "submitInfoAkad") {
-
-            $this->form_validation->set_rules('universitas', 'Universitas', 'required|trim|max_length[70]');
-            $this->form_validation->set_rules('nim', 'Nomor Induk Mahasiswa', 'required|trim|max_length[30]');
-            $this->form_validation->set_rules('semester', 'Semester', 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[14]');
-            $this->form_validation->set_rules('fakultas', 'Fakultas', 'required|trim|max_length[70]');
-            $this->form_validation->set_rules('prodi', 'Program Studi', 'required|trim|max_length[70]');
-
-            if ($this->form_validation->run() == TRUE) {
-                $arrInfoAkad = [
-                    "universitas" => htmlspecialchars($this->input->post('universitas', true)),
-                    "nim" => htmlspecialchars($this->input->post('nim', true)),
-                    "semester" => htmlspecialchars($this->input->post('semester', true)),
-                    "fakultas" => htmlspecialchars($this->input->post('fakultas', true)),
-                    "prodi" => htmlspecialchars($this->input->post('prodi', true)),
-                ];
-                $this->model->updateDataPelamar($GLOBALS['dataPelamar']['email'], $arrInfoAkad);
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Informasi akademik berhasil diperbarui.']);
-                redirect('pelamar/profile#tab-2');
-            } else {
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => 'Pastikan anda memasukan data yang sesuai dengan ketentuan.']);
-                // redirect('pelamar/profile#tab-2');
-                $this->load->view('templates/pelamar_header', $data);
-                $this->load->view('pelamar/kegiatan', $data);
-                $this->load->view('templates/pelamar_footer');
-            }
-        } else {
-            $this->load->view('templates/pelamar_header', $data);
-            $this->load->view('pelamar/kegiatan', $data);
-            $this->load->view('templates/pelamar_footer');
-        }
-
+        $this->load->view('templates/pelamar_header', $data);
+        $this->load->view('pelamar/kegiatan', $data);
+        $this->load->view('templates/pelamar_footer');
     }
 
     public function download($jenis, $id)
@@ -207,51 +162,52 @@ class Pelamar extends CI_Controller
         $this->load->helper('download');
         $data = $this->model->getDataPelamarById($id);
 
-        if ($jenis == 'suratPermohonan') {
-            force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
-        } else if ($jenis == 'khs') {
+        // if ($jenis == 'suratPermohonan') {
+        //     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
+        // } else 
+        if ($jenis == 'khs') {
             force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
         } else if ($jenis == 'cv') {
             force_download('folder_CV/' . $data['nama_file_cv'], NULL);
         }
     }
 
-    public function delete($jenis, $id)
-    {
-        $data = $this->model->getDataPelamarById($id);
+    // public function delete($jenis, $id)
+    // {
+    //     $data = $this->model->getDataPelamarById($id);
 
-        if ($jenis == 'suratPermohonan') {
-            if ($data['nama_file_surat_permohonan'] != null) {
-                unlink(FCPATH . 'folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan']);
-                $this->model->deleteFileNameById('suratPermohonan', $id);
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Surat Permohonan Magang berhasil dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            } else {
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Surat Permohonan Magang gagal dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            }
-        } else if ($jenis == 'khs') {
-            if ($data['nama_file_khs'] != null) {
-                unlink(FCPATH . 'folder_KHS/' . $data['nama_file_khs']);
-                $this->model->deleteFileNameById('khs', $id);
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Kartu Hasil Studi berhasil dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            } else {
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Kartu Hasil Studi gagal dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            }
-        } else if ($jenis == 'cv') {
-            if ($data['nama_file_cv'] != null) {
-                unlink(FCPATH . 'folder_CV/' . $data['nama_file_cv']);
-                $this->model->deleteFileNameById('cv', $id);
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Curriculum Vitae berhasil dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            } else {
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Curriculum Vitae gagal dihapus.']);
-                redirect('pelamar/profile#tab-3');
-            }
-        }
-    }
+    //     if ($jenis == 'suratPermohonan') {
+    //         if ($data['nama_file_surat_permohonan'] != null) {
+    //             unlink(FCPATH . 'folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan']);
+    //             $this->model->deleteFileNameById('suratPermohonan', $id);
+    //             $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Surat Permohonan Magang berhasil dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         } else {
+    //             $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Surat Permohonan Magang gagal dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         }
+    //     } else if ($jenis == 'khs') {
+    //         if ($data['nama_file_khs'] != null) {
+    //             unlink(FCPATH . 'folder_KHS/' . $data['nama_file_khs']);
+    //             $this->model->deleteFileNameById('khs', $id);
+    //             $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Kartu Hasil Studi berhasil dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         } else {
+    //             $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Kartu Hasil Studi gagal dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         }
+    //     } else if ($jenis == 'cv') {
+    //         if ($data['nama_file_cv'] != null) {
+    //             unlink(FCPATH . 'folder_CV/' . $data['nama_file_cv']);
+    //             $this->model->deleteFileNameById('cv', $id);
+    //             $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas', 'text' => 'Berkas Curriculum Vitae berhasil dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         } else {
+    //             $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas', 'text' => 'Berkas Curriculum Vitae gagal dihapus.']);
+    //             redirect('pelamar/profile#tab-3');
+    //         }
+    //     }
+    // }
 
     public function edit($jenis, $id)
     {
@@ -265,39 +221,40 @@ class Pelamar extends CI_Controller
         //mengambil data pelamar
         $data = $this->model->getDataPelamarById($id);
 
-        if ($jenis == 'suratPermohonan') {
-            if (empty($_FILES['inputSurat']['name'])) {
-                //ketika pelamar tidak mengupload file
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Pilih berkas terlebih dahulu sebelum melakukan unggahan.']);
-                redirect('pelamar/profile#tab-3');
-            } else if ($_FILES['inputSurat']['type'] != 'application/pdf') {
-                //ketika pelamar mengupload file yang bukan pdf
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas yang diunggah harus bertipe PDF.']);
-                redirect('pelamar/profile#tab-3');
-            } else if ($_FILES['inputSurat']['size'] > 2048000) {
-                //ketika pelamar mengupload file dengan ukuran lebih dari 2 MB
-                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas yang diunggah harus berukuran kurang dari 2 MB.']);
-                redirect('pelamar/profile#tab-3');
-            } else {
-                //ketika pelamar mengupload file yang benar
-                //upload surat magang
-                $config['upload_path'] = './folder_Surat_Permohonan/';
-                $config['file_name'] = 'Pelamar_SuratPermohonan_' . time();
-                $this->upload->initialize($config);
-                $this->upload->do_upload('inputSurat');
-                //mengambil nama file untuk disimpan ke database
-                $namaSuratPermohonan = $this->upload->data('file_name');
-                //menghapus file khs lama
-                if ($data['nama_file_surat_permohonan'] != null) {
-                    unlink(FCPATH . 'folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan']);
-                }
+        // if ($jenis == 'suratPermohonan') {
+        //     if (empty($_FILES['inputSurat']['name'])) {
+        //         //ketika pelamar tidak mengupload file
+        //         $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Pilih berkas terlebih dahulu sebelum melakukan unggahan.']);
+        //         redirect('pelamar/profile#tab-3');
+        //     } else if ($_FILES['inputSurat']['type'] != 'application/pdf') {
+        //         //ketika pelamar mengupload file yang bukan pdf
+        //         $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas yang diunggah harus bertipe PDF.']);
+        //         redirect('pelamar/profile#tab-3');
+        //     } else if ($_FILES['inputSurat']['size'] > 2048000) {
+        //         //ketika pelamar mengupload file dengan ukuran lebih dari 2 MB
+        //         $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas yang diunggah harus berukuran kurang dari 2 MB.']);
+        //         redirect('pelamar/profile#tab-3');
+        //     } else {
+        //         //ketika pelamar mengupload file yang benar
+        //         //upload surat magang
+        //         $config['upload_path'] = './folder_Surat_Permohonan/';
+        //         $config['file_name'] = 'Pelamar_SuratPermohonan_' . time();
+        //         $this->upload->initialize($config);
+        //         $this->upload->do_upload('inputSurat');
+        //         //mengambil nama file untuk disimpan ke database
+        //         $namaSuratPermohonan = $this->upload->data('file_name');
+        //         //menghapus file khs lama
+        //         if ($data['nama_file_surat_permohonan'] != null) {
+        //             unlink(FCPATH . 'folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan']);
+        //         }
 
-                $this->model->updateBerkas('suratPermohonan', $id, $namaSuratPermohonan);
+        //         $this->model->updateBerkas('suratPermohonan', $id, $namaSuratPermohonan);
 
-                $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas berhasil diunggah.']);
-                redirect('pelamar/profile#tab-3');
-            }
-        } else if ($jenis == 'khs') {
+        //         $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Berkas Surat Permohonan', 'text' => 'Berkas berhasil diunggah.']);
+        //         redirect('pelamar/profile#tab-3');
+        //     }
+        // } else 
+        if ($jenis == 'khs') {
             if (empty($_FILES['inputKhs']['name'])) {
                 //ketika pelamar tidak mengupload file
                 $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Berkas Kartu Hasil Studi', 'text' => 'Pilih berkas terlebih dahulu sebelum melakukan unggahan.']);

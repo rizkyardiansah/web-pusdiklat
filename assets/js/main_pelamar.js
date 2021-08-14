@@ -264,26 +264,13 @@
 		}
 
 		//profile
-		if (window.location.hash == "#tab-2") {
-			$(".profile .nav-link").removeClass("active show");
-			$(".profile .tab-pane").removeClass("active show");
-			$("#button-2").addClass("active show");
-			$("#tab-2").addClass("active show");
-		} else if (window.location.hash == "#tab-3") {
-			$(".profile .nav-link").removeClass("active show");
-			$(".profile .tab-pane").removeClass("active show");
-			$("#button-3").addClass("active show");
-			$("#tab-3").addClass("active show");
-		} else if (window.location.hash == "#tab-4") {
-			$(".profile .nav-link").removeClass("active show");
-			$(".profile .tab-pane").removeClass("active show");
-			$("#button-4").addClass("active show");
-			$("#tab-4").addClass("active show");
-		} else if (window.location.hash == "#tab-5") {
-			$(".profile .nav-link").removeClass("active show");
-			$(".profile .tab-pane").removeClass("active show");
-			$("#button-5").addClass("active show");
-			$("#tab-5").addClass("active show");
+		for (let i = 1; i <= 5; i++) {
+			if (window.location.hash == `#tab-${i}`) {
+				$(".profile .nav-link").removeClass("active show");
+				$(".profile .tab-pane").removeClass("active show");
+				$(`#button-${i}`).addClass("active show");
+				$(`#tab-${i}`).addClass("active show");
+			}
 		}
 
 		//ubah surat
@@ -402,19 +389,17 @@
 		});
 	});
 
-	$("#button-1").on("click", function (event) {
-		window.location.hash = "#tab-1";
-	});
-	$("#button-2").on("click", function (event) {
-		window.location.hash = "#tab-2";
-	});
-	$("#button-3").on("click", function (event) {
-		window.location.hash = "#tab-3";
-	});
-	$("#button-4").on("click", function (event) {
-		window.location.hash = "#tab-4";
-	});
-	$("#button-5").on("click", function (event) {
-		window.location.hash = "#tab-5";
-	});
+	for (let i = 1; i <= 5; i++) {
+		$(`#button-${i}`).on("click", function (event) {
+			window.location.hash = `#tab-${i}`;
+		});
+	}
+
+	for (let i = 1; i <= 15; i++) {
+		$(`#buttons-${i}`).on("click", function (event) {
+			window.location.hash = `#tabs-${i}`;
+			$(".kegiatan .tab-pane").removeClass("active show");
+			$(`#tabs-${i}`).addClass("active show");
+		});
+	}
 })(jQuery);

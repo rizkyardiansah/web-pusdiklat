@@ -1,8 +1,8 @@
 <main id="main">
-    <section id="specials" class="profile" style="margin-top: 6%">
-        <div class="container" data-aos="fade-up">
+    <section id="specials" class="profile">
+        <div class="container" data-aos="fade-up" style="margin-top: 6%">
             <div class="section-title">
-                <h2>Profil Pengguna</h2>
+                <h2 style="color: #000;">Profil Pengguna</h2>
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-lg-3"><img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" class="img-thumbnail" style="height: 5rem;"></div>
                                 <div class="col-lg-9">
-                                    <h5><?= $user['nama']; ?></h5>
+                                    <h5><?= $user['nama_pelamar']; ?></h5>
                                     <p style="font-size:13px;"><?= $user['email']; ?></p>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <form action="" method="POST">
                                         <div class="form-group">
                                             <label class="label" for="nama">Nama</label>
-                                            <input class="form-control" type="text" id="nama" name="nama" value="<?= form_error('nama') || set_value('nama') ? set_value('nama') : $user['nama']; ?>">
+                                            <input class="form-control" type="text" id="nama" name="nama" value="<?= form_error('nama') || set_value('nama') ? set_value('nama') : $user['nama_pelamar']; ?>">
                                             <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                                         </div>
 
@@ -191,7 +191,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="tab-4">
+                        <!-- <div class="tab-pane" id="tab-4">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Akun</h3>
@@ -207,7 +207,7 @@
                                     <p class="font-italic">Keluar.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
