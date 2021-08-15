@@ -22,6 +22,7 @@
 										<th scope="col" class="text-center">Status</th>
 										<th scope="col" class="text-center">Keterangan</th>
 										<th scope="col" class="text-center">Aksi</th>
+										<th scope="col" class="text-center">Upload Surat Jawaban</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -53,21 +54,34 @@
 													<?php } ?>
 											</td>
 											<td> <?= $data_verifikasi['ket']; ?> </td>
-											<td colspan='2' class="text-center">
+											<td class="text-center">
 												<?php if($check ==0): ?>
-												<a class="btn btn-sm  btn-danger outer" type="button" href="<?= base_url('pusat/formsurat/'.$data_verifikasi['id_permohonan']); ?>" data-diperiksa="true"><i aria-hidden="true"></i>
-													Form Surat
-												</a>
-												<?php endif; ?>
-												
-												<div class="dropdown show dropleft">
-													<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
+													<a class="btn btn-sm  btn-danger outer" type="button" href="<?= base_url('pusat/formsurat/'.$data_verifikasi['id_permohonan']); ?>" data-diperiksa="true"><i aria-hidden="true"></i>
+														Form Surat
 													</a>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-													<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
-													<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
-												</div>
+												<?php endif; ?>
+												<?php if($data_verifikasi['status'] == 'Ditolak'){ ?>
+													<div class="text-center">
+														<a class="btn btn-light " href="<?= base_url("root/pdf2/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
+														</a>
+													</div>
+												<?php } else { ?>
+													<div class="dropdown show dropleft">
+														<a class="btn btn-light " href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
+														</a>
+													</div>
+													<?php } ?>
+											</td>
+											<td>
+												<div class="text-left">
+													<div class="col-lg-8">
+														<div class="form-group">
+															<input class="form-control-file" type="file" id="surat_permohonan" name="surat_permohonan">
+															<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
+														</div>
+													</div>
 												</div>
 											</td>
 										</tr>
