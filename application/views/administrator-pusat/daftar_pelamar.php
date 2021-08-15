@@ -82,6 +82,11 @@
 														</div>
 													</div>
 												</div>
+												<div >
+													<a class="btn btn-light" >
+														Upload
+													</a>
+												</div> 
 											</td>
 										</tr>
 									<?php endforeach; ?>

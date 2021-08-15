@@ -350,4 +350,13 @@ class Pusat extends CI_Controller
 				$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
 				
 			}
+		public function uploadSurat()
+		{
+			$config['allowed_types'] = 'pdf';
+            $config['max_size'] = 2048;
+            $config['upload_path'] = './folder_Surat_jawaban/';
+            $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
+            $this->upload->initialize($config);
+            $this->upload->do_upload('surat_Jawaban');
+		}
 		}
