@@ -9,8 +9,8 @@
                 <div class="col-lg-5">
                     <ul class="nav nav-tabs flex-column profile">
                         <li>
-                            <div class="row">
-                                <div class="col-lg-3"><img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" class="img-thumbnail" style="height: 5rem;"></div>
+                            <div class="row ">
+                                <div class="col-lg-3"><img src="<?= base_url('foto_profil/') . $user['foto_profil']; ?>" class="img-thumbnail" style="height: 5rem;"></div>
                                 <div class="col-lg-9">
                                     <h5><?= $user['nama_pelamar']; ?></h5>
                                     <p style="font-size:13px;"><?= $user['email']; ?></p>
@@ -30,11 +30,11 @@
                             <a class="nav-link" data-toggle="tab" id="button-3" href="#tab-3">Berkas</a>
                         </li>
 
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" id="button-4" href="#tab-4">Akun</a>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" id="button-4" href="#tab-4">Foto Profil</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" id="button-5" href="#tab-5">Keluar</a>
                         </li> -->
 
@@ -191,16 +191,37 @@
                             </div>
                         </div>
 
-                        <!-- <div class="tab-pane" id="tab-4">
+                        <div class="tab-pane" id="tab-4">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
-                                    <h3>Akun</h3>
-                                    <p class="font-italic">Keluar.</p>
+                                    <h3>Foto Profil</h3>
+                                    <?= form_open_multipart('pelamar/profile') ?>
+                                    <div class="form-group row">
+                                        <!-- <div class="col-sm-2">
+                                            <label for="picture">Foto Profil</label>
+                                        </div> -->
+                                        <div class="col-sm-5">
+                                            <img class="img-thumbnail" src="<?= base_url('foto_profil/') . $user['foto_profil']; ?>">
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="input-group mb-3">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="foto_profil" name="foto_profil">
+                                                    <label class="custom-file-label" for="foto_profil">Pilih foto</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary float-right" type="submit" name="submitFotoProfil" id="submitFotoProfil" value="submitFotoProfil">Simpan</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="tab-pane" id="tab-5">
+
+
+                        <!-- <div class="tab-pane" id="tab-5">
                             <div class="row">
                                 <div class="col-lg-8 details order-2 order-lg-1">
                                     <h3>Keluar</h3>

@@ -98,4 +98,10 @@ class Pelamar_model extends CI_Model
             $this->db->update('pelamar', ['nama_file_cv' => $namaBerkas]);
         }
     }
+
+    public function updateFotoProfil($id, $namaFoto)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('pelamar', ['foto_profil' => $namaFoto]);
+    }
 }

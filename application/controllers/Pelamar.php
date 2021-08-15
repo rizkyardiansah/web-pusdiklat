@@ -137,6 +137,28 @@ class Pelamar extends CI_Controller
                 $this->load->view('pelamar/profile', $data);
                 $this->load->view('templates/pelamar_footer');
             }
+        } else if ($this->input->post('submitFotoProfil') == 'submitFotoProfil') {
+            $uploadFile = $_FILES['foto_profil']['name'];
+
+            if ($uploadFile) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['upload_path'] = './foto_profil/';
+                $config['max_size'] = 2048;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto_profil')) {
+                    $imgName = $this->upload->data('file_name');
+                    $this->model->updateFotoProfil($data['user']['id'], $imgName);
+
+                    if ($data['user']['foto_profil'] != 'default.jpg') {
+                        unlink(FCPATH . 'foto_profil/' . $data['user']['foto_profil']);
+                    }
+                    redirect('pelamar/profile#tab-4');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
         } else {
             $this->load->view('templates/pelamar_header', $data);
             $this->load->view('pelamar/profile', $data);

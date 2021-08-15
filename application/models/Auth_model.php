@@ -72,7 +72,8 @@ class Auth_model extends CI_Model
                     "nama" => $result['nama'],
                     "email" => $result['email'],
                     "universitas" => $result['universitas'],
-                    "fakultas" => $result['fakultas']
+                    "fakultas" => $result['fakultas'],
+                    "foto_profil" => 'default.jpg'
                 ];
                 $this->db->insert('pelamar', $dataPelamar);
 

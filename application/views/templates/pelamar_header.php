@@ -65,7 +65,7 @@
                         <div class="dropdown">
                             <a id="profileDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-1"><?= $user['nama_pelamar']; ?></span>
-                                <img src="<?= base_url('assets/img/') . 'default.jpg'; ?>" style="height: 1.7rem;" class="img-thumbnail rounded-circle">
+                                <img src="<?= base_url('foto_profil/') . $user['foto_profil']; ?>" style="height: 1.7rem;" class="img-thumbnail rounded-circle">
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
