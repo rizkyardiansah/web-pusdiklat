@@ -25,7 +25,6 @@ class Pusat extends CI_Controller
 		$this->load->view('administrator-pusat/' . $menu['menu'], $menu);
 		$this->load->view('templates/administrator-templates/footer_content');
 		$this->load->view('templates/administrator-templates/footer');
-		
 	}
 
 
@@ -36,7 +35,8 @@ class Pusat extends CI_Controller
 			'status' => 'Menunggu Verifikasi',
 		);
 		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
-		$data['check'] = $this->Balasan_model->isTrue();
+		$data['count'] = $this->Balasan_model->countBalasanSurat();
+
 		$this->loadTemplate($data);
 	}
 
@@ -44,21 +44,23 @@ class Pusat extends CI_Controller
 	{
 		$data['menu'] = 'menu_approvement';
 		$arrayData = array(
-			'status' => 'Disetujui'	
+			'status' => 'Disetujui'
 		);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
 	}
 
 	public function rejection()
 	{
 		$data['menu'] = 'menu_rejection';
-		$arrayData = array (
+		$arrayData = array(
 			'status' => 'Ditolak'
 		);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
 	}
 
@@ -68,7 +70,8 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'status' => 'Menunggu Verifikasi',
 		);
-		$data['detail'] = $this->Balasan_model->getDataById($id);	
+		$data['detail'] = $this->Balasan_model->getDataById($id);
+		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
 	}
 
@@ -86,4 +89,3 @@ class Pusat extends CI_Controller
 		redirect('pusat/daftar_pelamar');
 	}
 }
-
