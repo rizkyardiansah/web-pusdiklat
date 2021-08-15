@@ -3,7 +3,7 @@
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
 
             <div class="section-title">
-                <h2>Pendaftaran Magang</h2>
+                <h2>Pendaftaran Magang@perpusnas</h2>
                 <p><?= $unit_kerja['nama']; ?></p>
             </div>
 
@@ -105,42 +105,40 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="label" for="unit kerja">Unit Kerja</label>
-                        <input class="form-control" type="text" id="unit kerja" name="unit kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
+                        <label class="label" for="unit_kerja">Unit Kerja</label>
+                        <input class="form-control" type="text" id="unit_kerja" name="unit_kerja" value="<?= $unit_kerja['nama']; ?>" readonly>
+                        <input type="hidden" id="id_unit" name="id_unit" value="<?= $unit_kerja['id']; ?>">
                     </div>
                     <div class="form-group">
                         <label class="label" for="no_surat">Nomor Surat Permohonan Magang</label>
-                        <input class="form-control" type="text" id="no_surat" name="no_surat" value="<?= form_error('no_surat') || set_value('no_surat') ? set_value('no_surat') : $user['no_surat_permohonan']; ?>">
+                        <input class="form-control" type="text" id="no_surat" name="no_surat" value="<?= set_value('no_surat'); ?>">
+                        <!-- <input class="form-control" type="text" id="no_surat" name="no_surat" value="<?= form_error('no_surat') || set_value('no_surat') ? set_value('no_surat') : $user['no_surat_permohonan']; ?>"> -->
                         <?= form_error('no_surat', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="row justify-content-around">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="label" for="surat_permohonan">Surat Permohonan Magang</label>
-                                <input class="form-control-file" type="file" id="surat_permohonan" name="surat_permohonan">
-                                <?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
+                    <div class="form-group">
+                        <label class="label" for="surat_permohonan">Surat Permohonan Magang</label>
+                        <div style="border-style: dotted; height: fit-content; padding: 10px;">
+                            <p class="text-muted">Unggah berkas Surat Permohonan Magang anda disini. Berkas harus bertipe PDF dan berukuran kurang dari 2 MB</p>
+                            <input class="form-control-file" type="file" id="surat_permohonan" name="surat_permohonan">
+                            <?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around mb-3">
+                        <div class="col-lg-6">
+                            <label class="label">Kartu Hasil Studi</label>
+                            <div class="container" style="border-style: dotted; height: fit-content;">
+                                <p class="mt-3 text-muted"><?= $user['nama_file_khs']; ?></p>
+                                <a class="btn btn-primary btn-sm mb-3 mr-2" href="<?= base_url('pelamar/download/') . 'khs/' . $user['id']; ?>">Unduh berkas</a>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="label" for="khs">Kartu Hasil Studi</label>
-                                <input class="form-control-file" type="file" id="khs" name="khs">
-                                <?= form_error('khs', '<small class="text-danger">', '</small>'); ?>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="label" for="cv">Curriculum Vitae</label>
-                                <input class="form-control-file" type="file" id="cv" name="cv">
-                                <?= form_error('cv', '<small class="text-danger">', '</small>'); ?>
+                        <div class="col-lg-6">
+                            <label class="label">Curriculum Vitae</label>
+                            <div class="container" style="border-style: dotted; height: fit-content;">
+                                <p class="mt-3 text-muted"><?= $user['nama_file_cv']; ?></p>
+                                <a class="btn btn-primary btn-sm mb-3 mr-2" href="<?= base_url('pelamar/download/') . 'cv/' . $user['id']; ?>">Unduh berkas</a>
                             </div>
                         </div>
                     </div>
-                    <small>Ketentuan file:</small>
-                    <ul>
-                        <li><small>Bertipe data PDF</small></li>
-                        <li><small>Berukuran kurang dari 2 MB</small></li>
-                    </ul>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="pernyataan" name="pernyataan">
                         <label class="form-check-label" for="pernyataan">
