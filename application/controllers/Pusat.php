@@ -75,7 +75,7 @@ class Pusat extends CI_Controller
 		$this->loadTemplate($data);
 	}
 
-	public function updateStatus()
+	plublic function updateStatus()
 	{
 		$setUpdate =  array(
 			'status' => $this->input->post('status'),
