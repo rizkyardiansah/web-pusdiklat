@@ -35,7 +35,7 @@
 										foreach ($verifikasi as $data_verifikasi) : ?>
 											<tr>
 												<td><?= $no++; ?></td>
-												<td><?= $data_verifikasi['tanggal_permohonan']; ?></td>
+												<td><?= indo_date($data_verifikasi['tanggal_permohonan']); ?></td>
 												<td><?= $data_verifikasi['nama_pelamar']; ?></td>
 												<td><?= $data_verifikasi['nama_unit']; ?></td>
 												<td>

@@ -59,7 +59,7 @@
 											</div>
 											<div class="col-md-6">
 												<label for="inputEmail4">Tanggal Permohonan</label>
-												<input type="text" class="form-control" name="tanggal_permohonan" value="<?= $data['tanggal_permohonan']; ?>" readonly>
+											<input type="text" class="form-control" name="tanggal_permohonan" value="<?= indo_date($data['tanggal_permohonan']); ?>" readonly>
 											</div>
 										</div>
 									</div>
