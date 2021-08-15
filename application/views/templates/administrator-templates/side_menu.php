@@ -12,9 +12,11 @@
 						<a class="nav-link" href="<?= base_url('pusat/index') ?>">
 							<div class="sb-nav-link-icon "><i class="fa fa-tasks" aria-hidden="true"></i></div>
 							Menu Penyuratan
-							<span class="badge bg-danger text-light mx-3">
-								12
-							</span>
+							<?php if ($count > 0) : ?>
+								<span class="badge bg-danger text-light mx-3">
+									<?= $count; ?>
+								</span>
+							<?php endif; ?>
 						</a>
 						<a class="nav-link" href="<?= base_url('pusat/approval') ?>">
 							<div class="sb-nav-link-icon">
