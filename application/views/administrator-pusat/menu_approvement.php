@@ -3,24 +3,9 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Persetujuan</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">Data yang telah disetujui</li>
-					</ol>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
-							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">14 Total data pelamar</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-success text-white mb-4">
-								<div class="card-body">15 Data telah disetujui</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<div class="card bg-success text-white mb-4">
+							<div class=" text-white mb-4">
 								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 									<option selected>Open this select menu</option>
 									<option value="1">Biro Perencanaan dan Keuangan</option>
@@ -48,80 +33,42 @@
 								<thead>
 									<tr>
 										<th scope="col">No</th>
-										<th scope="col">Nama Lengkap</th>
-										<th scope="col">Instansi</th>
+										<th scope="col" >Tanggal Pengajuan</th>
+										<th scope="col" >Tanggal Persetujuan</th>
+										<th scope="col" >Nama Lengkap</th>
+										<th scope="col" class="text-center">Instansi</th>
 										<th scope="col" class="text-center">Unit Kerja</th>
-										<th scope="col">Kelengkapan Berkas</th>
-										<th scope="col">Tanggal Pengajuan</th>
-										<th scope="col">Tanggal Persetujuan</th>
-										<th scope="col">Keterangan</th>
-										<th scope="col" class="text-center">Aksi</th>
+										<th scope="col" >Kelengkapan Berkas</th>
+										<th scope="col" class="text-center">Status</th>
+										<th scope="col" >Keterangan</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Memenuhi Syarat</td>
-										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-												Cetak Surat
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>Pusat Data dan Informasi</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Memenuhi Syarat</td>
-										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-												Cetak Surat
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Larry the Bird</td>
-										<td>@twitter</td>
-										<td>Biro SDM dan Umum</td>
-										<td>
-											Berkas CV.pdf
-											<br>
-											Berkas khs.pdf
-											<br>
-											Nama surat magang.pdf
-										</td>
-										<td>12 Agustus 2021</td>
-										<td>13 Agustus 2012</td>
-										<td> Memenuhi Syarat</td>
-										<td colspan='2' class="text-center">
-											<button class="btn btn-sm  btn-primary" type="button"><i class="fa fa-edit" aria-hidden="true"></i>
-												Cetak Surat
-											</button>
-										</td>
-									</tr>
+								<?php
+									$no = 1;
+									foreach ($approval as $dataApprovement) :?>
+										<tr>
+											<td><?= $no++; ?></td>
+											<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
+											<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
+											<td><?= $dataApprovement['nama_pelamar']; ?></td>
+											<td><?= $dataApprovement['universitas']; ?></td>
+											<td><?= $dataApprovement['nama_unit']; ?></td>
+											<td>
+												<?= $dataApprovement['nama_file_surat_permohonan']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_khs']; ?>
+												<br>
+												<?= $dataApprovement['nama_file_cv']; ?>
+											</td>
+											<td>
+												<span class="badge bg-success text-black">
+													<?= $dataApprovement['status']; ?>
+												</span>
+											</td>
+											<td><?= $dataApprovement['ket']; ?></td>
+										</tr>
+								<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>
@@ -150,13 +97,3 @@
 					</div>
 				</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div class="d-flex align-items-center justify-content-between small text-center">
-						<div>Sistem Informasi Permagangan Perpusnas</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-
-		</div>

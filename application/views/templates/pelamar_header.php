@@ -39,7 +39,6 @@
         <div id="flashdata" data-title="<?= $this->session->flashdata('flash')['title']; ?>" data-text="<?= $this->session->flashdata('flash')['text']; ?>" data-icon="<?= $this->session->flashdata('flash')['icon']; ?>"></div>
     <?php unset($_SESSION['flash']);
     endif; ?>
-
     <!-- ======= Top Bar ======= -->
     <!-- <div id="topbar" class="d-flex align-items-center fixed-top">
         <div class="container d-flex">
