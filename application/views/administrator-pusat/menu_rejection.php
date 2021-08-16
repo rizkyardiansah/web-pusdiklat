@@ -60,7 +60,7 @@
 										?>
 											<tr>
 												<td><?= $no++; ?></td>
-												<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
+												<td><?= indo_date($dataApprovement['tanggal_permohonan']); ?></td>
 												<td><?= $dataApprovement['nama_pelamar']; ?></td>
 												<td><?= $dataApprovement['nama_unit']; ?></td>
 												<td>

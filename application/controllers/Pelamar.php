@@ -65,7 +65,7 @@ class Pelamar extends CI_Controller
             $config['upload_path'] = './folder_Surat_Permohonan/';
             $config['file_name'] = 'Pelamar_SuratPermohonan_' . time();
             $this->upload->initialize($config);
-            $this->upload->do_upload('surat_permohonan');
+        $this->upload->do_upload('surat_permohonan');
             //mengambil nama file untuk disimpan ke database
             $nama_file_surat_permohonan = $this->upload->data('file_name');
 
