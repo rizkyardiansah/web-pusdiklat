@@ -40,7 +40,7 @@
 
                     </ul>
                 </div>
-                <div class="col-lg-7 mt-4 mt-lg-0">
+                <div class="col-lg-7 mt-4 mt-lg-0" style="min-height: 500px;">
                     <div class="tab-content profile">
                         <div class="tab-pane active show" id="tab-1">
                             <div class="row">
