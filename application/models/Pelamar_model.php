@@ -14,6 +14,15 @@ class Pelamar_model extends CI_Model
         return $this->db->get_where('pelamar', ['id' => $id])->row_array();
     }
 
+    public function getDataPelamarByNama($nama)
+    {
+        // return $this->db->get_where('pelamar', ['nama_pelamar' => $nama])->row_array();
+        $this->db->select('*');
+        $this->db->from('pelamar');
+        $this->db->like('nama_pelamar', $nama);
+        return $this->db->get()->result_array();
+    }
+
     public function getAllUnitKerja()
     {
         return $this->db->get('unit_kerja')->result_array();
@@ -103,5 +112,21 @@ class Pelamar_model extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->update('pelamar', ['foto_profil' => $namaFoto]);
+    }
+
+    public function search($keyword)
+    {
+        $this->db->select('*');
+        $this->db->from('pelamar');
+        $this->db->join('surat_permohonan', 'pelamar.id = surat_permohonan.id_pelamar', 'LEFT');
+        $this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+        // $this->db->select('*');
+		// $this->db->from('surat_permohonan');
+		// $this->db->join('pelamar', 'surat_permohonan.id_pelamar = pelamar.id', 'LEFT');
+		// $this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+		// $this->db->where('id_unit', $data['id_unit']);
+		// $this->db->where('status', $data['status']);
+        $this->db->like('nama_pelamar', $keyword);
+        return $this->db->get()->result_array();
     }
 }

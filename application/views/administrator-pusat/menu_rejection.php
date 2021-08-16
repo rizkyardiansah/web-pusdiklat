@@ -3,6 +3,18 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Penolakan</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"></li>
+					</ol>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/rejection') ?>" method='get'>
+						<div class="input-group ">
+							<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+							<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+						</div>
+					</form>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"></li>
+					</ol>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
 							<div class="text-white mb-4">

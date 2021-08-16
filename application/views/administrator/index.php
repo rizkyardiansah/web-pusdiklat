@@ -6,6 +6,18 @@
 						Verifikasi Data
 					</h1>
 					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"></li>
+					</ol>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('unitkerja/index') ?>" method='get'>
+						<div class="input-group ">
+							<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+							<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+						</div>
+					</form>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"></li>
+					</ol>
+					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">Tabel Verfikasi Data</li>
 					</ol>
 					<!-- Data Table -->

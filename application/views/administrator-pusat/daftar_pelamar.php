@@ -6,7 +6,15 @@
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active"></li>
 					</ol>
-					
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/index') ?>" method='get'>
+						<div class="input-group ">
+							<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+							<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+						</div>
+					</form>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"></li>
+					</ol>
 					<!-- Data Table -->
 					<div class="row">
 						<div class="col-md-12">
@@ -42,7 +50,7 @@
 												<?= $data_verifikasi['nama_file_cv']; ?>
 											</td>
 											<td>
-												<?php if($data_verifikasi['status'] == 'Ditolak'){ ?>
+												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
 													<span class="badge bg-danger text-white mx-3">
 														<?= $data_verifikasi['status']; ?>
 													</span>
@@ -50,24 +58,24 @@
 													<span class="badge bg-success text-white mx-3">
 														<?= $data_verifikasi['status']; ?>
 													</span>
-													<?php } ?>
+												<?php } ?>
 											</td>
 											<td> <?= $data_verifikasi['ket']; ?> </td>
 											<td colspan='2' class="text-center">
-												<?php if($check ==0): ?>
-												<a class="btn btn-sm  btn-danger outer" type="button" href="<?= base_url('pusat/formsurat/'.$data_verifikasi['id_permohonan']); ?>" data-diperiksa="true"><i aria-hidden="true"></i>
-													Form Surat
-												</a>
+												<?php if ($check == 0) : ?>
+													<a class="btn btn-sm  btn-danger outer" type="button" href="<?= base_url('pusat/formsurat/' . $data_verifikasi['id_permohonan']); ?>" data-diperiksa="true"><i aria-hidden="true"></i>
+														Form Surat
+													</a>
 												<?php endif; ?>
-												
+
 												<div class="dropdown show dropleft">
 													<a class="btn btn-light dropdown-toggle" href="<?= base_url("root/pdf/")  ?>" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 														<img src="<?= base_url("assets/img/printer.png"); ?>" width="25" data-toggle="tooltip" title="Cetak Surat">
 													</a>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-													<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
-													<a class="dropdown-item" href="<?= base_url("root/pdf2/")?>" class="btn btn-sm" target="_blank">Ditolak</a>
-												</div>
+													<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+														<a class="dropdown-item" href="<?= base_url("root/pdf/") ?>" class="btn btn-sm" target="_blank">Disetujui</a>
+														<a class="dropdown-item" href="<?= base_url("root/pdf2/") ?>" class="btn btn-sm" target="_blank">Ditolak</a>
+													</div>
 												</div>
 											</td>
 										</tr>
@@ -100,6 +108,6 @@
 					</div>
 				</div>
 			</main>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

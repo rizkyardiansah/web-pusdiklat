@@ -8,6 +8,7 @@ class Pusat extends CI_Controller
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('Balasan_model');
+		$this->load->model('Pelamar_model');
 		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 1) {
 			$this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Unauthenticated, harap login terlebih dahulu']);
 			redirect('auth/index');
@@ -25,7 +26,6 @@ class Pusat extends CI_Controller
 		$this->load->view('administrator-pusat/' . $menu['menu'], $menu);
 		$this->load->view('templates/administrator-templates/footer_content');
 		$this->load->view('templates/administrator-templates/footer');
-		
 	}
 
 
@@ -37,6 +37,15 @@ class Pusat extends CI_Controller
 		);
 		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
 		$data['check'] = $this->Balasan_model->isTrue();
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			// untuk search tidak menggunakan status
+			$data["permohonan"] = $this->Pelamar_model->search($search);
+
+			// untuk search menggunakan status
+			// $data["permohonan"] = $this->Balasan_model->getDataWithStatusSearch($arrayData , $search);
+		}
 		$this->loadTemplate($data);
 	}
 
@@ -44,21 +53,31 @@ class Pusat extends CI_Controller
 	{
 		$data['menu'] = 'menu_approvement';
 		$arrayData = array(
-			'status' => 'Disetujui'	
+			'status' => 'Disetujui'
 		);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['approval'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$this->loadTemplate($data);
 	}
 
 	public function rejection()
 	{
 		$data['menu'] = 'menu_rejection';
-		$arrayData = array (
+		$arrayData = array(
 			'status' => 'Ditolak'
 		);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['reject'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$this->loadTemplate($data);
 	}
 
@@ -68,7 +87,7 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'status' => 'Menunggu Verifikasi',
 		);
-		$data['detail'] = $this->Balasan_model->getDataById($id);	
+		$data['detail'] = $this->Balasan_model->getDataById($id);
 		$this->loadTemplate($data);
 	}
 
@@ -86,4 +105,3 @@ class Pusat extends CI_Controller
 		redirect('pusat/daftar_pelamar');
 	}
 }
-
