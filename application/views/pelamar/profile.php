@@ -210,6 +210,13 @@
                                                     <label class="custom-file-label" for="foto_profil">Pilih foto</label>
                                                 </div>
                                             </div>
+                                            <small>Ketentuan berkas foto:</small>
+                                            <ul>
+                                                <li><small>Bertipe JPEG, JPG, PNG, GIF</small></li>
+                                                <li><small>Berukuran kurang dari 1 MB</small></li>
+                                                <li><small>Minimal resolusi 128x128</small></li>
+
+                                            </ul>
                                         </div>
                                     </div>
 

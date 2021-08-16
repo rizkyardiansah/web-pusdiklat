@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Agu 2021 pada 17.44
+-- Waktu pembuatan: 16 Agu 2021 pada 04.37
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.4.21
 
@@ -66,8 +66,8 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `email`, `password`, `role_id`, `id_unit_kerja`) VALUES
 (1, 'Rina_Wahyuni@pusdiklat.com', 'rina123', 1, 15),
 (2, 'PUSDIKLAT@pusdiklat.com', 'pusdiklat', 2, 1),
-(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, NULL),
-(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, NULL),
+(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, 1),
+(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, 2),
 (12, 'aris.cemumut@gmail.com', '$2y$10$iyfHzFi2BWMJLLA2xeGCNeGZVQ/dzLB2TRNIjhLxJBvbBYrA7RVvO', 2, 1),
 (13, 'ariss@upnvj.ac.id', '$2y$10$2DaeegN8jbjjb72MiSuB1.2oEjgXBD0Paq6yMkwQl/dEz7FbAZspm', 1, NULL);
 
@@ -88,30 +88,31 @@ CREATE TABLE `pelamar` (
   `semester` int(2) DEFAULT NULL,
   `no_telpon` varchar(15) DEFAULT NULL,
   `nama_file_khs` varchar(100) DEFAULT NULL,
-  `nama_file_cv` varchar(100) DEFAULT NULL
+  `nama_file_cv` varchar(100) DEFAULT NULL,
+  `foto_profil` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pelamar`
 --
 
-INSERT INTO `pelamar` (`id`, `nama_pelamar`, `email`, `universitas`, `fakultas`, `prodi`, `nim`, `semester`, `no_telpon`, `nama_file_khs`, `nama_file_cv`) VALUES
-(1, 'Muhammad Rizky', 'sleepyweppy@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', 'Pelamar_KHS_1628872504.pdf', '29aaa9784599d2f9625d306600127df6.pdf'),
-(8, 'Aris Setyawan', 'aris.setyawan@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512022', 6, '0895340442948', 'Contoh KHS.pdf', 'Contoh CV.pdf'),
-(9, 'Albert Lim', 'albert.lim@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512021', 6, '08123457438', 'Contoh KHS Albert.pdf', 'Contoh CV Albert.pdf'),
-(10, 'Nurul Aini', 'nurula@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512028', 6, '0812341223', 'Contoh KHS Nurul.pdf', 'Contoh CV Nurul.pdf'),
-(11, 'Yuli Febyola', 'yuli.f@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512038', 6, '08123432421', 'Contoh KHS Feby.pdf', 'Contoh CV Feby.pdf'),
-(12, 'Mastono Aji', 'masaji@gmail.com', 'Universitas Ageng Tirtayasa', 'Teknik', 'Teknik Industri', '18002832123', 6, '089544221123', 'Contoh KHS Aji.pdf', 'Contoh CV Aji.pdf'),
-(13, 'Rania Ramadhina', 'raniarans@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'informatika', '18002376712', 6, '0896656121', 'Contoh KHS Rania.pdf', 'Contoh CV Rania.pdf'),
-(14, 'Idham', 'idham@gmail.com', 'Universitas Ageng Tirtayasa', 'Teknik', 'Teknik Elektro', '18106123372', 6, '0812377239342', 'Contoh KHS Idham.pdf', 'Contoh CV Idham.pdf'),
-(15, 'Gilang Akbar P', 'gilangakbar@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Informatika', '1810601239', 6, '08924447771', 'Contoh KHS Gilang.pdf', 'Contoh CV Gilang.pdf'),
-(16, 'Dani Ali Cahyono', 'danialicah@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1806615528', 6, '08921374324', 'Contoh KHS Dani.pdf', 'Contoh CV Dani.pdf'),
-(17, 'Aji Suryana', 'ajisuryani@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Informatika', '18980982391', 6, '089932546213', 'Contoh KHS Surnaya.pdf', 'Contoh CV Surnaya.pdf'),
-(18, 'Aldi Ramadhan', 'aldi@upnvj.ac.id', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem informasi', '181066299123', 6, '08993277123', 'Contoh KHS Aldi.pdf', 'Contoh CV Aldi.pdf'),
-(19, 'Rio Pratamtam', 'pratamtam@gmail.com', 'UPN veteran Jakarta', 'Ilmu Komputer', 'Informatika', '18977239983', 6, '08994367612', 'Contoh KHS Rio.pdf', 'Contoh CV Rio.pdf'),
-(20, 'Gladis Federica', 'gladis.f@gmail.com', 'Universitas Gadjah Mada', 'Ilmu Sosial dan Politik', 'Ilmu Politik', '8831877821', 6, '08991328671', 'KHS Gladis.pdf', 'CV Gladis.pdf'),
-(21, 'Budi Sujatmiko', 'budidudedo@gmail.com', 'Universitas Indonesia', 'Hukum', 'Hukum Internasional', '88675671293', 6, '08983176321', 'budi KHS.pdf', 'budi CV.pdf');
+INSERT INTO `pelamar` (`id`, `nama_pelamar`, `email`, `universitas`, `fakultas`, `prodi`, `nim`, `semester`, `no_telpon`, `nama_file_khs`, `nama_file_cv`, `foto_profil`) VALUES
+(1, 'Muhammad Rizky', 'sleepyweppy@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', NULL, NULL, NULL, NULL, NULL, NULL, 'default.jpg'),
+(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', '8e154e317e9fef7247a3f5884501ec6b.pdf', '29aaa9784599d2f9625d306600127df6.pdf', 'default.jpg'),
+(8, 'Aris Setyawan', 'aris.setyawan@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512022', 6, '0895340442948', 'Contoh KHS.pdf', 'Contoh CV.pdf', 'default.jpg'),
+(9, 'Albert Lim', 'albert.lim@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512021', 6, '08123457438', 'Contoh KHS Albert.pdf', 'Contoh CV Albert.pdf', 'default.jpg'),
+(10, 'Nurul Aini', 'nurula@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512028', 6, '0812341223', 'Contoh KHS Nurul.pdf', 'Contoh CV Nurul.pdf', 'default.jpg'),
+(11, 'Yuli Febyola', 'yuli.f@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512038', 6, '08123432421', 'Contoh KHS Feby.pdf', 'Contoh CV Feby.pdf', 'default.jpg'),
+(12, 'Mastono Aji', 'masaji@gmail.com', 'Universitas Ageng Tirtayasa', 'Teknik', 'Teknik Industri', '18002832123', 6, '089544221123', 'Contoh KHS Aji.pdf', 'Contoh CV Aji.pdf', 'default.jpg'),
+(13, 'Rania Ramadhina', 'raniarans@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'informatika', '18002376712', 6, '0896656121', 'Contoh KHS Rania.pdf', 'Contoh CV Rania.pdf', 'default.jpg'),
+(14, 'Idham', 'idham@gmail.com', 'Universitas Ageng Tirtayasa', 'Teknik', 'Teknik Elektro', '18106123372', 6, '0812377239342', 'Contoh KHS Idham.pdf', 'Contoh CV Idham.pdf', 'default.jpg'),
+(15, 'Gilang Akbar P', 'gilangakbar@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Informatika', '1810601239', 6, '08924447771', 'Contoh KHS Gilang.pdf', 'Contoh CV Gilang.pdf', 'default.jpg'),
+(16, 'Dani Ali Cahyono', 'danialicah@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1806615528', 6, '08921374324', 'Contoh KHS Dani.pdf', 'Contoh CV Dani.pdf', 'default.jpg'),
+(17, 'Aji Suryana', 'ajisuryani@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Informatika', '18980982391', 6, '089932546213', 'Contoh KHS Surnaya.pdf', 'Contoh CV Surnaya.pdf', 'default.jpg'),
+(18, 'Aldi Ramadhan', 'aldi@upnvj.ac.id', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem informasi', '181066299123', 6, '08993277123', 'Contoh KHS Aldi.pdf', 'Contoh CV Aldi.pdf', 'default.jpg'),
+(19, 'Rio Pratamtam', 'pratamtam@gmail.com', 'UPN veteran Jakarta', 'Ilmu Komputer', 'Informatika', '18977239983', 6, '08994367612', 'Contoh KHS Rio.pdf', 'Contoh CV Rio.pdf', 'default.jpg'),
+(20, 'Gladis Federica', 'gladis.f@gmail.com', 'Universitas Gadjah Mada', 'Ilmu Sosial dan Politik', 'Ilmu Politik', '8831877821', 6, '08991328671', 'KHS Gladis.pdf', 'CV Gladis.pdf', 'default.jpg'),
+(21, 'Budi Sujatmiko', 'budidudedo@gmail.com', 'Universitas Indonesia', 'Hukum', 'Hukum Internasional', '88675671293', 6, '08983176321', 'budi KHS.pdf', 'budi CV.pdf', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,17 +145,29 @@ CREATE TABLE `surat_balasan` (
   `id_surat_permohonan` int(11) NOT NULL,
   `no_surat` varchar(26) NOT NULL,
   `nama_surat` varchar(45) NOT NULL,
-  `tgl_surat` date NOT NULL
+  `tgl_surat` date NOT NULL,
+  `perihal` varchar(255) NOT NULL,
+  `no_surat_balasan` varchar(50) NOT NULL,
+  `lampiran` varchar(50) NOT NULL,
+  `kepada` varchar(50) NOT NULL,
+  `alasan` text NOT NULL,
+  `jangka_waktu` varchar(50) NOT NULL,
+  `tembusan1` text NOT NULL,
+  `tembusan2` text NOT NULL,
+  `tembusan3` text NOT NULL,
+  `tembusan4` text NOT NULL,
+  `tembusan5` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `surat_balasan`
 --
 
-INSERT INTO `surat_balasan` (`id_surat_balasan`, `id_surat_permohonan`, `no_surat`, `nama_surat`, `tgl_surat`) VALUES
-(1, 12, '', '', '0000-00-00'),
-(2, 13, '', '', '0000-00-00'),
-(3, 14, '', '', '0000-00-00');
+INSERT INTO `surat_balasan` (`id_surat_balasan`, `id_surat_permohonan`, `no_surat`, `nama_surat`, `tgl_surat`, `perihal`, `no_surat_balasan`, `lampiran`, `kepada`, `alasan`, `jangka_waktu`, `tembusan1`, `tembusan2`, `tembusan3`, `tembusan4`, `tembusan5`) VALUES
+(1, 1, 'wdasdw', 'sdasda', '2021-08-08', 'asfasfgdsfgdfg', 'dfgdfgdfg', 'dfgdfg', 'dfgdfgdf', 'gdfgdagsdfgdfgasdfga', '2 bulan', 'asdfg', 'adfg', 'adfg', 'dafg', 'afdgadf'),
+(2, 12, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', ''),
+(3, 13, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', ''),
+(4, 14, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -180,9 +193,9 @@ CREATE TABLE `surat_permohonan` (
 
 INSERT INTO `surat_permohonan` (`id_permohonan`, `id_unit`, `id_pelamar`, `no_surat_permohonan`, `nama_file_surat_permohonan`, `tanggal_permohonan`, `status`, `tanggal_persetujuan`, `ket`) VALUES
 (1, 1, 8, 'MG_01', 'Contoh Surat Permohonan Aris.pdf', '2021-08-01', 'Ditolak', '2021-08-12', 'ok'),
-(2, 1, 9, 'MG_02', 'Contoh Surat Permohonan Albert.pdf', '2021-08-02', 'Menunggu Verifikasi', '0000-00-00', ''),
-(3, 1, 10, 'MG_02', 'Contoh Surat Permohonan Nurul.pdf', '2021-08-02', 'Menunggu Verifikasi', '0000-00-00', ''),
-(4, 1, 11, 'MG_01', 'Contoh Surat Permohonan Feby.pdf', '2021-08-01', 'Menunggu Verifikasi', '0000-00-00', ''),
+(2, 1, 9, 'MG_02', 'Contoh Surat Permohonan Albert.pdf', '2021-08-02', 'Ditolak', '2021-08-14', 'berkas kurang lengkap dan karena situasi dan kondisi saat ini sedang '),
+(3, 1, 10, 'MG_02', 'Contoh Surat Permohonan Nurul.pdf', '2021-08-02', 'Disetujui', '2021-08-14', 'Memenuhi Kriteria'),
+(4, 1, 11, 'MG_01', 'Contoh Surat Permohonan Feby.pdf', '2021-08-01', 'Ditolak', '2021-08-14', 'Berkas Kurang Lengkap'),
 (5, 2, 12, 'MG_03', 'Contoh Surat Permohonan Aji.pdf', '2021-08-03', 'Disetujui', '2021-08-11', 'siap'),
 (6, 2, 14, 'MG_03', 'Contoh Surat Permohonan Idham.pdf', '2021-08-03', 'Ditolak', '2021-08-11', 'kjhij'),
 (7, 2, 17, 'MG_04', 'Contoh Surat Permohonan Aji Suryana.pdf', '2021-08-04', 'Ditolak', '2021-08-13', 'Lah iya\r\n'),
@@ -190,9 +203,9 @@ INSERT INTO `surat_permohonan` (`id_permohonan`, `id_unit`, `id_pelamar`, `no_su
 (9, 2, 19, 'MG_05', 'Surat Lamaran Perpusnas Rio.pdf', '2021-08-03', 'Disetujui', '2021-08-11', 'ok'),
 (10, 5, 20, 'MG/001', 'Gladis Federica UGM.pdf', '2021-08-04', 'Ditolak', '2021-08-05', 'Kelengkapan Dokumen Masih Kurang'),
 (11, 6, 21, 'UI/MG-001', 'Surat Magang Budi Sujatmiko.pdf', '2021-08-06', 'Ditolak', '2021-08-07', 'Kelengkapan Dokumen Masih Kurang'),
-(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1628872636.pdf', '2021-08-13', 'Menunggu verifikasi', NULL, NULL),
-(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1628945557.pdf', '2021-08-14', 'Ditolak', '2021-08-16', NULL),
-(14, 5, 5, '70/MG/80/T', 'Pelamar_SuratPermohonan_1628948927.pdf', '2021-08-14', 'Disetujui', '2021-08-15', NULL);
+(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1629081155.pdf', '2021-08-16', 'Menunggu verifikasi', NULL, NULL),
+(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1629081230.pdf', '2021-08-16', 'Ditolak', '2021-08-17', NULL),
+(14, 8, 5, 'N123/2/19/', 'Pelamar_SuratPermohonan_1629081293.pdf', '2021-08-16', 'Disetujui', '2021-08-18', NULL);
 
 -- --------------------------------------------------------
 
@@ -312,7 +325,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `surat_balasan`
 --
 ALTER TABLE `surat_balasan`
-  MODIFY `id_surat_balasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_surat_balasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `surat_permohonan`
