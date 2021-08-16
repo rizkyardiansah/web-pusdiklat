@@ -37,21 +37,17 @@ class Pusat extends CI_Controller
 			'status' => 'Menunggu Verifikasi',
 		);
 		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
-<<<<<<< HEAD
-		$data['check'] = $this->Balasan_model->isTrue();
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
 			$search = $this->input->get('pelamar');
 			// untuk search tidak menggunakan status
-			$data["permohonan"] = $this->Pelamar_model->search($search);
+			// $data["permohonan"] = $this->Pelamar_model->search($search);
 
 			// untuk search menggunakan status
-			// $data["permohonan"] = $this->Balasan_model->getDataWithStatusSearch($arrayData , $search);
+			$data["permohonan"] = $this->Balasan_model->searchAll($search);
 		}
-=======
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 
->>>>>>> 691164152351ad33066acc5e69f78e8113067f51
 		$this->loadTemplate($data);
 	}
 
@@ -63,15 +59,12 @@ class Pusat extends CI_Controller
 		);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
-<<<<<<< HEAD
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
 			$search = $this->input->get('pelamar');
 			$data['approval'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
 		}
-=======
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
->>>>>>> 691164152351ad33066acc5e69f78e8113067f51
 		$this->loadTemplate($data);
 	}
 
@@ -83,15 +76,12 @@ class Pusat extends CI_Controller
 		);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
-<<<<<<< HEAD
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
 			$search = $this->input->get('pelamar');
 			$data['reject'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
 		}
-=======
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
->>>>>>> 691164152351ad33066acc5e69f78e8113067f51
 		$this->loadTemplate($data);
 	}
 
@@ -102,10 +92,7 @@ class Pusat extends CI_Controller
 			'status' => 'Menunggu Verifikasi',
 		);
 		$data['detail'] = $this->Balasan_model->getDataById($id);
-<<<<<<< HEAD
-=======
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
->>>>>>> 691164152351ad33066acc5e69f78e8113067f51
 		$this->loadTemplate($data);
 	}
 
@@ -129,9 +116,6 @@ class Pusat extends CI_Controller
 		$this->Balasan_model->insertSuratBalasan($setData);
 		redirect('pusat/index');
 	}
-<<<<<<< HEAD
-}
-=======
 
 	public function downloadSuratDisetujui($id)
 	{
@@ -396,4 +380,3 @@ class Pusat extends CI_Controller
             $this->upload->do_upload('surat_Jawaban');
 		}
 		}
->>>>>>> 691164152351ad33066acc5e69f78e8113067f51

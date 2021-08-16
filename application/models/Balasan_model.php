@@ -45,10 +45,22 @@ class Balasan_model extends CI_Model
 		$this->db->from('surat_permohonan');
 		$this->db->join('pelamar', 'surat_permohonan.id_pelamar = pelamar.id', 'LEFT');
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+		$this->db->join('surat_balasan', 'surat_permohonan.id_permohonan = surat_balasan.id_surat_permohonan', 'LEFT');
 		$this->db->where('status', $data['status']);
 		$this->db->like('nama_pelamar', $keyword);
 		return $this->db->get()->result_array();
 	}
+
+	public function searchAll($keyword)
+    {
+        $this->db->select('*');
+        $this->db->from('pelamar');
+        $this->db->join('surat_permohonan', 'pelamar.id = surat_permohonan.id_pelamar', 'LEFT');
+        $this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+		$this->db->join('surat_balasan', 'surat_permohonan.id_permohonan = surat_balasan.id_surat_permohonan', 'LEFT');
+        $this->db->like('nama_pelamar', $keyword);
+        return $this->db->get()->result_array();
+    }
 	
 	public function countBalasanSurat()
 	{
