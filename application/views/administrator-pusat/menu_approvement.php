@@ -33,24 +33,24 @@
 								<thead>
 									<tr>
 										<th scope="col">No</th>
-										<th scope="col" >Tanggal Pengajuan</th>
-										<th scope="col" >Tanggal Persetujuan</th>
-										<th scope="col" >Nama Lengkap</th>
+										<th scope="col">Tanggal Pengajuan</th>
+										<th scope="col">Tanggal Persetujuan</th>
+										<th scope="col">Nama Lengkap</th>
 										<th scope="col" class="text-center">Instansi</th>
 										<th scope="col" class="text-center">Unit Kerja</th>
-										<th scope="col" >Kelengkapan Berkas</th>
+										<th scope="col">Kelengkapan Berkas</th>
 										<th scope="col" class="text-center">Status</th>
-										<th scope="col" >Keterangan</th>
+										<th scope="col">Keterangan</th>
 									</tr>
 								</thead>
 								<tbody>
-								<?php
+									<?php
 									$no = 1;
-									foreach ($approval as $dataApprovement) :?>
+									foreach ($approval as $dataApprovement) : ?>
 										<tr>
 											<td><?= $no++; ?></td>
-											<td><?= $dataApprovement['tanggal_permohonan']; ?></td>
-											<td><?= $dataApprovement['tanggal_persetujuan']; ?></td>
+											<td><?= indo_date($dataApprovement['tanggal_permohonan']); ?></td>
+											<td><?= indo_date($dataApprovement['tanggal_persetujuan']); ?></td>
 											<td><?= $dataApprovement['nama_pelamar']; ?></td>
 											<td><?= $dataApprovement['universitas']; ?></td>
 											<td><?= $dataApprovement['nama_unit']; ?></td>
@@ -68,7 +68,7 @@
 											</td>
 											<td><?= $dataApprovement['ket']; ?></td>
 										</tr>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
 								</tbody>
 							</table>
 						</div>
