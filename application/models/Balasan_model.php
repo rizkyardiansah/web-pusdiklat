@@ -38,7 +38,7 @@ class Balasan_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	public function getDataWithStatusSearch($data , $keyword)
+	public function getDataWithStatusSearch($data, $keyword)
 	{
 		// Joining table surat_permohonan, pelamar, unit_kerja
 		$this->db->select('*');
@@ -52,16 +52,16 @@ class Balasan_model extends CI_Model
 	}
 
 	public function searchAll($keyword)
-    {
-        $this->db->select('*');
-        $this->db->from('pelamar');
-        $this->db->join('surat_permohonan', 'pelamar.id = surat_permohonan.id_pelamar', 'LEFT');
-        $this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+	{
+		$this->db->select('*');
+		$this->db->from('pelamar');
+		$this->db->join('surat_permohonan', 'pelamar.id = surat_permohonan.id_pelamar', 'LEFT');
+		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
 		$this->db->join('surat_balasan', 'surat_permohonan.id_permohonan = surat_balasan.id_surat_permohonan', 'LEFT');
-        $this->db->like('nama_pelamar', $keyword);
-        return $this->db->get()->result_array();
-    }
-	
+		$this->db->like('nama_pelamar', $keyword);
+		return $this->db->get()->result_array();
+	}
+
 	public function countBalasanSurat()
 	{
 		$this->db->select("*");
@@ -70,13 +70,13 @@ class Balasan_model extends CI_Model
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
 		$this->db->join('surat_balasan', 'surat_permohonan.id_permohonan = surat_balasan.id_surat_permohonan', 'LEFT');
 		$this->db->where('status !=', 'Menunggu Verifikasi');
-		$this->db->where('id_surat_balasan =', null);
+		$this->db->where('no_surat =', null);
 		return $this->db->count_all_results();
 	}
 
 	public function insertSuratBalasan($data)
 	{
-		$this->db->insert('surat_balasan',$data);
+		$this->db->insert('surat_balasan', $data);
 	}
 
 	public function downloadSurat($id)
