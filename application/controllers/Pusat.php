@@ -148,7 +148,7 @@ class Pusat extends CI_Controller
 			$pdf->Ln(5);
 			// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'L', 0, 0, '', '', true, 0, false, true, 40);
+			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 			$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 
 			$pdf->Ln(7);
@@ -171,15 +171,15 @@ class Pusat extends CI_Controller
 			$pdf->MultiCell(17, 10, "", 0, 'C', 0, 1, '', '', true, 0, false, true, 10);
 			}
 
-			$pdf->SetFont('times', ' ', 12);
+			$pdf->SetFont('times', ' ', 11);
 			$pdf->Ln(3);
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(160, 1, "Untuk melakukan program magang di " . $data_surat['nama_unit'] . ", Perpustakaan Nasional RI, yang dilaksanakan dengan memperhatikan protokol kesehatan yang berlaku. Pelaksanaan program magang berlangsung selama " . $data_surat['jangka_waktu'] .  ".", 0, 'L', 0, 0, '', '', true, 0, false, true, 40);
+			$pdf->MultiCell(160, 1, "Untuk melakukan program magang di " . $data_surat['nama_unit'] . ", Perpustakaan Nasional RI selama " . $data_surat['jangka_waktu'] . "." . $data_surat['alasan'] . "", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 			$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 
-			$pdf->Ln(13);
+			$pdf->Ln(20);
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas kerjasamanya kami ucapkan terimakasih", 0, 'L', 0, 1, '', '', true);
+			$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
 
 			$pdf->Ln(7);
 			$pdf->Cell(94, 1, '', 0, 0);
@@ -253,7 +253,7 @@ class Pusat extends CI_Controller
 				$image_file = K_PATH_IMAGES . 'logo_perpusnas.png';
 				$pdf->Image($image_file, 87, 2, 35, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 				$pdf->Ln(37);
-				$pdf->SetFont('times', '', 12);
+				$pdf->SetFont('times', '', 11);
 				//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
 				$pdf->Cell(155, 1, "Nomor     : " . $data_surat['no_surat_balasan'], 0, 0,);
 				$pdf->Cell(34, 1, indo_date(date('Y-m-d')), 0, 1,);
@@ -273,9 +273,10 @@ class Pusat extends CI_Controller
 				$pdf->Cell(170, 1, "Dengan Hormat,", 0, 1,);
 	
 				$pdf->Ln(5);
+				$pdf->SetFont('times', ' ', 11);
 				// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-				$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'L', 0, 0, '', '', true, 0, false, true, 40);
+				$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 				$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 	
 				$pdf->Ln(7);
@@ -298,15 +299,16 @@ class Pusat extends CI_Controller
 				$pdf->MultiCell(17, 10, "", 0, 'C', 0, 1, '', '', true, 0, false, true, 10);
 				}
 	
-				$pdf->SetFont('times', ' ', 12);
+				$pdf->SetFont('times', ' ', 11);
 				$pdf->Ln(3);
 				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-				$pdf->MultiCell(160, 1, "Untuk melakukan Praktik Kerja Lapangan (PKL) di Perpustakaan Nasional RI " . $data_surat['alasan'] .  ".", 0, 'L', 0, 0, '', '', true, 0, false, true, 40);
+				$pdf->MultiCell(160, 1, "Untuk melakukan Praktik Kerja Lapangan (PKL) di Perpustakaan Nasional RI. " . $data_surat['alasan'], 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 				$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 	
-				$pdf->Ln(13);
-				$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas kerjasamanya kami ucapkan terimakasih", 0, 'L', 0, 1, '', '', true);
+				$pdf->Ln(20);
+				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
 				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
+				$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
 	
 				$pdf->Ln(7);
 				$pdf->Cell(94, 1, '', 0, 0);

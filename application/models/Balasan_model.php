@@ -89,4 +89,9 @@ class Balasan_model extends CI_Model
 		$this->db->where('id_surat_balasan ', $id);
 		return $this->db->get()->result_array();
 	}
+
+	public function getKelengkapanBerkasById($id)
+	{
+		return $this->db->get_where('mahasiswa', ['nim' => $nim])->row_array();
+	}
 }
