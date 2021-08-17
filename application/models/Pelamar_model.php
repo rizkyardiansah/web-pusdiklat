@@ -114,5 +114,4 @@ class Pelamar_model extends CI_Model
         $this->db->update('pelamar', ['foto_profil' => $namaFoto]);
     }
 
-
 }

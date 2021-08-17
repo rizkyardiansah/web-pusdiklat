@@ -137,27 +137,32 @@ class Pelamar extends CI_Controller
                 $this->load->view('pelamar/profile', $data);
                 $this->load->view('templates/pelamar_footer');
             }
-        } else if ($this->input->post('submitFotoProfil') == 'submitFotoProfil') {
-            $uploadFile = $_FILES['foto_profil']['name'];
-
-            if ($uploadFile) {
+        } else if ($this->input->post("submitFotoProfil") == "submitFotoProfil") {
+            if ($_FILES['foto_profil']['name']) {
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['upload_path'] = './foto_profil/';
-                $config['max_size'] = 2048;
+                $config['max_size'] = 1024;
+                $config['min_width'] = 128;
+                $config['min_height'] =
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto_profil')) {
-                    $imgName = $this->upload->data('file_name');
-                    $this->model->updateFotoProfil($data['user']['id'], $imgName);
+                    $this->model->updateFotoProfil($data['user']['id'], $this->upload->data('file_name'));
 
                     if ($data['user']['foto_profil'] != 'default.jpg') {
                         unlink(FCPATH . 'foto_profil/' . $data['user']['foto_profil']);
                     }
+
+                    $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Foto profil berhasil diperbarui.']);
                     redirect('pelamar/profile#tab-4');
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => $this->upload->display_errors("", "")]);
+                    redirect('pelamar/profile#tab-4');
                 }
+            } else {
+                $this->session->set_flashdata('flash', ['icon' => 'error', 'title' => 'Profil', 'text' => 'Pastikan anda memasukan foto yang sesuai dengan ketentuan.']);
+                redirect('pelamar/profile#tab-4');
             }
         } else {
             $this->load->view('templates/pelamar_header', $data);
