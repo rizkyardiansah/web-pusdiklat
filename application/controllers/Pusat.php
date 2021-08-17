@@ -9,6 +9,7 @@ class Pusat extends CI_Controller
 		$this->load->helper('url');
 		$this->load->library('pdf');
 		$this->load->model('Balasan_model');
+		$this->load->model('Pelamar_model');
 		if (!$this->session->userdata('logged_in') || $this->session->userdata('role_id') != 1) {
 			$this->session->set_flashdata('msg', ['type' => 'danger', 'text' => 'Unauthenticated, harap login terlebih dahulu']);
 			redirect('auth/index');
@@ -36,6 +37,15 @@ class Pusat extends CI_Controller
 			'status' => 'Menunggu Verifikasi',
 		);
 		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			// untuk search tidak menggunakan status
+			// $data["permohonan"] = $this->Pelamar_model->search($search);
+
+			// untuk search menggunakan status
+			$data["permohonan"] = $this->Balasan_model->searchAll($search);
+		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 
 		$this->loadTemplate($data);
@@ -49,6 +59,11 @@ class Pusat extends CI_Controller
 		);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['approval'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
 	}
@@ -61,6 +76,11 @@ class Pusat extends CI_Controller
 		);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['reject'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
 	}

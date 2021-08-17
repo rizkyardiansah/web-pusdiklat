@@ -39,6 +39,11 @@ class UnitKerja extends CI_Controller
 		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang masih menunggu verifikasi
 		$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$this->loadTemplate($data);
 	}
 
@@ -54,6 +59,11 @@ class UnitKerja extends CI_Controller
 		$data['countApprovement'] = $this->Persetujuan_model->getCountData($arrayData);
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['approval'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$this->loadTemplate($data);
 	}
 
@@ -69,6 +79,11 @@ class UnitKerja extends CI_Controller
 		$data['countRejection'] = $this->Persetujuan_model->getCountData($arrayData);
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
+		// aksi untuk pencarian by nama
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
+			$data['reject'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+		}
 		$this->loadTemplate($data);
 	}
 

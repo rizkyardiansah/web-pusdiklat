@@ -143,7 +143,7 @@ class Pelamar extends CI_Controller
                 $config['upload_path'] = './foto_profil/';
                 $config['max_size'] = 1024;
                 $config['min_width'] = 128;
-                $config['min_height'] = 128;
+                $config['min_height'] =
 
                 $this->load->library('upload', $config);
 
@@ -153,6 +153,7 @@ class Pelamar extends CI_Controller
                     if ($data['user']['foto_profil'] != 'default.jpg') {
                         unlink(FCPATH . 'foto_profil/' . $data['user']['foto_profil']);
                     }
+
                     $this->session->set_flashdata('flash', ['icon' => 'success', 'title' => 'Profil', 'text' => 'Foto profil berhasil diperbarui.']);
                     redirect('pelamar/profile#tab-4');
                 } else {

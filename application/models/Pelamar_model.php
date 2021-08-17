@@ -14,6 +14,15 @@ class Pelamar_model extends CI_Model
         return $this->db->get_where('pelamar', ['id' => $id])->row_array();
     }
 
+    public function getDataPelamarByNama($nama)
+    {
+        // return $this->db->get_where('pelamar', ['nama_pelamar' => $nama])->row_array();
+        $this->db->select('*');
+        $this->db->from('pelamar');
+        $this->db->like('nama_pelamar', $nama);
+        return $this->db->get()->result_array();
+    }
+
     public function getAllUnitKerja()
     {
         return $this->db->get('unit_kerja')->result_array();
@@ -104,4 +113,5 @@ class Pelamar_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('pelamar', ['foto_profil' => $namaFoto]);
     }
+
 }

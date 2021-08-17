@@ -2,6 +2,7 @@
     <section id="specials" class="profile">
         <div class="container" data-aos="fade-up" style="margin-top: 6%;">
             <div class="section-title">
+
                 <h2 style="color: #000">Status pendaftaran</h2>
             </div>
 
@@ -78,11 +79,13 @@
                 </div>
 
                 <div class="col-lg-7 mt-4 mt-lg-0 card-tab">
+
                     <div class="tab-content kegiatan" style="height: 500px; overflow-y: auto; overflow-x: hidden;">
 
                         <div class="tab-pane active show">
                             <div class="row justify-content-center">
                                 <h4 style="line-height: 490px; color: hsl(0, 10%, 80%)">Halaman ini berisi riwayat lamaran anda.</h4>
+
                             </div>
                         </div>
 
@@ -157,6 +160,7 @@
                                     <?php break; ?>
                             <?php endswitch; ?>
                         <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>

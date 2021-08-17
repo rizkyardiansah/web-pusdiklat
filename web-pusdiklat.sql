@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Waktu pembuatan: 16 Agu 2021 pada 04.37
+
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.4.21
 
@@ -66,8 +68,10 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `email`, `password`, `role_id`, `id_unit_kerja`) VALUES
 (1, 'Rina_Wahyuni@pusdiklat.com', 'rina123', 1, 15),
 (2, 'PUSDIKLAT@pusdiklat.com', 'pusdiklat', 2, 1),
-(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, 1),
-(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, 2),
+
+(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, NULL),
+(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, NULL),
+
 (12, 'aris.cemumut@gmail.com', '$2y$10$iyfHzFi2BWMJLLA2xeGCNeGZVQ/dzLB2TRNIjhLxJBvbBYrA7RVvO', 2, 1),
 (13, 'ariss@upnvj.ac.id', '$2y$10$2DaeegN8jbjjb72MiSuB1.2oEjgXBD0Paq6yMkwQl/dEz7FbAZspm', 1, NULL);
 
@@ -163,6 +167,7 @@ CREATE TABLE `surat_balasan` (
 -- Dumping data untuk tabel `surat_balasan`
 --
 
+
 INSERT INTO `surat_balasan` (`id_surat_balasan`, `id_surat_permohonan`, `no_surat`, `nama_surat`, `tgl_surat`, `perihal`, `no_surat_balasan`, `lampiran`, `kepada`, `alasan`, `jangka_waktu`, `tembusan1`, `tembusan2`, `tembusan3`, `tembusan4`, `tembusan5`) VALUES
 (1, 1, 'wdasdw', 'sdasda', '2021-08-08', 'asfasfgdsfgdfg', 'dfgdfgdfg', 'dfgdfg', 'dfgdfgdf', 'gdfgdagsdfgdfgasdfga', '2 bulan', 'asdfg', 'adfg', 'adfg', 'dafg', 'afdgadf'),
 (2, 12, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', ''),
@@ -203,9 +208,9 @@ INSERT INTO `surat_permohonan` (`id_permohonan`, `id_unit`, `id_pelamar`, `no_su
 (9, 2, 19, 'MG_05', 'Surat Lamaran Perpusnas Rio.pdf', '2021-08-03', 'Disetujui', '2021-08-11', 'ok'),
 (10, 5, 20, 'MG/001', 'Gladis Federica UGM.pdf', '2021-08-04', 'Ditolak', '2021-08-05', 'Kelengkapan Dokumen Masih Kurang'),
 (11, 6, 21, 'UI/MG-001', 'Surat Magang Budi Sujatmiko.pdf', '2021-08-06', 'Ditolak', '2021-08-07', 'Kelengkapan Dokumen Masih Kurang'),
-(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1629081155.pdf', '2021-08-16', 'Menunggu verifikasi', NULL, NULL),
-(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1629081230.pdf', '2021-08-16', 'Ditolak', '2021-08-17', NULL),
-(14, 8, 5, 'N123/2/19/', 'Pelamar_SuratPermohonan_1629081293.pdf', '2021-08-16', 'Disetujui', '2021-08-18', NULL);
+(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1628872636.pdf', '2021-08-13', 'Menunggu verifikasi', NULL, NULL),
+(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1628945557.pdf', '2021-08-14', 'Ditolak', '2021-08-16', NULL),
+(14, 5, 5, '70/MG/80/T', 'Pelamar_SuratPermohonan_1628948927.pdf', '2021-08-14', 'Disetujui', '2021-08-15', NULL);
 
 -- --------------------------------------------------------
 
