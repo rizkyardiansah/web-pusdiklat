@@ -30,7 +30,6 @@
 										<th scope="col" class="text-center">Status</th>
 										<th scope="col" class="text-center">Keterangan</th>
 										<th scope="col" class="text-center">Aksi</th>
-										<th scope="col" class="text-center">Upload Surat Jawaban</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -44,11 +43,11 @@
 											<td><?= $data_verifikasi['universitas']; ?></td>
 											<td><?= $data_verifikasi['nama_unit']; ?></td>
 											<td>
-												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'suratPermohonan/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_surat_permohonan']; ?></a>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'suratPermohonan/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_surat_permohonan']; ?></a>
 												<br>
-												<a href="<?= base_url('pusat/downloadKelengkapanBerkas') . 'khs/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_khs']; ?></a>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'khs/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_khs']; ?></a>
 												<br>
-												<a  href="<?= base_url('pusat/downloadKelengkapanBerkas') . 'cv/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
+												<a  href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'cv/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
 											</td>
 											<td>
 												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
@@ -62,10 +61,8 @@
 												<?php } ?>
 											</td>
 											<td> <?= $data_verifikasi['ket']; ?> </td>
-											<td>
-												<div class="form-group">
-                        						<div class="form-group">
-												<?php if ($data_verifikasi['no_surat'] == null) : ?>
+											<td class="text-center">
+												<?php if ($data_verifikasi['no_surat_balasan'] == null) : ?>
 													<a class="btn btn-sm  btn-danger outer" type="button" href="<?= base_url('pusat/formsurat/' . $data_verifikasi['id_permohonan']); ?>" data-diperiksa="true"><i aria-hidden="true"></i>
 														Form Surat
 													</a>
@@ -82,55 +79,51 @@
 														<i class="fas fa-print"></i>
 													</a>
 												<?php } ?>
-												</div>
-												
-												</div>
-												</div>
-											</td>
-											<td>
-												<div class="row justify-content-around">
-													<div class="col-lg-8">
-														<div class="form-group">
-															<input class="form-control-file" type="file" id="surat_permohonan" name="surat_permohonan">
+												<?php
+												if ($data_verifikasi['is_uploaded'] === 'FALSE') :
+												?>
+													<button type="button" class="btn btn-warning btn-upload">
+														<i class="fas fa-upload"></i>
+													</button>
+													<form action="<?= base_url('pusat/uploadsurat/'.$data_verifikasi['id_surat_balasan']);?>" method="POST">
+														<div class="form-group form-upload">
+															<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
 															<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
+															<button type="submit" class="btn btn-light btn-sm btn-upload">
+																Upload
+															</button>
 														</div>
-													</div>
-												</div>
-												<div class="row justify-content-around">
-													<div class="col-lg-8">
-													<a class="btn btn-light">
-														Upload
-													</a>
-													</div>
-												</div>
+													</form>
+												<?php endif; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- pagination section -->
+					<div class="row">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
-				<!-- pagination section -->
-				<div class="row">
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</main>
+			</main>
+			

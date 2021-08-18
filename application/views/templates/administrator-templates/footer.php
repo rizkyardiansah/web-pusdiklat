@@ -9,7 +9,7 @@
 	<script src="<?= base_url(); ?>assets/vendor/jquery.easing/jquery.easing.min.js"></script>
 	<script src="<?= base_url('assets/js/datatables-simple-demo.js'); ?>"></script>
 	<script src="<?= base_url('assets/js/script.js') ?>"></script>
-
+	<script src="<?= base_url(); ?>assets/vendor/sweetalert2/sweetalert2.all.min.js"></script>
 	<!-- file config js -->
 	<script src="<?= base_url("assets/js/main_admin.js"); ?>"></script>
 	</body>

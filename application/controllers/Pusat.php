@@ -111,16 +111,26 @@ class Pusat extends CI_Controller
 			'tembusan2' => $this->input->post('tembusan2'),
 			'tembusan3' => $this->input->post('tembusan3'),
 			'tembusan4' => $this->input->post('tembusan4'),
-			'tembusan5' => $this->input->post('tembusan5')
+			'tembusan5' => $this->input->post('tembusan5'),
+			'is_uploaded' => 'FALSE'
 		);
 		$this->Balasan_model->insertSuratBalasan($setData);
 		redirect('pusat/index');
 	}
-
+	public function uploadSurat($id){
+		$arrayData = array(
+			'is_uploaded' => 'TRUE'
+		);
+		$whereId = array(
+			'id_surat_balasan' => $id
+		);
+		$this->Balasan_model->updateFileIsUpload($whereId, $arrayData, 'surat_balasan');
+		redirect('pusat/index');
+	}
 	public function downloadKelengkapanBerkas($jenis, $id)
     {
         $this->load->helper('download');
-        $data = $this->Balasan_model->getDataPelamarById($id);
+        $data = $this->Balasan_model->getDataByIdForSurat($id);
 
         // if ($jenis == 'suratPermohonan') {
         //     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
@@ -146,7 +156,7 @@ class Pusat extends CI_Controller
 			$pdf->SetFont('times', '', 11);
 			//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
 			$pdf->Cell(155, 1, "Nomor     : " . $data_surat['no_surat_balasan'], 0, 0,);
-			$pdf->Cell(34, 1, indo_date(date('Y-m-d')), 0, 1,);
+			$pdf->Cell(34, 1, indo_date($data_surat['tgl_surat']), 0, 1,);
 			$pdf->Cell(189, 1, "Lampiran : " . $data_surat['lampiran'], 0, 1,);
 			$pdf->Cell(189, 1, "Hal           : " . $data_surat['perihal'], 0, 1,);
 
@@ -391,13 +401,13 @@ class Pusat extends CI_Controller
 				$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
 				
 			}
-		public function uploadSurat()
-		{
-			$config['allowed_types'] = 'pdf';
-            $config['max_size'] = 2048;
-            $config['upload_path'] = './folder_Surat_jawaban/';
-            $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
-            $this->upload->initialize($config);
-            $this->upload->do_upload('surat_Jawaban');
-		}
+		// public function uploadSurat()
+		// {
+		// 	$config['allowed_types'] = 'pdf';
+        //     $config['max_size'] = 2048;
+        //     $config['upload_path'] = './folder_Surat_jawaban/';
+        //     $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
+        //     $this->upload->initialize($config);
+        //     $this->upload->do_upload('surat_Jawaban');
+		// }
 		}
