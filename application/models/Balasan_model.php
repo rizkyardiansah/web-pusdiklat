@@ -70,7 +70,7 @@ class Balasan_model extends CI_Model
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
 		$this->db->join('surat_balasan', 'surat_permohonan.id_permohonan = surat_balasan.id_surat_permohonan', 'LEFT');
 		$this->db->where('status !=', 'Menunggu Verifikasi');
-		$this->db->where('no_surat =', null);
+		$this->db->where('no_surat_balasan =', null);
 		return $this->db->count_all_results();
 	}
 
