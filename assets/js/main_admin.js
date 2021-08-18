@@ -41,7 +41,7 @@
 	$('.btn-upload:first').click(function () {
 		$('.btn-upload:first').hide();
 		$('.form-upload, .btn-upload:last').show();
-		
+
 	});
 	$('.btn-upload:last').click(function () {
 		$('.btn-upload:first').show();

@@ -43,11 +43,11 @@
 											<td><?= $data_verifikasi['universitas']; ?></td>
 											<td><?= $data_verifikasi['nama_unit']; ?></td>
 											<td>
-												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'suratPermohonan/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_surat_permohonan']; ?></a>
 												<br>
-												<?= $data_verifikasi['nama_file_khs']; ?>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'khs/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_khs']; ?></a>
 												<br>
-												<?= $data_verifikasi['nama_file_cv']; ?>
+												<a  href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'cv/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
 											</td>
 											<td>
 												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
@@ -68,11 +68,12 @@
 													</a>
 												<?php endif; ?>
 												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
-													<div class="text-center">
+													<div class="form-group">
+													<div class="form-group">
 														<a class="btn btn-light " href="<?= base_url("pusat/downloadSuratDitolak/" . $data_verifikasi['id_surat_balasan'])  ?>" role="button" target="_blank">
 															<i class="fas fa-print"></i>
 														</a>
-													</div>
+													
 												<?php } else { ?>
 													<a class="btn btn-light " href="<?= base_url("pusat/downloadSuratDisetujui/" . $data_verifikasi['id_surat_balasan'])  ?>" role="button" target="_blank">
 														<i class="fas fa-print"></i>
@@ -84,7 +85,7 @@
 													<button type="button" class="btn btn-warning btn-upload">
 														<i class="fas fa-upload"></i>
 													</button>
-													<form action="<?= base_url('pusat/uploadSurat/' . $data_verifikasi['id_surat_balasan']) ?>" method="">
+													<form action="<?= base_url('pusat/uploadsurat/'.$data_verifikasi['id_surat_balasan']);?>" method="POST">
 														<div class="form-group form-upload">
 															<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
 															<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
@@ -125,6 +126,4 @@
 					</div>
 				</div>
 			</main>
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			

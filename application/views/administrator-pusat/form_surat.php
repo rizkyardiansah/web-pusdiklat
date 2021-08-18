@@ -89,7 +89,7 @@
 									<div class="form-group ">
 										<div class="form-group">
 											<label for="input" class="mx-2">Keterangan</label>
-											<textarea class="form-control" aria-label="With textarea" name="alasan" > <?= $data['ket']; ?> </textarea>
+											<textarea class="form-control" aria-label="With textarea" name="alasan" > Kegiatan magang dilaksanakan dengan tujuan untuk memenuhi persyaratan akademik perkuliahan dan dilaksanakan dengan tetap memperhatikan protokol Kesehatan (Memakai masker & Wajib membawa hasil tes, minimal swab antigen/ genose). </textarea>
 										</div>
 									</div>
 									<div class="form-group">
@@ -101,7 +101,7 @@
 											<div class="col-md-6">
 												<?php if($data['status'] == 'Disetujui'): ?>
 												<label for="input">Jangka Waktu Magang</label>
-												<input type="text" class="form-control" nama="jangka_waktu" placeholder="Per Bulan">
+												<input type="text" class="form-control" name="jangka_waktu" placeholder="Per Bulan">
 												<?php endif; ?>
 											</div>
 										</div>

@@ -22,9 +22,18 @@ class Balasan_model extends CI_Model
 		$this->db->from("surat_permohonan");
 		$this->db->join('pelamar', 'surat_permohonan.id_pelamar = pelamar.id', 'LEFT');
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
-
 		$this->db->where('id_permohonan', $id);
 		return $this->db->get()->result_array();
+	}
+
+	public function getDataByIdForSurat($id)
+	{
+		$this->db->select("*");
+		$this->db->from("surat_permohonan");
+		$this->db->join('pelamar', 'surat_permohonan.id_pelamar = pelamar.id', 'LEFT');
+		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
+		$this->db->where('id_permohonan', $id);
+		return $this->db->get()->row_array();
 	}
 
 	public function getDataWithStatus($data)
@@ -79,6 +88,12 @@ class Balasan_model extends CI_Model
 		$this->db->insert('surat_balasan', $data);
 	}
 
+	public function updateFileIsUpload($id, $data, $table)
+	{
+		$this->db->where($id);
+		$this->db->update($table, $data);
+    }
+
 	public function downloadSurat($id)
 	{
 		$this->db->select("*");
@@ -88,5 +103,10 @@ class Balasan_model extends CI_Model
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
 		$this->db->where('id_surat_balasan ', $id);
 		return $this->db->get()->result_array();
+	}
+
+	public function getKelengkapanBerkasById($id)
+	{
+		return $this->db->get_where('mahasiswa', ['nim' => $nim])->row_array();
 	}
 }
