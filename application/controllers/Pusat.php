@@ -39,13 +39,21 @@ class Pusat extends CI_Controller
 		);
 		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
 		// aksi untuk pencarian by nama
-		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			// untuk search tidak menggunakan status
-			// $data["permohonan"] = $this->Pelamar_model->search($search);
-
-			// untuk search menggunakan status
-			$data["permohonan"] = $this->Balasan_model->searchAll($search);
+		if ($this->input->post('pelamar')) {
+			$search = $this->input->post('pelamar');
+			$searchArray = array(
+				'nama_pelamar' => $search,
+				'status' => $arrayData['status']
+			);
+			$data["permohonan"] = $this->Balasan_model->searchExceptPending($searchArray);
+			// else if untuk pencarian berdasarkan bulan
+		} else if ($this->input->post('tanggal_permohonan')) {
+			$searchMonth = $this->input->post('tanggal_permohonan');
+			$searchArray = array(
+				'tanggal_permohonan' => $searchMonth,
+				'status' => $arrayData['status']
+			);
+			$data["permohonan"] = $this->Balasan_model->searchByMothExceptPending($searchArray);
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 
@@ -61,9 +69,21 @@ class Pusat extends CI_Controller
 		// aksi untuk liat data yang telah disetujui
 		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
-		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			$data['approval'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		if ($this->input->post('pelamar')) {
+			$search = $this->input->post('pelamar');
+			$searchArray = array(
+				'nama_pelamar' => $search,
+				'status' => $arrayData['status']
+			);
+			$data["approval"] = $this->Balasan_model->searchAll($searchArray);
+			// else if untuk pencarian berdasarkan bulan
+		} else if ($this->input->post('tanggal_permohonan')) {
+			$searchMonth = $this->input->post('tanggal_permohonan');
+			$searchArray = array(
+				'tanggal_permohonan' => $searchMonth,
+				'status' => $arrayData['status']
+			);
+			$data["approval"] = $this->Balasan_model->searchByMoth($searchArray);
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
@@ -78,9 +98,21 @@ class Pusat extends CI_Controller
 		// aksi untuk liat data yang telah ditolak
 		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
-		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			$data['reject'] = $this->Balasan_model->getDataWithStatusSearch($arrayData, $search);
+		if ($this->input->post('pelamar')) {
+			$search = $this->input->post('pelamar');
+			$searchArray = array(
+				'nama_pelamar' => $search,
+				'status' => $arrayData['status']
+			);
+			$data["reject"] = $this->Balasan_model->searchAll($searchArray);
+			// else if untuk pencarian berdasarkan bulan
+		} else if ($this->input->post('tanggal_permohonan')) {
+			$searchMonth = $this->input->post('tanggal_permohonan');
+			$searchArray = array(
+				'tanggal_permohonan' => $searchMonth,
+				'status' => $arrayData['status']
+			);
+			$data["reject"] = $this->Balasan_model->searchByMoth($searchArray);
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
 		$this->loadTemplate($data);
@@ -93,7 +125,7 @@ class Pusat extends CI_Controller
 			'status' => 'Menunggu Verifikasi',
 		);
 		$data['detail'] = $this->Balasan_model->getDataById($id);
-		$data['count'] = $this->Balasan_model->countBalasanSurat();
+		$data['count'] = $this->Balasan_model->countBalasanSurat($arrayData);
 		$this->loadTemplate($data);
 	}
 
@@ -118,7 +150,8 @@ class Pusat extends CI_Controller
 		$this->Balasan_model->insertSuratBalasan($setData);
 		redirect('pusat/index');
 	}
-	public function uploadSurat($id){
+	public function uploadSurat($id)
+	{
 		$arrayData = array(
 			'is_uploaded' => 'TRUE'
 		);
@@ -145,21 +178,21 @@ class Pusat extends CI_Controller
 	}
 
 	public function downloadKelengkapanBerkas($jenis, $id)
-    {
-        $this->load->helper('download');
-        $data = $this->Balasan_model->getDataByIdForSurat($id);
+	{
+		$this->load->helper('download');
+		$data = $this->Balasan_model->getDataByIdForSurat($id);
 
-        // if ($jenis == 'suratPermohonan') {
-        //     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
-        // } else 
-        if ($jenis == 'khs') {
-            force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
-        } else if ($jenis == 'cv') {
-            force_download('folder_CV/' . $data['nama_file_cv'], NULL);
-        } else if ($jenis == 'suratPermohonan') {
+		// if ($jenis == 'suratPermohonan') {
+		//     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
+		// } else 
+		if ($jenis == 'khs') {
+			force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
+		} else if ($jenis == 'cv') {
+			force_download('folder_CV/' . $data['nama_file_cv'], NULL);
+		} else if ($jenis == 'suratPermohonan') {
 			force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
-        }
-    }
+		}
+	}
 
 	public function downloadSuratDisetujui($id)
 	{
@@ -213,218 +246,216 @@ class Pusat extends CI_Controller
 			$pdf->MultiCell(25, 10, $data_surat['email'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
 			$pdf->MultiCell(25, 10, $data_surat['no_telpon'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
 			$pdf->MultiCell(17, 10, "", 0, 'C', 0, 1, '', '', true, 0, false, true, 10);
-			}
+		}
 
+		$pdf->SetFont('times', ' ', 11);
+		$pdf->Ln(3);
+		$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
+		$pdf->MultiCell(160, 1, "Untuk melakukan program magang di " . $data_surat['nama_unit'] . ", Perpustakaan Nasional RI selama " . $data_surat['jangka_waktu'] . "." . $data_surat['alasan'] . "", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
+		$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
+
+		$pdf->Ln(20);
+		$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
+		$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
+
+		$pdf->Ln(7);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Plt. Kepala Pusat Pendidikan dan Pelatiahan', 0, 1);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Perpustakaan Nasional RI,', 0, 1);
+		$pdf->Ln(20);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Drs. Y. Yahyono, S.IP., M.Si', 0, 1);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'NIP. 19631110 199103 1 001', 0, 1);
+
+		$pdf->Ln(7);
+		$pdf->Cell(189, 1, 'Tembusan :', 0, 1);
+		if (!empty($data_surat['tembusan1'])) {
+			$pdf->Cell(189, 1, '1. ' . $data_surat['tembusan1'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && empty($data_surat['tembusan1'])) {
+			$pdf->Cell(189, 1, '1. ' . $data_surat->tembusan5, 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan2'])) {
+			$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan2'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan1']) && empty($data_surat['tembusan2'])) {
+			$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan3'])) {
+			$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan3'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan2']) && empty($data_surat['tembusan3'])) {
+			$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan4'])) {
+			$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan4'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan3']) && empty($data_surat['tembusan4'])) {
+			$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan4']) && !empty($data_surat['tembusan5'])) {
+			$pdf->Cell(189, 1, '5. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+
+		$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
+	}
+
+	public function downloadSuratDitolak($id)
+	{
+		$pdf = new MYPDF('p', 'mm', 'A4', true, 'UTF-8', false);
+		$data = $this->Balasan_model->downloadSurat($id);
+		$pdf->AddPage();
+		foreach ($data as $data_surat) {
+			$image_file = K_PATH_IMAGES . 'logo_perpusnas.png';
+			$pdf->Image($image_file, 87, 2, 35, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+			$pdf->Ln(37);
+			$pdf->SetFont('times', '', 11);
+			//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
+			$pdf->Cell(155, 1, "Nomor     : " . $data_surat['no_surat_balasan'], 0, 0,);
+			$pdf->Cell(34, 1, indo_date(date('Y-m-d')), 0, 1,);
+			$pdf->Cell(189, 1, "Lampiran : " . $data_surat['lampiran'], 0, 1,);
+			$pdf->Cell(189, 1, "Hal           : " . $data_surat['perihal'], 0, 1,);
+
+			$pdf->Ln(7);
+			$pdf->Cell(189, 1, "Kepada", 0, 1,);
+			$pdf->Cell(189, 1, "Yth.          : " . $data_surat['kepada'], 0, 1,);
+			$pdf->Cell(19, 1, "", 0, 0,);
+			$pdf->Cell(170, 1, "" . $data_surat['universitas'], 0, 1,);
+			$pdf->Cell(19, 1, "", 0, 0,);
+			$pdf->Cell(170, 1, "Di Tempat", 0, 1,);
+
+			$pdf->Ln(7);
+			$pdf->Cell(19, 1, "", 0, 0,);
+			$pdf->Cell(170, 1, "Dengan Hormat,", 0, 1,);
+
+			$pdf->Ln(5);
 			$pdf->SetFont('times', ' ', 11);
-			$pdf->Ln(3);
+			// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(160, 1, "Untuk melakukan program magang di " . $data_surat['nama_unit'] . ", Perpustakaan Nasional RI selama " . $data_surat['jangka_waktu'] . "." . $data_surat['alasan'] . "", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
+			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 			$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 
-			$pdf->Ln(20);
-			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
-
 			$pdf->Ln(7);
-			$pdf->Cell(94, 1, '', 0, 0);
-			$pdf->Cell(95, 1, 'Plt. Kepala Pusat Pendidikan dan Pelatiahan', 0, 1);
-			$pdf->Cell(94, 1, '', 0, 0);
-			$pdf->Cell(95, 1, 'Perpustakaan Nasional RI,', 0, 1);
-			$pdf->Ln(20);
-			$pdf->Cell(94, 1, '', 0, 0);
-			$pdf->Cell(95, 1, 'Drs. Y. Yahyono, S.IP., M.Si', 0, 1);
-			$pdf->Cell(94, 1, '', 0, 0);
-			$pdf->Cell(95, 1, 'NIP. 19631110 199103 1 001', 0, 1);
+			$pdf->SetFont('times', 'B', 10);
+			$pdf->Cell(22, 10, "", 0, 0, 'C');
+			$pdf->Cell(25, 10, "Nama", 1, 0, 'C');
+			$pdf->Cell(25, 10, "NIM", 1, 0, 'C');
+			$pdf->Cell(50, 10, "Program Studi", 1, 0, 'C');
+			$pdf->Cell(25, 10, "Email", 1, 0, 'C');
+			$pdf->Cell(25, 10, "No. HP", 1, 0, 'C');
+			$pdf->Cell(17, 10, "", 0, 1, 'C');
 
-			$pdf->Ln(7);
-			$pdf->Cell(189, 1, 'Tembusan :', 0, 1);
-			if (!empty($data_surat['tembusan1'])) {
-				$pdf->Cell(189, 1, '1. ' . $data_surat['tembusan1'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan5']) && empty($data_surat['tembusan1'])) {
-				$pdf->Cell(189, 1, '1. ' . $data_surat->tembusan5, 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan2'])) {
-				$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan2'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan1']) && empty($data_surat['tembusan2'])) {
-				$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan5'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan3'])) {
-				$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan3'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan2']) && empty($data_surat['tembusan3'])) {
-				$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan5'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan4'])) {
-				$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan4'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan3']) && empty($data_surat['tembusan4'])) {
-				$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan5'], 0, 1);
-			} else {
-			}
-
-			if (!empty($data_surat['tembusan4']) && !empty($data_surat['tembusan5'])) {
-				$pdf->Cell(189, 1, '5. ' . $data_surat['tembusan5'], 0, 1);
-			} else {
-			}
-
-
-			$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
-			
+			$pdf->SetFont('times', ' ', 9);
+			$pdf->MultiCell(22, 10, "", 0, 'C', 0, 0, '', '', true, 0, false, true, 10);
+			$pdf->MultiCell(25, 10, $data_surat['nama_pelamar'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
+			$pdf->MultiCell(25, 10, $data_surat['nim'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
+			$pdf->MultiCell(50, 10, $data_surat['prodi'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
+			$pdf->MultiCell(25, 10, $data_surat['email'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
+			$pdf->MultiCell(25, 10, $data_surat['no_telpon'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
+			$pdf->MultiCell(17, 10, "", 0, 'C', 0, 1, '', '', true, 0, false, true, 10);
 		}
 
-		public function downloadSuratDitolak($id)
-		{
-			$pdf = new MYPDF('p', 'mm', 'A4', true, 'UTF-8', false);
-			$data = $this->Balasan_model->downloadSurat($id);
-			$pdf->AddPage();
-			foreach ($data as $data_surat) {
-				$image_file = K_PATH_IMAGES . 'logo_perpusnas.png';
-				$pdf->Image($image_file, 87, 2, 35, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-				$pdf->Ln(37);
-				$pdf->SetFont('times', '', 11);
-				//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
-				$pdf->Cell(155, 1, "Nomor     : " . $data_surat['no_surat_balasan'], 0, 0,);
-				$pdf->Cell(34, 1, indo_date(date('Y-m-d')), 0, 1,);
-				$pdf->Cell(189, 1, "Lampiran : " . $data_surat['lampiran'], 0, 1,);
-				$pdf->Cell(189, 1, "Hal           : " . $data_surat['perihal'], 0, 1,);
-	
-				$pdf->Ln(7);
-				$pdf->Cell(189, 1, "Kepada", 0, 1,);
-				$pdf->Cell(189, 1, "Yth.          : " . $data_surat['kepada'], 0, 1,);
-				$pdf->Cell(19, 1, "", 0, 0,);
-				$pdf->Cell(170, 1, "" . $data_surat['universitas'], 0, 1,);
-				$pdf->Cell(19, 1, "", 0, 0,);
-				$pdf->Cell(170, 1, "Di Tempat", 0, 1,);
-	
-				$pdf->Ln(7);
-				$pdf->Cell(19, 1, "", 0, 0,);
-				$pdf->Cell(170, 1, "Dengan Hormat,", 0, 1,);
-	
-				$pdf->Ln(5);
-				$pdf->SetFont('times', ' ', 11);
-				// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
-				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-				$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
-				$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
-	
-				$pdf->Ln(7);
-				$pdf->SetFont('times', 'B', 10);
-				$pdf->Cell(22, 10, "", 0, 0, 'C');
-				$pdf->Cell(25, 10, "Nama", 1, 0, 'C');
-				$pdf->Cell(25, 10, "NIM", 1, 0, 'C');
-				$pdf->Cell(50, 10, "Program Studi", 1, 0, 'C');
-				$pdf->Cell(25, 10, "Email", 1, 0, 'C');
-				$pdf->Cell(25, 10, "No. HP", 1, 0, 'C');
-				$pdf->Cell(17, 10, "", 0, 1, 'C');
-	
-				$pdf->SetFont('times', ' ', 9);
-				$pdf->MultiCell(22, 10, "", 0, 'C', 0, 0, '', '', true, 0, false, true, 10);
-				$pdf->MultiCell(25, 10, $data_surat['nama_pelamar'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
-				$pdf->MultiCell(25, 10, $data_surat['nim'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
-				$pdf->MultiCell(50, 10, $data_surat['prodi'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
-				$pdf->MultiCell(25, 10, $data_surat['email'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
-				$pdf->MultiCell(25, 10, $data_surat['no_telpon'], 1, 'C', 0, 0, '', '', true, 0, false, true, 10, 'M');
-				$pdf->MultiCell(17, 10, "", 0, 'C', 0, 1, '', '', true, 0, false, true, 10);
-				}
-	
-				$pdf->SetFont('times', ' ', 11);
-				$pdf->Ln(3);
-				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-				$pdf->MultiCell(160, 1, "Untuk melakukan Praktik Kerja Lapangan (PKL) di Perpustakaan Nasional RI. " . $data_surat['alasan'], 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
-				$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
-	
-				$pdf->Ln(20);
-				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
-				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
-				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
-				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-				$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
-	
-				$pdf->Ln(7);
-				$pdf->Cell(94, 1, '', 0, 0);
-				$pdf->Cell(95, 1, 'Plt. Kepala Pusat Pendidikan dan Pelatiahan', 0, 1);
-				$pdf->Cell(94, 1, '', 0, 0);
-				$pdf->Cell(95, 1, 'Perpustakaan Nasional RI,', 0, 1);
-				$pdf->Ln(20);
-				$pdf->Cell(94, 1, '', 0, 0);
-				$pdf->Cell(95, 1, 'Drs. Y. Yahyono, S.IP., M.Si', 0, 1);
-				$pdf->Cell(94, 1, '', 0, 0);
-				$pdf->Cell(95, 1, 'NIP. 19631110 199103 1 001', 0, 1);
-	
-				$pdf->Ln(7);
-				$pdf->Cell(189, 1, 'Tembusan :', 0, 1);
-				if (!empty($data_surat['tembusan1'])) {
-					$pdf->Cell(189, 1, '1. ' . $data_surat['tembusan1'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan5']) && empty($data_surat['tembusan1'])) {
-					$pdf->Cell(189, 1, '1. ' . $data_surat->tembusan5, 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan2'])) {
-					$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan2'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan1']) && empty($data_surat['tembusan2'])) {
-					$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan5'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan3'])) {
-					$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan3'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan2']) && empty($data_surat['tembusan3'])) {
-					$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan5'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan4'])) {
-					$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan4'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan3']) && empty($data_surat['tembusan4'])) {
-					$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan5'], 0, 1);
-				} else {
-				}
-	
-				if (!empty($data_surat['tembusan4']) && !empty($data_surat['tembusan5'])) {
-					$pdf->Cell(189, 1, '5. ' . $data_surat['tembusan5'], 0, 1);
-				} else {
-				}
-	
-	
-				$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
-				
-			}
-		// public function uploadSurat()
-		// {
-		// 	$config['allowed_types'] = 'pdf';
-        //     $config['max_size'] = 2048;
-        //     $config['upload_path'] = './folder_Surat_jawaban/';
-        //     $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
-        //     $this->upload->initialize($config);
-        //     $this->upload->do_upload('surat_Jawaban');
-		// }
+		$pdf->SetFont('times', ' ', 11);
+		$pdf->Ln(3);
+		$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
+		$pdf->MultiCell(160, 1, "Untuk melakukan Praktik Kerja Lapangan (PKL) di Perpustakaan Nasional RI. " . $data_surat['alasan'], 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
+		$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
+
+		$pdf->Ln(20);
+		$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
+		$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
+		$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
+		$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
+		$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);
+
+		$pdf->Ln(7);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Plt. Kepala Pusat Pendidikan dan Pelatiahan', 0, 1);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Perpustakaan Nasional RI,', 0, 1);
+		$pdf->Ln(20);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'Drs. Y. Yahyono, S.IP., M.Si', 0, 1);
+		$pdf->Cell(94, 1, '', 0, 0);
+		$pdf->Cell(95, 1, 'NIP. 19631110 199103 1 001', 0, 1);
+
+		$pdf->Ln(7);
+		$pdf->Cell(189, 1, 'Tembusan :', 0, 1);
+		if (!empty($data_surat['tembusan1'])) {
+			$pdf->Cell(189, 1, '1. ' . $data_surat['tembusan1'], 0, 1);
+		} else {
 		}
+
+		if (!empty($data_surat['tembusan5']) && empty($data_surat['tembusan1'])) {
+			$pdf->Cell(189, 1, '1. ' . $data_surat->tembusan5, 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan2'])) {
+			$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan2'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan1']) && empty($data_surat['tembusan2'])) {
+			$pdf->Cell(189, 1, '2. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan3'])) {
+			$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan3'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan2']) && empty($data_surat['tembusan3'])) {
+			$pdf->Cell(189, 1, '3. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan4'])) {
+			$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan4'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan5']) && !empty($data_surat['tembusan3']) && empty($data_surat['tembusan4'])) {
+			$pdf->Cell(189, 1, '4. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+		if (!empty($data_surat['tembusan4']) && !empty($data_surat['tembusan5'])) {
+			$pdf->Cell(189, 1, '5. ' . $data_surat['tembusan5'], 0, 1);
+		} else {
+		}
+
+
+		$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
+	}
+	// public function uploadSurat()
+	// {
+	// 	$config['allowed_types'] = 'pdf';
+	//     $config['max_size'] = 2048;
+	//     $config['upload_path'] = './folder_Surat_jawaban/';
+	//     $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
+	//     $this->upload->initialize($config);
+	//     $this->upload->do_upload('surat_Jawaban');
+	// }
+}

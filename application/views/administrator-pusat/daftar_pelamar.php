@@ -3,19 +3,24 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Penyuratan</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active"></li>
-					</ol>
-					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/index') ?>" method='get'>
-						<div class="input-group ">
-							<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-							<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-						</div>
+					<p> Daftar status pelamar yang telah disetujui dan ditolak</p>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/index') ?>" method='post'>
+						<div class="row d-flex">
+							<div class="col-md-6 mr-auto p-2">
+								<div class="input-group ">
+									<input class="form-control" name="pelamar" type="text" placeholder="Cari Nama Pelamar" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+									<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+								</div>
+							</div>
+							<div class="col-md-6 mr-auto p-2">
+								<div class="input-group">
+									<input type="month" name="tanggal_permohonan" class="form-control">
+									<div class="input-group-append px-2">
+										<button class="btn btn-secondary" type="submit">Lihat Data</button>
+									</div>
+								</div>
+							</div>
 					</form>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active"></li>
-					</ol>
-					<!-- Data Table -->
 					<div class="row">
 						<div class="col-md-12">
 							<table class="table table-hover">
@@ -47,7 +52,7 @@
 												<br>
 												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'khs/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_khs']; ?></a>
 												<br>
-												<a  href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'cv/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'cv/' . $data_verifikasi['id_permohonan']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
 											</td>
 											<td>
 												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
@@ -92,9 +97,16 @@
 															<button type="submit" class="btn btn-light btn-sm btn-upload" >
 																Upload
 															</button>
-														</div>
-													</form>
-												<?php endif; ?>
+															<form action="<?= base_url('pusat/uploadsurat/' . $data_verifikasi['id_surat_balasan']); ?>" method="POST">
+																<div class="form-group form-upload">
+																	<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
+																	<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
+																	<button type="submit" class="btn btn-light btn-sm btn-upload">
+																		Upload
+																	</button>
+																</div>
+															</form>
+														<?php endif; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>
@@ -126,4 +138,3 @@
 					</div>
 				</div>
 			</main>
-			
