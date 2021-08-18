@@ -117,6 +117,23 @@ class Pusat extends CI_Controller
 		redirect('pusat/index');
 	}
 
+	public function downloadKelengkapanBerkas($jenis, $id)
+    {
+        $this->load->helper('download');
+        $data = $this->Balasan_model->getDataPelamarById($id);
+
+        // if ($jenis == 'suratPermohonan') {
+        //     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
+        // } else 
+        if ($jenis == 'khs') {
+            force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
+        } else if ($jenis == 'cv') {
+            force_download('folder_CV/' . $data['nama_file_cv'], NULL);
+        } else if ($jenis == 'suratPermohonan') {
+			force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
+        }
+    }
+
 	public function downloadSuratDisetujui($id)
 	{
 		$pdf = new MYPDF('p', 'mm', 'A4', true, 'UTF-8', false);
@@ -306,6 +323,8 @@ class Pusat extends CI_Controller
 				$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 	
 				$pdf->Ln(20);
+				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
+				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
 				$pdf->MultiCell(170, 1, "", 0, 'L', 0, 1, '', '', true);
 				$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
 				$pdf->MultiCell(170, 1, "Demikian kami sampaikan, atas perhatian dan kerjasama yang baik kami ucapkan terimakasih.", 0, 'J', 0, 1, '', '', true, 0, true, true, 40);

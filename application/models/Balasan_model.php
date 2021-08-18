@@ -79,6 +79,11 @@ class Balasan_model extends CI_Model
 		$this->db->insert('surat_balasan', $data);
 	}
 
+	public function getDataPelamarById($id)
+    {
+        return $this->db->get_where('pelamar', ['id' => $id])->row_array();
+    }
+
 	public function downloadSurat($id)
 	{
 		$this->db->select("*");

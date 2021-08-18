@@ -44,11 +44,11 @@
 											<td><?= $data_verifikasi['universitas']; ?></td>
 											<td><?= $data_verifikasi['nama_unit']; ?></td>
 											<td>
-												<?= $data_verifikasi['nama_file_surat_permohonan']; ?>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas/') . 'suratPermohonan/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_surat_permohonan']; ?></a>
 												<br>
-												<?= $data_verifikasi['nama_file_khs']; ?>
+												<a href="<?= base_url('pusat/downloadKelengkapanBerkas') . 'khs/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_khs']; ?></a>
 												<br>
-												<?= $data_verifikasi['nama_file_cv']; ?>
+												<a  href="<?= base_url('pusat/downloadKelengkapanBerkas') . 'cv/' . $data_verifikasi['id']; ?>" target="_blank"><?= $data_verifikasi['nama_file_cv']; ?></a>
 											</td>
 											<td>
 												<?php if ($data_verifikasi['status'] == 'Ditolak') { ?>
