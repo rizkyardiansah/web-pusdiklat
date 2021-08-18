@@ -84,7 +84,7 @@
 													<button type="button" class="btn btn-warning btn-upload">
 														<i class="fas fa-upload"></i>
 													</button>
-													<form action="" method="">
+													<form action="<?= base_url('pusat/uploadSurat/' . $data_verifikasi['id_surat_balasan']) ?>" method="">
 														<div class="form-group form-upload">
 															<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
 															<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>

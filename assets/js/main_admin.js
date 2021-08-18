@@ -36,11 +36,15 @@
 		});
 	});
 
-	// hide form-upload
+	// show and hide form-upload surat balasan
 	$('.form-upload, .btn-upload:last').hide();
 	$('.btn-upload:first').click(function () {
 		$('.btn-upload:first').hide();
 		$('.form-upload, .btn-upload:last').show();
 		
 	});
+	$('.btn-upload:last').click(function () {
+		$('.btn-upload:first').show();
+		$('.form-upload, .btn-upload:last').hide();
+	})
 })(jQuery);
