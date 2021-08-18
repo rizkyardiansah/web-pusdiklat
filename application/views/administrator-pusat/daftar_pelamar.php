@@ -87,7 +87,7 @@
 														<?php
 														if ($data_verifikasi['is_uploaded'] === 'FALSE') :
 														?>
-															<button type="button" class="btn btn-warning btn-upload">
+															<button type="button" class="btn btn-warning btn-upload-show" value="<?= $data_verifikasi['id_surat_balasan'] ?>">
 																<i class="fas fa-upload"></i>
 															</button>
 															<form action="<?= base_url('pusat/uploadsurat/' . $data_verifikasi['id_surat_balasan']); ?>" method="POST">
