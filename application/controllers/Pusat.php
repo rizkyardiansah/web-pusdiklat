@@ -7,6 +7,7 @@ class Pusat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('form');
 		$this->load->library('pdf');
 		$this->load->model('Balasan_model');
 		$this->load->model('Pelamar_model');
@@ -121,12 +122,28 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'is_uploaded' => 'TRUE'
 		);
+		$this->load->library('upload');
 		$whereId = array(
 			'id_surat_balasan' => $id
 		);
+		$suratBalasan = $_FILES['surat'];
+		if ($suratBalasan = '') {
+		} else {
+			$config['upload_path'] = './folder_Surat_Jawaban';
+			$config['allowed_types'] = 'pdf';
+			$this->upload->initialize($config);
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('surat')) {
+				echo 'Unggah Berkas Gagal';
+				die();
+			} else {
+				$suratBalasan = $this->upload->data('file_name');
+			}
+		}
 		$this->Balasan_model->updateFileIsUpload($whereId, $arrayData, 'surat_balasan');
 		redirect('pusat/index');
 	}
+
 	public function downloadKelengkapanBerkas($jenis, $id)
     {
         $this->load->helper('download');

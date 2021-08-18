@@ -85,11 +85,11 @@
 													<button type="button" class="btn btn-warning btn-upload">
 														<i class="fas fa-upload"></i>
 													</button>
-													<form action="<?= base_url('pusat/uploadsurat/'.$data_verifikasi['id_surat_balasan']);?>" method="POST">
+													<form action="<?= base_url('pusat/uploadsurat/'.$data_verifikasi['id_surat_balasan']);?>" method="POST" enctype="multipart/form-data">
 														<div class="form-group form-upload">
-															<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
+															<input class="form-control-file " type="file" id="surat" name="surat">
 															<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
-															<button type="submit" class="btn btn-light btn-sm btn-upload">
+															<button type="submit" class="btn btn-light btn-sm btn-upload" >
 																Upload
 															</button>
 														</div>
