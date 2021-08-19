@@ -112,12 +112,12 @@ class Balasan_model extends CI_Model
 	}
 
 	// public function updateBerkas($jenis, $id, $namaBerkas)
-    // { 
-    //     $jenis == 'surat_jawaban' {
-    //         $this->db->where('id', $id);
-    //         $this->db->update('surat_balasan', ['nama_file_surat_jawaban' => $namaBerkas]);
-    //     } 
-    
+	// { 
+	//     $jenis == 'surat_jawaban' {
+	//         $this->db->where('id', $id);
+	//         $this->db->update('surat_balasan', ['nama_file_surat_jawaban' => $namaBerkas]);
+	//     } 
+
 
 	public function downloadSurat($id)
 	{
