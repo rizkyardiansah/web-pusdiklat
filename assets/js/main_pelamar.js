@@ -255,7 +255,6 @@
 			let title = flashdata.data("title");
 			let text = flashdata.data("text");
 			let icon = flashdata.data("icon");
-
 			Swal.fire({
 				title,
 				text,
