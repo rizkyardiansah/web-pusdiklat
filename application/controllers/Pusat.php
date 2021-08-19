@@ -77,6 +77,7 @@ class Pusat extends CI_Controller
 			);
 			$data["approval"] = $this->Balasan_model->searchAll($searchArray);
 			// else if untuk pencarian berdasarkan bulan
+			
 		} else if ($this->input->post('tanggal_permohonan')) {
 			$searchMonth = $this->input->post('tanggal_permohonan');
 			$searchArray = array(
