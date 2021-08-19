@@ -88,17 +88,15 @@
 														<?php
 														if ($data_verifikasi['is_uploaded'] === 'FALSE') :
 														?>
-															<button type="button" class="btn btn-warning btn-upload-show" value="<?= $data_verifikasi['id_surat_balasan'] ?>">
-																<i class="fas fa-upload"></i>
-															</button>
-															<form action="<?= base_url('pusat/uploadsurat/' . $data_verifikasi['id_surat_balasan']); ?>" method="POST">
-																<div class="form-group form-upload">
-																	<input class="form-control-file " type="file" id="surat_permohonan" name="surat_permohonan">
-																	<?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>
-																	<button type="submit" class="btn btn-light btn-sm btn-upload">
-																		Upload
-																	</button>
+															<form action="<?= base_url('pusat/uploadsurat'); ?>" method="POST" enctype="multipart/form-data">
+																<div class="form-group">
+																	<input type="hidden" name="id_surat_balasan" value="<?= $data_verifikasi['id_surat_balasan']; ?>" <?= form_error('surat_permohonan', '<small class="text-danger">', '</small>'); ?>>
+																	<input class="form-control-file " type="file" name="nama_surat_balasan">
 																</div>
+																<button type="submit" class="btn btn-sm btn-outline-success">
+																	Upload
+																</button>
+																<?= form_error('nama_surat_balasan', '<small class="text-danger">', '</small>'); ?>
 															</form>
 														<?php endif; ?>
 											</td>
@@ -132,4 +130,28 @@
 							</nav>
 						</div> -->
 					</div>
+
+					<!-- pagination section -->
+					<div class="row">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
 			</main>

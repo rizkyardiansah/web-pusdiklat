@@ -37,13 +37,5 @@
 	});
 
 	// show and hide form-upload surat balasan
-	$('.form-upload, .btn-upload').hide();
-	$('.btn-upload-show').click(function (){
-		var value = $(this).val();
-		
-	});
-	$('.btn-upload:last').click(function () {
-		$('.btn-upload:first').show();
-		$('.form-upload, .btn-upload:last').hide();
-	})
+	
 })(jQuery);

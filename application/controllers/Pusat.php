@@ -7,6 +7,7 @@ class Pusat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('form');
 		$this->load->library('pdf');
 		$this->load->model('Balasan_model');
 		$this->load->model('Pelamar_model');
@@ -120,8 +121,10 @@ class Pusat extends CI_Controller
 
 
 			// else if untuk pencarian berdasarkan bulan
+
 		} else if ($this->input->get('tanggal_permohonan')) {
 			$searchMonth = $this->input->get('tanggal_permohonan');
+			
 			$searchArray = array(
 				'tanggal_permohonan' => $searchMonth,
 				'status' => $arrayData['status']
@@ -231,6 +234,7 @@ class Pusat extends CI_Controller
 			'tgl_surat' => date('Y-m-d'),
 			'perihal' => $this->input->post('perihal'),
 			'no_surat_balasan' => $this->input->post('no_surat_balasan'),
+			'nama_surat_balasan' => null,
 			'lampiran' => $this->input->post('lampiran'),
 			'kepada' => $this->input->post('kepada'),
 			'alasan' => $this->input->post('alasan'),
@@ -245,31 +249,45 @@ class Pusat extends CI_Controller
 		$this->Balasan_model->insertSuratBalasan($setData);
 		redirect('pusat/index');
 	}
-	public function uploadSurat($id)
+	public function uploadSurat()
 	{
-		$arrayData = array(
-			'is_uploaded' => 'TRUE'
-		);
-		$whereId = array(
-			'id_surat_balasan' => $id
-		);
-		$this->Balasan_model->updateFileIsUpload($whereId, $arrayData, 'surat_balasan');
-		redirect('pusat/index');
+		$id = $this->input->post('id_surat_balasan');
+		$file_surat_balasan = $_FILES['nama_surat_balasan']['name'];
+		if ($file_surat_balasan == "") {
+			redirect('pusat/index');
+		} else {
+			// upload surat balasan
+			$config['upload_path'] = './folder_Surat_Jawaban/';
+			$config['allowed_types'] = 'pdf';
+			$config['file_name'] = date('y-m-d') . '_' . $file_surat_balasan;
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			$this->upload->do_upload('nama_surat_balasan');
+			$nama_file_surat_balasan = $this->upload->data('file_name');
+			$arrayData = array(
+				'nama_surat_balasan' => $nama_file_surat_balasan,
+				'is_uploaded' => 'TRUE'
+			);
+			$whereId = array(
+				'id_surat_balasan' => $id
+			);
+
+
+			$this->Balasan_model->updateFileIsUpload($whereId, $arrayData, 'surat_balasan');
+			redirect('pusat/index');
+		}
 	}
+
 	public function downloadKelengkapanBerkas($jenis, $id)
 	{
 		$this->load->helper('download');
 		$data = $this->Balasan_model->getDataByIdForSurat($id);
-
-		// if ($jenis == 'suratPermohonan') {
-		//     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
-		// } else 
 		if ($jenis == 'khs') {
 			force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
 		} else if ($jenis == 'cv') {
 			force_download('folder_CV/' . $data['nama_file_cv'], NULL);
 		} else if ($jenis == 'suratPermohonan') {
-			force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
+			force_download('folder_nama_surat_balasan/' . $data['nama_file_nama_surat_balasan'], NULL);
 		}
 	}
 
@@ -304,7 +322,7 @@ class Pusat extends CI_Controller
 			$pdf->Ln(5);
 			// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
+			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_nama_surat_balasan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 			$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 
 			$pdf->Ln(7);
@@ -431,7 +449,7 @@ class Pusat extends CI_Controller
 			$pdf->SetFont('times', ' ', 11);
 			// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
 			$pdf->MultiCell(19, 1, "", 0, 'J', 0, 0, '', '', true, 0, false, true, 40);
-			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_surat_permohonan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
+			$pdf->MultiCell(160, 1, "Menindaklanjuti Surat Saudara Nomor " . $data_surat['no_nama_surat_balasan'] . " tanggal " . indo_date($data_surat['tanggal_permohonan']) . " dengan ini disampaikan bahwa kami bersedia menerima mahasiswa Saudara yaitu:", 0, 'J', 0, 0, '', '', true, 0, true, true, 40);
 			$pdf->MultiCell(10, 1, "", 0, 'J', 0, 1, '', '', true, 0, false, true, 40);
 
 			$pdf->Ln(7);
@@ -528,13 +546,5 @@ class Pusat extends CI_Controller
 
 		$pdf->Output('Surat_Jawaban_Magang_' . $data_surat['nama_pelamar'] . '.pdf', 'I');
 	}
-	// public function uploadSurat()
-	// {
-	// 	$config['allowed_types'] = 'pdf';
-	//     $config['max_size'] = 2048;
-	//     $config['upload_path'] = './folder_Surat_jawaban/';
-	//     $config['file_name'] = 'Pelamar_SuratJawaban_' . time();
-	//     $this->upload->initialize($config);
-	//     $this->upload->do_upload('surat_Jawaban');
-	// }
+	
 }

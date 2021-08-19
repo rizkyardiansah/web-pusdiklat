@@ -23,6 +23,12 @@ class Pelamar extends CI_Controller
         $data['dataLengkap'] = !in_array(null, $data['user']);
         $data['unitTerdaftar'] = $this->model->getListUnitDilamar($data['user']['id']);
         $data['unit_kerja'] = $this->model->getAllUnitKerja();
+
+        if ($data['dataLengkap'] == FALSE) {
+            //$this->session->set_flashdata('flash', ['icon' => 'warning', 'title' => 'Data Belum Lengkap', 'text' => 'Dokumen anda belum lengkap.', 'url' => base_url('pelamar/profile')]);
+            // $this->session->set_flashdata('docComp', ['icon' => 'error', 'title' => 'Data Belum Lengkap', 'text' => 'Dokumen anda belum lengkap.', 'url' => base_url('pelamar/profile')]);
+        }
+
         $this->load->view('templates/pelamar_header', $data);
         $this->load->view('pelamar/index', $data);
         $this->load->view('templates/pelamar_footer');
@@ -65,7 +71,7 @@ class Pelamar extends CI_Controller
             $config['upload_path'] = './folder_Surat_Permohonan/';
             $config['file_name'] = 'Pelamar_SuratPermohonan_' . time();
             $this->upload->initialize($config);
-        $this->upload->do_upload('surat_permohonan');
+            $this->upload->do_upload('surat_permohonan');
             //mengambil nama file untuk disimpan ke database
             $nama_file_surat_permohonan = $this->upload->data('file_name');
 
@@ -143,7 +149,7 @@ class Pelamar extends CI_Controller
                 $config['upload_path'] = './foto_profil/';
                 $config['max_size'] = 1024;
                 $config['min_width'] = 128;
-                $config['min_height'] =
+                $config['min_height'] = 128;
 
                 $this->load->library('upload', $config);
 

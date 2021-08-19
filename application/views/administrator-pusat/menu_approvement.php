@@ -8,7 +8,7 @@
 						<div class="row d-flex">
 							<div class="col-md-6 mr-auto p-2">
 								<div class="input-group ">
-									<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+									<input class="form-control" name="pelamar" type="text" placeholder="Cari Nama Pelamar"  aria-label="Search for..." aria-describedby="btnNavbarSearch" />
 									<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
 								</div>
 							</div>

@@ -33,7 +33,7 @@ class Auth_model extends CI_Model
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'ci3emailsender@gmail.com',
-            'smtp_pass' => 'EW5A5GgPrF8uef2',
+            'smtp_pass' => 'kljh89&Y(*bh89gh967gG5fytGOIuhguonu986rt58uYVGB&*(^G86g*&^G87tf6B(*VY^',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -69,7 +69,7 @@ class Auth_model extends CI_Model
         if ($result != null) {
             if ($result['token'] == $token) {
                 $dataPelamar = [
-                    "nama" => $result['nama'],
+                    "nama_pelamar" => $result['nama'],
                     "email" => $result['email'],
                     "universitas" => $result['universitas'],
                     "fakultas" => $result['fakultas'],

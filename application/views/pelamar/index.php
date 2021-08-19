@@ -69,6 +69,7 @@
                         <div style="font-size: 0.73em;" class="alert alert-danger alert-dismissible fade show">
                           <strong>Peringatan </strong>Data anda belum lengkap.
                         </div>
+                        <a class="btn rounded-pill btn-info btn-umum mb-2" role="button" href="<?= base_url('pelamar/profile'); ?>">Lengkapi data</a>
                         <a class="btn rounded-pill btn-secondary btn-umum disabled" role="button" href="#">Daftar</a>
                       <?php elseif (in_array($unit['id'], $unitTerdaftar)) : ?>
                         <div style="font-size: 0.73em;" class="alert alert-danger alert-dismissible fade show">

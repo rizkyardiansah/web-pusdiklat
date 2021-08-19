@@ -1,15 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Waktu pembuatan: 16 Agu 2021 pada 04.37
-
--- Versi server: 10.4.20-MariaDB
--- Versi PHP: 7.4.21
+-- Generation Time: Aug 19, 2021 at 07:28 AM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `aktivasi`
+-- Table structure for table `aktivasi`
 --
 
 CREATE TABLE `aktivasi` (
@@ -40,7 +39,7 @@ CREATE TABLE `aktivasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `aktivasi`
+-- Dumping data for table `aktivasi`
 --
 
 INSERT INTO `aktivasi` (`id`, `nama`, `email`, `password`, `universitas`, `fakultas`, `token`) VALUES
@@ -50,7 +49,7 @@ INSERT INTO `aktivasi` (`id`, `nama`, `email`, `password`, `universitas`, `fakul
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -62,23 +61,21 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id`, `email`, `password`, `role_id`, `id_unit_kerja`) VALUES
 (1, 'Rina_Wahyuni@pusdiklat.com', 'rina123', 1, 15),
 (2, 'PUSDIKLAT@pusdiklat.com', 'pusdiklat', 2, 1),
-
-(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, NULL),
-(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, NULL),
-
+(4, 'sleepyweppy@gmail.com', '$2y$10$DdBChV.YU3FTnxPkB79i5.8BE0Vd8IuvHCAK.lpJLn8mJG6OMlT.q', 3, 1),
+(7, 'muhammadrizkyardiansah93@gmail.com', '$2y$10$nW05HXtM1qi4tiUnHZz6l.Hn/9Axhu8.r72.l4.cm3xnhRXPz8Pa.', 3, 2),
 (12, 'aris.cemumut@gmail.com', '$2y$10$iyfHzFi2BWMJLLA2xeGCNeGZVQ/dzLB2TRNIjhLxJBvbBYrA7RVvO', 2, 1),
 (13, 'ariss@upnvj.ac.id', '$2y$10$2DaeegN8jbjjb72MiSuB1.2oEjgXBD0Paq6yMkwQl/dEz7FbAZspm', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelamar`
+-- Table structure for table `pelamar`
 --
 
 CREATE TABLE `pelamar` (
@@ -97,12 +94,12 @@ CREATE TABLE `pelamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pelamar`
+-- Dumping data for table `pelamar`
 --
 
 INSERT INTO `pelamar` (`id`, `nama_pelamar`, `email`, `universitas`, `fakultas`, `prodi`, `nim`, `semester`, `no_telpon`, `nama_file_khs`, `nama_file_cv`, `foto_profil`) VALUES
 (1, 'Muhammad Rizky', 'sleepyweppy@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', NULL, NULL, NULL, NULL, NULL, NULL, 'default.jpg'),
-(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', '8e154e317e9fef7247a3f5884501ec6b.pdf', '29aaa9784599d2f9625d306600127df6.pdf', 'default.jpg'),
+(5, 'Muhammad Rizky Ardiansah', 'muhammadrizkyardiansah93@gmail.com', 'Universitas Yarsi', 'Teknologi Informasi', 'Teknik Informatika', '1402018149', 6, '085972875509', 'Pelamar_KHS_1629192040.pdf', 'Pelamar_CV_1629192074.pdf', 'default.jpg'),
 (8, 'Aris Setyawan', 'aris.setyawan@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512022', 6, '0895340442948', 'Contoh KHS.pdf', 'Contoh CV.pdf', 'default.jpg'),
 (9, 'Albert Lim', 'albert.lim@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512021', 6, '08123457438', 'Contoh KHS Albert.pdf', 'Contoh CV Albert.pdf', 'default.jpg'),
 (10, 'Nurul Aini', 'nurula@gmail.com', 'UPN Veteran Jakarta', 'Ilmu Komputer', 'Sistem Informasi', '1810512028', 6, '0812341223', 'Contoh KHS Nurul.pdf', 'Contoh CV Nurul.pdf', 'default.jpg'),
@@ -121,7 +118,7 @@ INSERT INTO `pelamar` (`id`, `nama_pelamar`, `email`, `universitas`, `fakultas`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -130,7 +127,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -141,43 +138,39 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `surat_balasan`
+-- Table structure for table `surat_balasan`
 --
 
 CREATE TABLE `surat_balasan` (
   `id_surat_balasan` int(11) NOT NULL,
   `id_surat_permohonan` int(11) NOT NULL,
-  `no_surat` varchar(26) NOT NULL,
-  `nama_surat` varchar(45) NOT NULL,
   `tgl_surat` date NOT NULL,
   `perihal` varchar(255) NOT NULL,
   `no_surat_balasan` varchar(50) NOT NULL,
+  `nama_surat_balasan` varchar(50) DEFAULT NULL,
   `lampiran` varchar(50) NOT NULL,
   `kepada` varchar(50) NOT NULL,
   `alasan` text NOT NULL,
-  `jangka_waktu` varchar(50) NOT NULL,
+  `jangka_waktu` varchar(50) DEFAULT NULL,
   `tembusan1` text NOT NULL,
   `tembusan2` text NOT NULL,
   `tembusan3` text NOT NULL,
   `tembusan4` text NOT NULL,
-  `tembusan5` text NOT NULL
+  `tembusan5` text NOT NULL,
+  `is_uploaded` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `surat_balasan`
+-- Dumping data for table `surat_balasan`
 --
 
-
-INSERT INTO `surat_balasan` (`id_surat_balasan`, `id_surat_permohonan`, `no_surat`, `nama_surat`, `tgl_surat`, `perihal`, `no_surat_balasan`, `lampiran`, `kepada`, `alasan`, `jangka_waktu`, `tembusan1`, `tembusan2`, `tembusan3`, `tembusan4`, `tembusan5`) VALUES
-(1, 1, 'wdasdw', 'sdasda', '2021-08-08', 'asfasfgdsfgdfg', 'dfgdfgdfg', 'dfgdfg', 'dfgdfgdf', 'gdfgdagsdfgdfgasdfga', '2 bulan', 'asdfg', 'adfg', 'adfg', 'dafg', 'afdgadf'),
-(2, 12, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', ''),
-(3, 13, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', ''),
-(4, 14, '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `surat_balasan` (`id_surat_balasan`, `id_surat_permohonan`, `tgl_surat`, `perihal`, `no_surat_balasan`, `nama_surat_balasan`, `lampiran`, `kepada`, `alasan`, `jangka_waktu`, `tembusan1`, `tembusan2`, `tembusan3`, `tembusan4`, `tembusan5`, `is_uploaded`) VALUES
+(8, 11, '2021-08-19', 'Balasan Magang', '001/11/2021', NULL, '1', '', ' Kegiatan magang dilaksanakan dengan tujuan untuk memenuhi persyaratan akademik perkuliahan dan dilaksanakan dengan tetap memperhatikan protokol Kesehatan (Memakai masker & Wajib membawa hasil tes, minimal swab antigen/ genose). ', NULL, 'Kepala Perpustakan Nasional RI', 'Sekretaris Utama Perpustakaan Nasional RI', 'Sekretaris Utama Perpustakaan Nasional RI', 'Deputi Bidang Pengembangan Sumber Daya Perpustakaan', '', 'FALSE');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `surat_permohonan`
+-- Table structure for table `surat_permohonan`
 --
 
 CREATE TABLE `surat_permohonan` (
@@ -193,7 +186,7 @@ CREATE TABLE `surat_permohonan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `surat_permohonan`
+-- Dumping data for table `surat_permohonan`
 --
 
 INSERT INTO `surat_permohonan` (`id_permohonan`, `id_unit`, `id_pelamar`, `no_surat_permohonan`, `nama_file_surat_permohonan`, `tanggal_permohonan`, `status`, `tanggal_persetujuan`, `ket`) VALUES
@@ -208,14 +201,14 @@ INSERT INTO `surat_permohonan` (`id_permohonan`, `id_unit`, `id_pelamar`, `no_su
 (9, 2, 19, 'MG_05', 'Surat Lamaran Perpusnas Rio.pdf', '2021-08-03', 'Disetujui', '2021-08-11', 'ok'),
 (10, 5, 20, 'MG/001', 'Gladis Federica UGM.pdf', '2021-08-04', 'Ditolak', '2021-08-05', 'Kelengkapan Dokumen Masih Kurang'),
 (11, 6, 21, 'UI/MG-001', 'Surat Magang Budi Sujatmiko.pdf', '2021-08-06', 'Ditolak', '2021-08-07', 'Kelengkapan Dokumen Masih Kurang'),
-(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1628872636.pdf', '2021-08-13', 'Menunggu verifikasi', NULL, NULL),
-(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1628945557.pdf', '2021-08-14', 'Ditolak', '2021-08-16', NULL),
-(14, 5, 5, '70/MG/80/T', 'Pelamar_SuratPermohonan_1628948927.pdf', '2021-08-14', 'Disetujui', '2021-08-15', NULL);
+(12, 1, 5, 'MG_08', 'Pelamar_SuratPermohonan_1629081155.pdf', '2021-08-16', 'Menunggu verifikasi', NULL, NULL),
+(13, 15, 5, 'MG_007', 'Pelamar_SuratPermohonan_1629081230.pdf', '2021-08-16', 'Ditolak', '2021-08-17', NULL),
+(14, 8, 5, 'N123/2/19/', 'Pelamar_SuratPermohonan_1629081293.pdf', '2021-08-16', 'Disetujui', '2021-08-18', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `unit_kerja`
+-- Table structure for table `unit_kerja`
 --
 
 CREATE TABLE `unit_kerja` (
@@ -227,7 +220,7 @@ CREATE TABLE `unit_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `unit_kerja`
+-- Dumping data for table `unit_kerja`
 --
 
 INSERT INTO `unit_kerja` (`id`, `nama_unit`, `keterangan`, `url_gambar`, `url_halaman`) VALUES
@@ -252,13 +245,13 @@ INSERT INTO `unit_kerja` (`id`, `nama_unit`, `keterangan`, `url_gambar`, `url_ha
 --
 
 --
--- Indeks untuk tabel `aktivasi`
+-- Indexes for table `aktivasi`
 --
 ALTER TABLE `aktivasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`),
@@ -266,26 +259,26 @@ ALTER TABLE `login`
   ADD KEY `id_unit_kerja` (`id_unit_kerja`);
 
 --
--- Indeks untuk tabel `pelamar`
+-- Indexes for table `pelamar`
 --
 ALTER TABLE `pelamar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `surat_balasan`
+-- Indexes for table `surat_balasan`
 --
 ALTER TABLE `surat_balasan`
   ADD PRIMARY KEY (`id_surat_balasan`),
   ADD KEY `id_surat_permohonan` (`id_surat_permohonan`);
 
 --
--- Indeks untuk tabel `surat_permohonan`
+-- Indexes for table `surat_permohonan`
 --
 ALTER TABLE `surat_permohonan`
   ADD PRIMARY KEY (`id_permohonan`),
@@ -293,76 +286,76 @@ ALTER TABLE `surat_permohonan`
   ADD KEY `id_pelamar` (`id_pelamar`) USING BTREE;
 
 --
--- Indeks untuk tabel `unit_kerja`
+-- Indexes for table `unit_kerja`
 --
 ALTER TABLE `unit_kerja`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `aktivasi`
+-- AUTO_INCREMENT for table `aktivasi`
 --
 ALTER TABLE `aktivasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `pelamar`
+-- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `surat_balasan`
+-- AUTO_INCREMENT for table `surat_balasan`
 --
 ALTER TABLE `surat_balasan`
-  MODIFY `id_surat_balasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_surat_balasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `surat_permohonan`
+-- AUTO_INCREMENT for table `surat_permohonan`
 --
 ALTER TABLE `surat_permohonan`
   MODIFY `id_permohonan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `unit_kerja`
+-- AUTO_INCREMENT for table `unit_kerja`
 --
 ALTER TABLE `unit_kerja`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `login`
+-- Constraints for table `login`
 --
 ALTER TABLE `login`
   ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `login_ibfk_2` FOREIGN KEY (`id_unit_kerja`) REFERENCES `unit_kerja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `surat_balasan`
+-- Constraints for table `surat_balasan`
 --
 ALTER TABLE `surat_balasan`
   ADD CONSTRAINT `surat_balasan_ibfk_1` FOREIGN KEY (`id_surat_permohonan`) REFERENCES `surat_permohonan` (`id_permohonan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `surat_permohonan`
+-- Constraints for table `surat_permohonan`
 --
 ALTER TABLE `surat_permohonan`
   ADD CONSTRAINT `surat_permohonan_ibfk_2` FOREIGN KEY (`id_pelamar`) REFERENCES `pelamar` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
