@@ -7,6 +7,7 @@ class Pusat extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('form');
 		$this->load->library('pdf');
 		$this->load->model('Balasan_model');
 		$this->load->model('Pelamar_model');
@@ -151,23 +152,35 @@ class Pusat extends CI_Controller
 	}
 	public function uploadSurat($id)
 	{
+		$this->load->library('upload');
 		$arrayData = array(
 			'is_uploaded' => 'TRUE'
 		);
 		$whereId = array(
 			'id_surat_balasan' => $id
 		);
+		$surat = $_FILES['surat'];
+		if (isset($surat) == '') {
+		} else {
+			$config['upload_path'] = './folder_Surat_Jawaban';
+			$config['allowed_types'] = 'pdf';
+			$this->upload->initialize($config);
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('surat')) {
+				$surat = $this->upload->data('file_name');
+			} else {
+				echo 'Unggah Berkas Gagal';
+				die();
+			}
+		}
 		$this->Balasan_model->updateFileIsUpload($whereId, $arrayData, 'surat_balasan');
 		redirect('pusat/index');
 	}
+
 	public function downloadKelengkapanBerkas($jenis, $id)
 	{
 		$this->load->helper('download');
 		$data = $this->Balasan_model->getDataByIdForSurat($id);
-
-		// if ($jenis == 'suratPermohonan') {
-		//     force_download('folder_Surat_Permohonan/' . $data['nama_file_surat_permohonan'], NULL);
-		// } else 
 		if ($jenis == 'khs') {
 			force_download('folder_KHS/' . $data['nama_file_khs'], NULL);
 		} else if ($jenis == 'cv') {
