@@ -4,7 +4,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Penyuratan</h1>
 					<p> Daftar status pelamar yang telah disetujui dan ditolak</p>
-					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/index') ?>" method='post'>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/index') ?>" method='get'>
 						<div class="row d-flex">
 							<div class="col-md-6 mr-auto p-2">
 								<div class="input-group ">
@@ -23,6 +23,7 @@
 					</form>
 					<div class="row">
 						<div class="col-md-12">
+							<!-- <h5>Result : <?= $count ?> </h5> -->
 							<table class="table table-hover">
 								<thead>
 									<tr>
@@ -42,7 +43,7 @@
 									$no = 1;
 									foreach ($permohonan as $data_verifikasi) : ?>
 										<tr>
-											<td><?= $no++; ?></td>
+											<td><?= ++$start; ?></td>
 											<td><?= indo_date($data_verifikasi['tanggal_permohonan']); ?></td>
 											<td><?= $data_verifikasi['nama_pelamar']; ?></td>
 											<td><?= $data_verifikasi['universitas']; ?></td>
@@ -106,28 +107,29 @@
 								</tbody>
 							</table>
 						</div>
+						<!-- pagination section -->
+						<?= $this->pagination->create_links(''); ?>
+
+						<!-- <div class="row">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div> -->
 					</div>
-					<!-- pagination section -->
-					<div class="row">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
 			</main>

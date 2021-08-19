@@ -45,7 +45,7 @@
 										foreach ($approval as $dataApprovement) :
 										?>
 											<tr>
-												<td><?= $no++; ?></td>
+												<td><?= ++$start; ?></td>
 												<td><?= indo_date($dataApprovement['tanggal_permohonan']); ?></td>
 												<td><?= $dataApprovement['nama_pelamar']; ?></td>
 												<td><?= $dataApprovement['nama_unit']; ?></td>
@@ -72,7 +72,9 @@
 						</div>
 					</div>
 					<!-- pagination section -->
-					<div class="row">
+					<?= $this->pagination->create_links(''); ?>
+
+					<!-- <div class="row">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li class="page-item">
@@ -92,6 +94,6 @@
 								</li>
 							</ul>
 						</nav>
-					</div>
+					</div> -->
 				</div>
 			</main>

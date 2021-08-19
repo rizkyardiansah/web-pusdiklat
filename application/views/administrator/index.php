@@ -46,7 +46,7 @@
 										$no = 1;
 										foreach ($verifikasi as $data_verifikasi) : ?>
 											<tr>
-												<td><?= $no++; ?></td>
+												<td><?= ++$start; ?></td>
 												<td><?= indo_date($data_verifikasi['tanggal_permohonan']); ?></td>
 												<td><?= $data_verifikasi['nama_pelamar']; ?></td>
 												<td><?= $data_verifikasi['nama_unit']; ?></td>
@@ -76,7 +76,9 @@
 						</div>
 					</div>
 					<!-- pagination section -->
-					<div class="row">
+					<?= $this->pagination->create_links(''); ?>
+
+					<!-- <div class="row">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li class="page-item">
@@ -96,6 +98,6 @@
 								</li>
 							</ul>
 						</nav>
-					</div>
+					</div> -->
 				</div>
 			</main>

@@ -35,15 +35,32 @@ class UnitKerja extends CI_Controller
 			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Menunggu Verifikasi'
 		);
+
+		//pagination
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		// aksi untuk liat data yang masih menunggu verifikasi
-		$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+			$arrayData['nama_pelamar'] = $this->input->get('pelamar');
+			$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
+		} else {
+			$arrayData['nama_pelamar'] = '';
+			$data['verifikasi'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
 		}
+
+		//pagination
+		$pagination['total_rows'] = $this->Persetujuan_model->countDataWithStatus($arrayData);
+		$pagination['base_url'] = 'http://localhost/web-pusdiklat/unitkerja/index';
+		$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+		$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+
+		$this->pagination->initialize($pagination);
+		//pagination
+
 		$this->loadTemplate($data);
 	}
 
@@ -54,16 +71,33 @@ class UnitKerja extends CI_Controller
 			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Disetujui'
 		);
+
+		//pagination
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		$data['countApprovement'] = $this->Persetujuan_model->getCountData($arrayData);
 		// aksi untuk liat data yang telah disetujui
-		$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			$data['approval'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+			$arrayData['nama_pelamar'] = $this->input->get('pelamar');
+			$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
+		} else {
+			$arrayData['nama_pelamar'] = '';
+			$data['approval'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
 		}
+
+		//pagination
+		$pagination['total_rows'] = $this->Persetujuan_model->countDataWithStatus($arrayData);
+		$pagination['base_url'] = 'http://localhost/web-pusdiklat/unitkerja/approval';
+		$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+		$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+
+		$this->pagination->initialize($pagination);
+		//pagination
+
 		$this->loadTemplate($data);
 	}
 
@@ -74,16 +108,33 @@ class UnitKerja extends CI_Controller
 			'id_unit' => $this->session->userdata('id_unit_kerja'),
 			'status' => 'Ditolak'
 		);
+
+		//pagination
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
 		// Get Count Notifikasi Data yang perlu di verifikasi
 		$data['count'] = $this->Persetujuan_model->getCountDataPending($arrayData);
 		$data['countRejection'] = $this->Persetujuan_model->getCountData($arrayData);
 		// aksi untuk liat data yang telah ditolak
-		$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
 		if ($this->input->get('pelamar')) {
-			$search = $this->input->get('pelamar');
-			$data['reject'] = $this->Persetujuan_model->getDataWithStatusSearch($arrayData, $search);
+			$arrayData['nama_pelamar'] = $this->input->get('pelamar');
+			$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
+		} else {
+			$arrayData['nama_pelamar'] = '';
+			$data['reject'] = $this->Persetujuan_model->getDataWithStatus($arrayData, $pagination['per_page'], $data['start']);
 		}
+
+		//pagination
+		$pagination['total_rows'] = $this->Persetujuan_model->countDataWithStatus($arrayData);
+		$pagination['base_url'] = 'http://localhost/web-pusdiklat/unitkerja/rejection';
+		$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+		$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+
+		$this->pagination->initialize($pagination);
+		//pagination
+
 		$this->loadTemplate($data);
 	}
 
