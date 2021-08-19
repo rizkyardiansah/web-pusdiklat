@@ -111,6 +111,7 @@ class Balasan_model extends CI_Model
 		$this->db->update($table, $data);
 	}
 
+
 	public function downloadSurat($id)
 	{
 		$this->db->select("*");
@@ -120,11 +121,6 @@ class Balasan_model extends CI_Model
 		$this->db->join('unit_kerja', 'surat_permohonan.id_unit = unit_kerja.id', 'LEFT');
 		$this->db->where('id_surat_balasan ', $id);
 		return $this->db->get()->result_array();
-	}
-
-	public function getKelengkapanBerkasById($id)
-	{
-		// return $this->db->get_where('mahasiswa', ['nim' => $nim])->row_array();
 	}
 
 	public function searchByMoth($data)
