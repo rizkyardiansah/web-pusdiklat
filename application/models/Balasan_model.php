@@ -130,11 +130,6 @@ class Balasan_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	public function getKelengkapanBerkasById($id)
-	{
-		// return $this->db->get_where('mahasiswa', ['nim' => $nim])->row_array();
-	}
-
 	public function searchByMoth($data)
 	{
 		$bulan = date('m', strtotime($data['tanggal_permohonan']));
