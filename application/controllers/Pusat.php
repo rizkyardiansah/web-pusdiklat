@@ -37,25 +37,56 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'status' => 'Menunggu Verifikasi',
 		);
-		$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($arrayData);
+
+		//pagination
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
 		// aksi untuk pencarian by nama
-		if ($this->input->post('pelamar')) {
-			$search = $this->input->post('pelamar');
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
 			$searchArray = array(
 				'nama_pelamar' => $search,
 				'status' => $arrayData['status']
 			);
-			$data["permohonan"] = $this->Balasan_model->searchExceptPending($searchArray);
+			$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countPermohonanWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/index';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
 			// else if untuk pencarian berdasarkan bulan
-		} else if ($this->input->post('tanggal_permohonan')) {
-			$searchMonth = $this->input->post('tanggal_permohonan');
+		} else if ($this->input->get('tanggal_permohonan')) {
+			$searchMonth = $this->input->get('tanggal_permohonan');
 			$searchArray = array(
 				'tanggal_permohonan' => $searchMonth,
 				'status' => $arrayData['status']
 			);
 			$data["permohonan"] = $this->Balasan_model->searchByMothExceptPending($searchArray);
+			//else untuk menampilkan semua data kecuali 'Menunggu Verifikasi'
+		} else {
+			$searchArray = array(
+				'nama_pelamar' => '',
+				'tanggal_permohonan' => '',
+				'status' => $arrayData['status'],
+			);
+			$data['permohonan'] = $this->Balasan_model->getPermohonanWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countPermohonanWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/index';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
+
+		//membuat pagination
+		$this->pagination->initialize($pagination);
 
 		$this->loadTemplate($data);
 	}
@@ -66,27 +97,61 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'status' => 'Disetujui'
 		);
+		//pagination init
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
+
 		// aksi untuk liat data yang telah disetujui
-		$data['approval'] = $this->Balasan_model->getDataWithStatus($arrayData);
 		// aksi untuk pencarian by nama
-		if ($this->input->post('pelamar')) {
-			$search = $this->input->post('pelamar');
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
 			$searchArray = array(
 				'nama_pelamar' => $search,
 				'status' => $arrayData['status']
 			);
-			$data["approval"] = $this->Balasan_model->searchAll($searchArray);
+			$data['approval'] = $this->Balasan_model->getDataWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countDataWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/approval';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
+
 			// else if untuk pencarian berdasarkan bulan
+
+		} else if ($this->input->get('tanggal_permohonan')) {
+			$searchMonth = $this->input->get('tanggal_permohonan');
 			
-		} else if ($this->input->post('tanggal_permohonan')) {
-			$searchMonth = $this->input->post('tanggal_permohonan');
 			$searchArray = array(
 				'tanggal_permohonan' => $searchMonth,
 				'status' => $arrayData['status']
 			);
 			$data["approval"] = $this->Balasan_model->searchByMoth($searchArray);
+			//else untuk menampilkan semua data dengan status = Disetujui
+		} else {
+			$searchArray = array(
+				'nama_pelamar' => '',
+				'tanggal_permohonan' => '',
+				'status' => $arrayData['status'],
+			);
+			$data['approval'] = $this->Balasan_model->getDataWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countDataWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/approval';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
+
+		//membuat pagination
+		$this->pagination->initialize($pagination);
+
 		$this->loadTemplate($data);
 	}
 
@@ -96,26 +161,58 @@ class Pusat extends CI_Controller
 		$arrayData = array(
 			'status' => 'Ditolak'
 		);
-		// aksi untuk liat data yang telah ditolak
-		$data['reject'] = $this->Balasan_model->getDataWithStatus($arrayData);
+
+		//pagination initial
+		$pagination['per_page'] = 2;
+		$data['start'] = $this->uri->segment(3);
+
 		// aksi untuk pencarian by nama
-		if ($this->input->post('pelamar')) {
-			$search = $this->input->post('pelamar');
+		if ($this->input->get('pelamar')) {
+			$search = $this->input->get('pelamar');
 			$searchArray = array(
 				'nama_pelamar' => $search,
 				'status' => $arrayData['status']
 			);
-			$data["reject"] = $this->Balasan_model->searchAll($searchArray);
+			//$data["reject"] = $this->Balasan_model->searchAll($searchArray);
+			$data['reject'] = $this->Balasan_model->getDataWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countDataWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/rejection';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
 			// else if untuk pencarian berdasarkan bulan
-		} else if ($this->input->post('tanggal_permohonan')) {
-			$searchMonth = $this->input->post('tanggal_permohonan');
+		} else if ($this->input->get('tanggal_permohonan')) {
+			$searchMonth = $this->input->get('tanggal_permohonan');
 			$searchArray = array(
 				'tanggal_permohonan' => $searchMonth,
 				'status' => $arrayData['status']
 			);
 			$data["reject"] = $this->Balasan_model->searchByMoth($searchArray);
+			// else untuk menampilkan semua data dengan status = Disetujui
+		} else {
+			$searchArray = array(
+				'nama_pelamar' => '',
+				'tanggal_permohonan' => '',
+				'status' => $arrayData['status'],
+			);
+			$data['reject'] = $this->Balasan_model->getDataWithStatus($searchArray, $pagination['per_page'], $data['start']);
+
+			//pagination
+			$pagination['total_rows'] = $this->Balasan_model->countDataWithStatus($searchArray);
+			$pagination['base_url'] = 'http://localhost/web-pusdiklat/pusat/rejection';
+			$pagination['suffix'] = '?' . http_build_query($_GET, '', "&");
+			$pagination['first_url'] = $pagination['base_url'] . $pagination['suffix'];
+			//pagination
+
 		}
 		$data['count'] = $this->Balasan_model->countBalasanSurat();
+
+		//membuat pagination
+		$this->pagination->initialize($pagination);
+
 		$this->loadTemplate($data);
 	}
 

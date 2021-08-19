@@ -4,7 +4,7 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Penolakan</h1>
 					<p>Daftar pelamar yang ditolak</p>
-					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/rejection') ?>" method='post'>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/rejection') ?>" method='get'>
 						<div class="row d-flex">
 							<div class="col-md-6 mr-auto p-2">
 								<div class="input-group ">
@@ -44,7 +44,7 @@
 									foreach ($reject as $dataApprovement) :
 									?>
 										<tr>
-											<td><?= $no++; ?></td>
+											<td><?= ++$start; ?></td>
 											<td><?= indo_date($dataApprovement['tanggal_permohonan']); ?></td>
 											<td><?= $dataApprovement['nama_pelamar']; ?></td>
 											<td><?= $dataApprovement['nama_unit']; ?></td>
@@ -69,7 +69,9 @@
 						</div>
 					</div>
 					<!-- pagination section -->
-					<div class="row">
+					<?= $this->pagination->create_links(''); ?>
+
+					<!-- <div class="row">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li class="page-item">
@@ -89,6 +91,6 @@
 								</li>
 							</ul>
 						</nav>
-					</div>
+					</div> -->
 				</div>
 			</main>
