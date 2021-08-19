@@ -3,42 +3,27 @@
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Menu Persetujuan</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active"></li>
-					</ol>
-					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/approval') ?>" method='get'>
-						<div class="input-group ">
-							<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-							<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-						</div>
-					</form>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active"></li>
-					</ol>
-					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<div class=" text-white mb-4">
-								<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-									<option selected>Open this select menu</option>
-									<option value="1">Biro Perencanaan dan Keuangan</option>
-									<option value="2">Biro Hukum, Organisasi, Kerja Sama dan Hubungan Masyarakat</option>
-									<option value="3">Biro SDM dan Umum</option>
-									<option value="4">Direktorat Deposit dan Pengembangan Koleksi Perpustakaan</option>
-									<option value="5">Pusat Bibliografi dan Pengolahan Bahan Perpustakaan</option>
-									<option value="6">Pusat Preservasi dan Alih Media Bahan Perpustakaan</option>
-									<option value="7">Pusat Jasa Informasi Perpustakaan dan Pengelolaan Naskah Nusantara</option>
-									<option value="8">Deputi Bidang Pengembangan Sumber Daya Perpustakaan</option>
-									<option value="9">Pusat Pengembangan Perpustakaan Umum dan Khusus</option>
-									<option value="10">Pusat Pengembangan Perpustakaan Sekolah/Madrasah dan Perguruan Tinggi</option>
-									<option value="11">Pusat Analisis Perpustakaan dan Pengembangan Budaya Baca</option>
-									<option value="12">Pusat Data dan Informasi</option>
-									<option value="13">Pusat Pembinaan Pustakawan</option>
-									<option value="14">Pusat Pendidikan dan Pelatihan</option>
-									<option value="15">Inspektorat</option>
-								</select>
+					<p> Daftar data yang telah disetujui</p>
+					<form class="d-none d-md-inline-block form-inline ms-auto me-4 me-md-3 my-2 my-md-0" action="<?= base_url('pusat/approval') ?>" method='post'>
+						<div class="row d-flex">
+							<div class="col-md-6 mr-auto p-2">
+								<div class="input-group ">
+									<input class="form-control" name="pelamar" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+									<button class="btn btn-success " id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+								</div>
 							</div>
-						</div>
-					</div>
+							<div class="col-md-4 mr-auto p-2">
+								<div class="input-group">
+									<input type="month" name="tanggal_permohonan" class="form-control">
+									<div class="input-group-append px-2">
+										<button class="btn btn-secondary" type="submit">Lihat Data</button>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 mr-auto p-2">
+								<button class="btn btn-md btn-primary"><i class="fas fa-print"></i>&nbsp; Export to Excel</button>
+							</div>
+					</form>
 					<div class="row">
 						<div class="col-md-12">
 							<table class="table table-hover">
